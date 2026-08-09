@@ -448,56 +448,121 @@ async function loadBusinesses(){
 
 
   data.forEach(
-    business => {
+  business => {
 
-      const card =
-        document.createElement(
-          "div"
-        );
+    const card =
+      document.createElement("div");
 
-      card.className =
-        "card";
+    card.className = "card";
 
+    const status =
+      business.status || "pending";
 
-      card.innerHTML = `
+    let actions = "";
 
-        <div class="row">
+    if (status === "pending") {
 
-          <div>
+      actions = `
 
-            <h3>
-              ${escapeHTML(
-                business.name
-              )}
-            </h3>
+        <button
+          onclick="approveBusiness('${business.id}')"
+        >
+          ✅ Approve
+        </button>
 
-            <p>
-              📍 ${escapeHTML(
-                business.location
-              )}
-            </p>
-
-          </div>
-
-          <button
-            class="delete"
-            onclick="deleteBusiness(
-              '${business.id}'
-            )"
-          >
-            🗑️ Delete
-          </button>
-
-        </div>
+        <button
+          class="delete"
+          onclick="rejectBusiness('${business.id}')"
+        >
+          ❌ Reject
+        </button>
 
       `;
 
+    }
 
-      container.appendChild(card);
+    else if (status === "approved") {
+
+      actions = `
+
+        <span class="badge">
+          🟢 Approved
+        </span>
+
+        <button
+          class="delete"
+          onclick="deleteBusiness('${business.id}')"
+        >
+          🗑️ Delete
+        </button>
+
+      `;
 
     }
-  );
-}
+
+    else {
+
+      actions = `
+
+        <span class="badge">
+          🔴 Rejected
+        </span>
+
+        <button
+          onclick="approveBusiness('${business.id}')"
+        >
+          ✅ Approve
+        </button>
+
+        <button
+          class="delete"
+          onclick="deleteBusiness('${business.id}')"
+        >
+          🗑️ Delete
+        </button>
+
+      `;
+
+    }
+
+
+    card.innerHTML = `
+
+      <div class="row">
+
+        <div>
+
+          <h3>
+            ${escapeHTML(business.name)}
+          </h3>
+
+          <p>
+            📍 ${escapeHTML(
+              business.location || ""
+            )}
+          </p>
+
+          <p>
+            Status:
+            <strong>
+              ${escapeHTML(status)}
+            </strong>
+          </p>
+
+        </div>
+
+        <div>
+          ${actions}
+        </div>
+
+      </div>
+
+    `;
+
+    container.appendChild(card);
+
+  }
+);
 
 
 /* =========================
