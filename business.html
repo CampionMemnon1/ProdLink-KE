@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Business | ProdLink KE</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #172033;
+}
+
+header {
+  background: #172033;
+  color: white;
+  padding: 18px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 18px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px #ddd;
+}
+
+.business-name {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.location {
+  color: #667085;
+}
+
+.product {
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+
+.product h3 {
+  margin-top: 0;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+button {
+  border: none;
+  padding: 12px 16px;
+  border-radius: 9px;
+  color: white;
+  background: #1683ff;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.whatsapp {
+  background: #16883b;
+}
+
+.back {
+  background: #667085;
+}
+
+.error {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>
+  🛍️ ProdLink KE
+</h1>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- BUSINESS -->
+
+<div
+  id="businessCard"
+  class="card"
+>
+
+<p>
+  Loading business...
+</p>
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+<div
+  id="productsCard"
+  class="card hidden"
+>
+
+<h2>
+  📦 Products
+</h2>
+
+<div id="products">
+
+</div>
+
+</div>
+
+
+<!-- ERROR -->
+
+<div
+  id="errorCard"
+  class="card hidden"
+>
+
+<p
+  id="error"
+  class="error"
+></p>
+
+<button
+  class="back"
+  onclick="goHome()"
+>
+  ← Back to ProdLink KE
+</button>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* ===============================
+   SUPABASE
+================================ */
+
+const SUPABASE_URL =
+"https://caspleasocqyefolvgno.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_MvVKXlV6n8Y1sRs8VvZtYw_zqI0LgCr";
+
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* ===============================
+   GET BUSINESS ID
+================================ */
+
+const params =
+new URLSearchParams(
+  window.location.search
+);
+
+
+const businessId =
+params.get("id");
+
+
+/* ===============================
+   LOAD BUSINESS
+================================ */
+
+async function loadBusiness() {
+
+  if (!businessId) {
+
+    showError(
+      "No business was specified."
+    );
+
+    return;
+  }
+
+
+  const result =
+    await supabaseClient
+
+      .from("businesses")
+
+      .select("*")
+
+      .eq(
+        "id",
+        businessId
+      )
+
+      .eq(
+        "status",
+        "approved"
+      )
+
+      .maybeSingle();
+
+
+  if (result.error) {
+
+    showError(
+      result.error.message
+    );
+
+    return;
+  }
+
+
+  if (!result.data) {
+
+    showError(
+      "This business is not available."
+    );
+
+    return;
+  }
+
+
+  displayBusiness(
+    result.data
+  );
+
+
+  loadProducts(
+    result.data.id
+  );
+
+}
+
+
+/* ===============================
+   DISPLAY BUSINESS
+================================ */
+
+function displayBusiness(
+  business
+) {
+
+  const card =
+    document.getElementById(
+      "businessCard"
+    );
+
+
+  card.innerHTML = `
+
+    <h2
+      class="business-name"
+    >
+      ${escapeHTML(
+        business.name
+      )}
+    </h2>
+
+
+    <p
+      class="location"
+    >
+      📍
+      ${escapeHTML(
+        business.location || ""
+      )}
+    </p>
+
+
+    ${
+      business.description
+
+      ? `
+
+        <p>
+          ${escapeHTML(
+            business.description
+          )}
+        </p>
+
+      `
+
+      : ""
+
+    }
+
+
+    ${
+      business.phone
+
+      ? `
+
+        <button
+          onclick="
+            window.location.href =
+            'tel:${encodeURIComponent(
+              business.phone
+            )}'
+          "
+        >
+          📞 Call
+        </button>
+
+      `
+
+      : ""
+
+    }
+
+
+    ${
+      business.whatsapp
+
+      ? `
+
+        <button
+          class="whatsapp"
+          onclick="
+            openWhatsApp(
+              '${escapeJS(
+                business.whatsapp
+              )}'
+            )
+          "
+        >
+          💬 WhatsApp
+        </button>
+
+      `
+
+      : ""
+
+    }
+
+  `;
+
+}
+
+
+/* ===============================
+   LOAD PRODUCTS
+================================ */
+
+async function loadProducts(
+  businessId
+) {
+
+  const result =
+    await supabaseClient
+
+      .from("products")
+
+      .select("*")
+
+      .eq(
+        "business_id",
+        businessId
+      );
+
+
+  if (result.error) {
+
+    console.error(
+      result.error
+    );
+
+    return;
+  }
+
+
+  const products =
+    result.data || [];
+
+
+  const card =
+    document.getElementById(
+      "productsCard"
+    );
+
+
+  const container =
+    document.getElementById(
+      "products"
+    );
+
+
+  card.classList.remove(
+    "hidden"
+  );
+
+
+  if (!products.length) {
+
+    container.innerHTML =
+      "<p>No products listed yet.</p>";
+
+    return;
+  }
+
+
+  container.innerHTML = "";
+
+
+  products.forEach(
+    product => {
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+
+      item.className =
+        "product";
+
+
+      item.innerHTML = `
+
+        <h3>
+          ${escapeHTML(
+            product.name
+          )}
+        </h3>
+
+
+        <p class="price">
+
+          KSh
+          ${Number(
+            product.price || 0
+          ).toLocaleString()}
+
+        </p>
+
+
+        ${
+          product.description
+
+          ? `
+
+            <p>
+              ${escapeHTML(
+                product.description
+              )}
+            </p>
+
+          `
+
+          : ""
+
+        }
+
+      `;
+
+
+      container.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+/* ===============================
+   WHATSAPP
+================================ */
+
+function openWhatsApp(
+  number
+) {
+
+  const clean =
+    number.replace(
+      /[^0-9]/g,
+      ""
+    );
+
+
+  window.open(
+    "https://wa.me/" +
+    clean,
+    "_blank"
+  );
+
+}
+
+
+/* ===============================
+   ERROR
+================================ */
+
+function showError(
+  message
+) {
+
+  document
+    .getElementById(
+      "businessCard"
+    )
+    .classList.add(
+      "hidden"
+    );
+
+
+  document
+    .getElementById(
+      "productsCard"
+    )
+    .classList.add(
+      "hidden"
+    );
+
+
+  document
+    .getElementById(
+      "errorCard"
+    )
+    .classList.remove(
+      "hidden"
+    );
+
+
+  document
+    .getElementById(
+      "error"
+    )
+    .textContent =
+      message;
+
+}
+
+
+/* ===============================
+   HOME
+================================ */
+
+function goHome() {
+
+  window.location.href =
+    "index.html";
+
+}
+
+
+/* ===============================
+   SECURITY
+================================ */
+
+function escapeHTML(
+  value
+) {
+
+  return String(
+    value ?? ""
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+
+function escapeJS(
+  value
+) {
+
+  return String(
+    value ?? ""
+  )
+
+  .replace(
+    /\\/g,
+    "\\\\"
+  )
+
+  .replace(
+    /'/g,
+    "\\'"
+  );
+
+}
+
+
+/* ===============================
+   START
+================================ */
+
+loadBusiness();
+
+</script>
+
+</body>
+
+</html>
