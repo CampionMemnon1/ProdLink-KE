@@ -564,7 +564,86 @@ async function loadBusinesses(){
   }
 );
 
+/* APPROVE BUSINESS */
 
+async function approveBusiness(id) {
+
+  const {
+    error
+  } =
+    await supabaseClient
+
+      .from("businesses")
+
+      .update({
+        status: "approved"
+      })
+
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    alert(
+      "❌ " +
+      error.message
+    );
+
+    return;
+  }
+
+
+  loadBusinesses();
+}
+
+
+/* REJECT BUSINESS */
+
+async function rejectBusiness(id) {
+
+  if (
+    !confirm(
+      "Reject this business?"
+    )
+  ) {
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+
+      .from("businesses")
+
+      .update({
+        status: "rejected"
+      })
+
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    alert(
+      "❌ " +
+      error.message
+    );
+
+    return;
+  }
+
+
+  loadBusinesses();
+}
 /* =========================
    DELETE BUSINESS
 ========================= */
