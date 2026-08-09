@@ -140,7 +140,7 @@ async function filterCategory(category){
 const {data,error}=await supabaseClient.from("products").select(`
 id,name,price,category,image_url,business_id,
 businesses(id,name,location,phone,description)
-`).eq("category",category);
+`).eq("status", "approved")
 if(error){console.error(error);return}
 displayProducts(data);
 }
