@@ -1639,7 +1639,15 @@ document
     addCollaborator
   );
 
+function viewBusiness(id) {
 
+  window.open(
+    "business.html?id=" +
+    encodeURIComponent(id),
+    "_blank"
+  );
+
+  }
 /* ==================================
    START
 ================================== */
