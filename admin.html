@@ -3,14 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ProdLink KE Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
+  font-family: Arial, sans-serif;
   background: #f4f6f8;
   color: #172033;
 }
@@ -18,121 +24,304 @@ body {
 header {
   background: #172033;
   color: white;
-  padding: 20px;
+  padding: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  margin: 0;
 }
 
 .container {
-  max-width: 700px;
+  max-width: 1000px;
   margin: auto;
-  padding: 20px;
+  padding: 18px;
 }
 
 .card {
   background: white;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 18px;
+  margin: 15px 0;
   border-radius: 14px;
   box-shadow: 0 2px 8px #ddd;
 }
 
-input {
+input,
+select {
   width: 100%;
   padding: 12px;
-  margin: 8px 0;
-  box-sizing: border-box;
+  margin: 7px 0;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 9px;
+  font-size: 15px;
 }
 
 button {
-  padding: 12px 18px;
   border: none;
+  padding: 10px 14px;
+  margin: 4px;
   border-radius: 8px;
-  background: #1683ff;
   color: white;
+  background: #1683ff;
   font-weight: bold;
   cursor: pointer;
 }
 
-button:disabled {
-  opacity: 0.6;
+button:hover {
+  opacity: 0.9;
+}
+
+.approve {
+  background: #16883b;
+}
+
+.reject,
+.delete {
+  background: #d93434;
+}
+
+.secondary {
+  background: #667085;
 }
 
 .hidden {
   display: none;
 }
 
-#error {
-  color: #d32f2f;
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-#success {
-  color: #16883b;
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
 }
+
+.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.approved {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+.rejected {
+  background: #f8d7da;
+  color: #842029;
+}
+
+.error {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.success {
+  color: #16883b;
+  font-weight: bold;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.stat {
+  background: #f7f9fc;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat h2 {
+  margin: 5px 0;
+}
+
+.section-title {
+  margin-top: 0;
+}
+
+.item {
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 22px 0;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
+
   <h1>👑 ProdLink KE Admin</h1>
-  <p>Admin control center</p>
+
+  <p>
+    Marketplace Control Center
+  </p>
+
 </header>
+
 
 <div class="container">
 
-  <!-- LOGIN -->
 
-  <div id="loginCard" class="card">
+<!-- ==============================
+     LOGIN
+================================ -->
 
-    <h2>🔐 Admin Login</h2>
+<div
+  id="loginCard"
+  class="card"
+>
 
-    <input
-      id="email"
-      type="email"
-      placeholder="Your admin email"
-    >
+  <h2>🔐 Admin Login</h2>
 
-    <input
-      id="password"
-      type="password"
-      placeholder="Your password"
-    >
+  <input
+    id="email"
+    type="email"
+    placeholder="Admin email"
+  >
+
+  <input
+    id="password"
+    type="password"
+    placeholder="Password"
+  >
+
+  <button
+    id="loginButton"
+    type="button"
+  >
+    Login
+  </button>
+
+  <p
+    id="loginError"
+    class="error"
+  ></p>
+
+</div>
+
+
+<!-- ==============================
+     DASHBOARD
+================================ -->
+
+<div
+  id="dashboard"
+  class="hidden"
+>
+
+
+<!-- TOP -->
+
+<div class="card">
+
+  <div class="row">
+
+    <div>
+
+      <h2>
+        👋 Welcome
+      </h2>
+
+      <p id="roleText"></p>
+
+    </div>
 
     <button
-      id="loginButton"
-      type="button"
-    >
-      Login
-    </button>
-
-    <p id="error"></p>
-    <p id="success"></p>
-
-  </div>
-
-
-  <!-- DASHBOARD -->
-
-  <div id="dashboard" class="card hidden">
-
-    <h2>🎉 Welcome to ProdLink KE</h2>
-
-    <p id="roleText"></p>
-
-    <button
+      class="secondary"
       id="logoutButton"
-      type="button"
     >
       Logout
     </button>
 
-    <hr>
+  </div>
 
-    <h3>🏪 Businesses</h3>
+</div>
 
-    <div id="businesses">
-      Loading...
+
+<!-- ==============================
+     STATISTICS
+================================ -->
+
+<div class="card">
+
+  <h2 class="section-title">
+    📊 Overview
+  </h2>
+
+  <div class="stat-grid">
+
+    <div class="stat">
+
+      <div>
+        🟡 Pending
+      </div>
+
+      <h2 id="pendingCount">
+        0
+      </h2>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div>
+        🟢 Approved
+      </div>
+
+      <h2 id="approvedCount">
+        0
+      </h2>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div>
+        🔴 Rejected
+      </div>
+
+      <h2 id="rejectedCount">
+        0
+      </h2>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div>
+        📦 Products
+      </div>
+
+      <h2 id="productCount">
+        0
+      </h2>
+
     </div>
 
   </div>
@@ -140,11 +329,125 @@ button:disabled {
 </div>
 
 
+<!-- ==============================
+     BUSINESSES
+================================ -->
+
+<div class="card">
+
+  <h2>
+    🏪 Businesses
+  </h2>
+
+  <div
+    id="businesses"
+  >
+    Loading...
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     PRODUCTS
+================================ -->
+
+<div class="card">
+
+  <h2>
+    📦 Products
+  </h2>
+
+  <div
+    id="products"
+  >
+    Loading...
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     TEAM
+================================ -->
+
+<div
+  id="teamSection"
+  class="card hidden"
+>
+
+  <h2>
+    👥 Team Management
+  </h2>
+
+  <p>
+    Only the Owner can manage collaborators.
+  </p>
+
+
+  <h3>
+    Current Team
+  </h3>
+
+  <div id="team">
+    Loading...
+  </div>
+
+
+  <hr>
+
+
+  <h3>
+    ➕ Add Collaborator
+  </h3>
+
+  <input
+    id="newUserId"
+    placeholder="Collaborator User ID"
+  >
+
+
+  <select id="newRole">
+
+    <option value="admin">
+      Admin
+    </option>
+
+    <option value="moderator">
+      Moderator
+    </option>
+
+    <option value="viewer">
+      Viewer
+    </option>
+
+  </select>
+
+
+  <button
+    id="addCollaboratorButton"
+  >
+    Add Collaborator
+  </button>
+
+
+  <p
+    id="teamMessage"
+  ></p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
 <script>
 
-/* =====================================
-   SUPABASE CONFIGURATION
-===================================== */
+/* ==================================
+   SUPABASE
+================================== */
 
 const SUPABASE_URL =
 "https://caspleasocqyefolvgno.supabase.co";
@@ -153,20 +456,19 @@ const SUPABASE_KEY =
 "sb_publishable_MvVKXlV6n8Y1sRs8VvZtYw_zqI0LgCr";
 
 
-/* =====================================
-   CREATE SUPABASE CLIENT
-===================================== */
-
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 
-/* =====================================
+let currentRole = null;
+
+
+/* ==================================
    LOGIN
-===================================== */
+================================== */
 
 async function login() {
 
@@ -176,32 +478,33 @@ async function login() {
       .value
       .trim();
 
+
   const password =
     document
       .getElementById("password")
       .value;
 
-  const error =
-    document.getElementById("error");
 
-  const success =
-    document.getElementById("success");
-
-  const button =
-    document.getElementById("loginButton");
+  const errorBox =
+    document
+      .getElementById("loginError");
 
 
-  error.textContent = "";
-  success.textContent = "";
+  errorBox.textContent = "";
 
 
   if (!email || !password) {
 
-    error.textContent =
+    errorBox.textContent =
       "Please enter your email and password.";
 
     return;
   }
+
+
+  const button =
+    document
+      .getElementById("loginButton");
 
 
   button.disabled = true;
@@ -210,10 +513,9 @@ async function login() {
     "Logging in...";
 
 
-  try {
-
-    const result =
-      await supabaseClient.auth.signInWithPassword({
+  const result =
+    await supabaseClient.auth
+      .signInWithPassword({
 
         email: email,
 
@@ -222,60 +524,41 @@ async function login() {
       });
 
 
-    if (result.error) {
+  if (result.error) {
 
-      error.textContent =
-        "❌ " +
-        result.error.message;
-
-      button.disabled = false;
-
-      button.textContent =
-        "Login";
-
-      return;
-    }
-
-
-    success.textContent =
-      "Login successful. Checking permissions...";
-
-
-    await checkAdmin();
-
-
-  } catch (err) {
-
-    error.textContent =
+    errorBox.textContent =
       "❌ " +
-      err.message;
+      result.error.message;
 
     button.disabled = false;
 
     button.textContent =
       "Login";
 
+    return;
   }
+
+
+  await checkAdmin();
 
 }
 
 
-/* =====================================
+/* ==================================
    CHECK ADMIN
-===================================== */
+================================== */
 
 async function checkAdmin() {
 
   const result =
-    await supabaseClient.auth.getUser();
+    await supabaseClient.auth
+      .getUser();
 
 
-  if (result.error || !result.data.user) {
-
-    document.getElementById(
-      "error"
-    ).textContent =
-      "❌ Could not find your account.";
+  if (
+    result.error ||
+    !result.data.user
+  ) {
 
     return;
   }
@@ -302,9 +585,9 @@ async function checkAdmin() {
 
   if (adminResult.error) {
 
-    document.getElementById(
-      "error"
-    ).textContent =
+    document
+      .getElementById("loginError")
+      .textContent =
       "❌ " +
       adminResult.error.message;
 
@@ -322,15 +605,20 @@ async function checkAdmin() {
     )
   ) {
 
-    document.getElementById(
-      "error"
-    ).textContent =
+    document
+      .getElementById("loginError")
+      .textContent =
       "❌ Your account does not have admin access.";
 
-    await supabaseClient.auth.signOut();
+    await supabaseClient.auth
+      .signOut();
 
     return;
   }
+
+
+  currentRole =
+    adminResult.data.role;
 
 
   document
@@ -347,24 +635,44 @@ async function checkAdmin() {
     .getElementById("roleText")
     .textContent =
       "Logged in as: " +
-      adminResult.data.role.toUpperCase();
+      currentRole.toUpperCase();
+
+
+  if (
+    currentRole === "owner"
+  ) {
+
+    document
+      .getElementById("teamSection")
+      .classList.remove("hidden");
+
+    loadTeam();
+
+  }
 
 
   loadBusinesses();
 
+  loadProducts();
+
 }
 
 
-/* =====================================
+/* ==================================
    LOAD BUSINESSES
-===================================== */
+================================== */
 
 async function loadBusinesses() {
 
   const container =
-    document.getElementById(
-      "businesses"
-    );
+    document
+      .getElementById(
+        "businesses"
+      );
+
+
+  container.innerHTML =
+    "Loading...";
 
 
   const result =
@@ -384,18 +692,90 @@ async function loadBusinesses() {
 
   if (result.error) {
 
-    container.textContent =
-      "❌ " +
-      result.error.message;
+    container.innerHTML =
+      "<p class='error'>" +
+      escapeHTML(
+        result.error.message
+      ) +
+      "</p>";
 
     return;
   }
 
 
-  if (!result.data.length) {
+  const businesses =
+    result.data || [];
 
-    container.textContent =
-      "No businesses found.";
+
+  let pending = 0;
+
+  let approved = 0;
+
+  let rejected = 0;
+
+
+  businesses.forEach(
+    business => {
+
+      if (
+        business.status ===
+        "pending"
+      ) {
+
+        pending++;
+
+      }
+
+      else if (
+        business.status ===
+        "approved"
+      ) {
+
+        approved++;
+
+      }
+
+      else if (
+        business.status ===
+        "rejected"
+      ) {
+
+        rejected++;
+
+      }
+
+    }
+  );
+
+
+  document
+    .getElementById(
+      "pendingCount"
+    )
+    .textContent =
+      pending;
+
+
+  document
+    .getElementById(
+      "approvedCount"
+    )
+    .textContent =
+      approved;
+
+
+  document
+    .getElementById(
+      "rejectedCount"
+    )
+    .textContent =
+      rejected;
+
+
+  if (!businesses.length) {
+
+    container.innerHTML =
+      "<p>No businesses found.</p>";
 
     return;
   }
@@ -404,7 +784,7 @@ async function loadBusinesses() {
   container.innerHTML = "";
 
 
-  result.data.forEach(
+  businesses.forEach(
     business => {
 
       const item =
@@ -414,23 +794,179 @@ async function loadBusinesses() {
 
 
       item.className =
-        "card";
+        "item";
+
+
+      const status =
+        business.status ||
+        "pending";
+
+
+      let badgeClass =
+        "pending";
+
+
+      if (
+        status ===
+        "approved"
+      ) {
+
+        badgeClass =
+          "approved";
+
+      }
+
+      else if (
+        status ===
+        "rejected"
+      ) {
+
+        badgeClass =
+          "rejected";
+
+      }
+
+
+      let buttons = "";
+
+
+      if (
+        status ===
+        "pending"
+      ) {
+
+        buttons = `
+
+          <button
+            class="approve"
+            onclick="
+              approveBusiness(
+                '${business.id}'
+              )
+            "
+          >
+            ✅ Approve
+          </button>
+
+
+          <button
+            class="reject"
+            onclick="
+              rejectBusiness(
+                '${business.id}'
+              )
+            "
+          >
+            ❌ Reject
+          </button>
+
+        `;
+
+      }
+
+
+      if (
+        status ===
+        "approved"
+      ) {
+
+        buttons = `
+
+          <button
+            class="reject"
+            onclick="
+              rejectBusiness(
+                '${business.id}'
+              )
+            "
+          >
+            ❌ Reject
+          </button>
+
+        `;
+
+      }
+
+
+      if (
+        status ===
+        "rejected"
+      ) {
+
+        buttons = `
+
+          <button
+            class="approve"
+            onclick="
+              approveBusiness(
+                '${business.id}'
+              )
+            "
+          >
+            ✅ Approve
+          </button>
+
+        `;
+
+      }
+
+
+      buttons += `
+
+        <button
+          class="delete"
+          onclick="
+            deleteBusiness(
+              '${business.id}'
+            )
+          "
+        >
+          🗑️ Delete
+        </button>
+
+      `;
 
 
       item.innerHTML = `
 
-        <strong>
-          ${escapeHTML(
-            business.name
-          )}
-        </strong>
+        <div class="row">
 
-        <p>
-          Status:
-          ${escapeHTML(
-            business.status || "pending"
-          )}
-        </p>
+          <div>
+
+            <h3>
+              ${escapeHTML(
+                business.name
+              )}
+            </h3>
+
+
+            <p>
+              📍
+              ${escapeHTML(
+                business.location || ""
+              )}
+            </p>
+
+
+            <span
+              class="
+                badge
+                ${badgeClass}
+              "
+            >
+              ${status.toUpperCase()}
+            </span>
+
+          </div>
+
+
+          <div>
+
+            ${buttons}
+
+          </div>
+
+        </div>
 
       `;
 
@@ -445,24 +981,598 @@ async function loadBusinesses() {
 }
 
 
-/* =====================================
+/* ==================================
+   APPROVE
+================================== */
+
+async function approveBusiness(
+  id
+) {
+
+  const result =
+    await supabaseClient
+
+      .from("businesses")
+
+      .update({
+        status: "approved"
+      })
+
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+  }
+
+
+  loadBusinesses();
+
+}
+
+
+/* ==================================
+   REJECT
+================================== */
+
+async function rejectBusiness(
+  id
+) {
+
+  if (
+    !confirm(
+      "Reject this business?"
+    )
+  ) {
+
+    return;
+  }
+
+
+  const result =
+    await supabaseClient
+
+      .from("businesses")
+
+      .update({
+        status: "rejected"
+      })
+
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+  }
+
+
+  loadBusinesses();
+
+}
+
+
+/* ==================================
+   DELETE BUSINESS
+================================== */
+
+async function deleteBusiness(
+  id
+) {
+
+  if (
+    !confirm(
+      "Delete this business permanently?"
+    )
+  ) {
+
+    return;
+  }
+
+
+  const result =
+    await supabaseClient
+
+      .from("businesses")
+
+      .delete()
+
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+  }
+
+
+  loadBusinesses();
+
+}
+
+
+/* ==================================
+   PRODUCTS
+================================== */
+
+async function loadProducts() {
+
+  const container =
+    document
+      .getElementById(
+        "products"
+      );
+
+
+  container.innerHTML =
+    "Loading...";
+
+
+  const result =
+    await supabaseClient
+
+      .from("products")
+
+      .select("*")
+
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (result.error) {
+
+    container.innerHTML =
+      "<p class='error'>" +
+      escapeHTML(
+        result.error.message
+      ) +
+      "</p>";
+
+    return;
+  }
+
+
+  const products =
+    result.data || [];
+
+
+  document
+    .getElementById(
+      "productCount"
+    )
+    .textContent =
+      products.length;
+
+
+  if (!products.length) {
+
+    container.innerHTML =
+      "<p>No products found.</p>";
+
+    return;
+  }
+
+
+  container.innerHTML = "";
+
+
+  products.forEach(
+    product => {
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+
+      item.className =
+        "item";
+
+
+      item.innerHTML = `
+
+        <div class="row">
+
+          <div>
+
+            <h3>
+              ${escapeHTML(
+                product.name
+              )}
+            </h3>
+
+            <p>
+              Price:
+              KSh
+              ${Number(
+                product.price || 0
+              ).toLocaleString()}
+            </p>
+
+          </div>
+
+
+          <button
+            class="delete"
+            onclick="
+              deleteProduct(
+                '${product.id}'
+              )
+            "
+          >
+            🗑️ Delete
+          </button>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================
+   DELETE PRODUCT
+================================== */
+
+async function deleteProduct(
+  id
+) {
+
+  if (
+    !confirm(
+      "Delete this product permanently?"
+    )
+  ) {
+
+    return;
+  }
+
+
+  const result =
+    await supabaseClient
+
+      .from("products")
+
+      .delete()
+
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+  }
+
+
+  loadProducts();
+
+}
+
+
+/* ==================================
+   TEAM
+================================== */
+
+async function loadTeam() {
+
+  const container =
+    document
+      .getElementById(
+        "team"
+      );
+
+
+  const result =
+    await supabaseClient
+
+      .from("admin_users")
+
+      .select("*");
+
+
+  if (result.error) {
+
+    container.innerHTML =
+      "<p class='error'>" +
+      escapeHTML(
+        result.error.message
+      ) +
+      "</p>";
+
+    return;
+  }
+
+
+  container.innerHTML = "";
+
+
+  result.data.forEach(
+    member => {
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+
+      item.className =
+        "item";
+
+
+      const role =
+        member.role;
+
+
+      item.innerHTML = `
+
+        <p>
+
+          <strong>
+            User ID:
+          </strong>
+
+          <br>
+
+          ${escapeHTML(
+            member.user_id
+          )}
+
+        </p>
+
+
+        <span class="badge">
+
+          ${escapeHTML(
+            role.toUpperCase()
+          )}
+
+        </span>
+
+
+        ${
+          role !== "owner"
+
+          ? `
+
+            <button
+              class="delete"
+              onclick="
+                removeMember(
+                  '${member.user_id}'
+                )
+              "
+            >
+              ❌ Remove
+            </button>
+
+          `
+
+          : `
+
+            <p>
+              👑 Owner — Protected
+            </p>
+
+          `
+        }
+
+      `;
+
+
+      container.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================
+   ADD COLLABORATOR
+================================== */
+
+async function addCollaborator() {
+
+  const userId =
+    document
+      .getElementById(
+        "newUserId"
+      )
+      .value
+      .trim();
+
+
+  const role =
+    document
+      .getElementById(
+        "newRole"
+      )
+      .value;
+
+
+  const message =
+    document
+      .getElementById(
+        "teamMessage"
+      );
+
+
+  message.textContent = "";
+
+
+  if (!userId) {
+
+    message.textContent =
+      "❌ Enter a User ID.";
+
+    return;
+  }
+
+
+  const result =
+    await supabaseClient
+
+      .from("admin_users")
+
+      .insert({
+
+        user_id:
+          userId,
+
+        role:
+          role
+
+      });
+
+
+  if (result.error) {
+
+    message.className =
+      "error";
+
+    message.textContent =
+      "❌ " +
+      result.error.message;
+
+    return;
+  }
+
+
+  message.className =
+    "success";
+
+
+  message.textContent =
+    "✅ Collaborator added.";
+
+
+  document
+    .getElementById(
+      "newUserId"
+    )
+    .value = "";
+
+
+  loadTeam();
+
+}
+
+
+/* ==================================
+   REMOVE MEMBER
+================================== */
+
+async function removeMember(
+  userId
+) {
+
+  if (
+    !confirm(
+      "Remove this collaborator?"
+    )
+  ) {
+
+    return;
+  }
+
+
+  const result =
+    await supabaseClient
+
+      .from("admin_users")
+
+      .delete()
+
+      .eq(
+        "user_id",
+        userId
+      );
+
+
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+  }
+
+
+  loadTeam();
+
+}
+
+
+/* ==================================
    LOGOUT
-===================================== */
+================================== */
 
 async function logout() {
 
-  await supabaseClient.auth.signOut();
+  await supabaseClient.auth
+    .signOut();
 
   location.reload();
 
 }
 
 
-/* =====================================
+/* ==================================
    ESCAPE HTML
-===================================== */
+================================== */
 
-function escapeHTML(value) {
+function escapeHTML(
+  value
+) {
 
   return String(
     value ?? ""
@@ -496,12 +1606,14 @@ function escapeHTML(value) {
 }
 
 
-/* =====================================
-   BUTTON EVENTS
-===================================== */
+/* ==================================
+   BUTTONS
+================================== */
 
 document
-  .getElementById("loginButton")
+  .getElementById(
+    "loginButton"
+  )
   .addEventListener(
     "click",
     login
@@ -509,16 +1621,28 @@ document
 
 
 document
-  .getElementById("logoutButton")
+  .getElementById(
+    "logoutButton"
+  )
   .addEventListener(
     "click",
     logout
-);
+  );
 
 
-/* =====================================
-   CHECK EXISTING SESSION
-===================================== */
+document
+  .getElementById(
+    "addCollaboratorButton"
+  )
+  .addEventListener(
+    "click",
+    addCollaborator
+  );
+
+
+/* ==================================
+   START
+================================== */
 
 checkAdmin();
 
