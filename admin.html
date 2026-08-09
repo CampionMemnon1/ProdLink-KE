@@ -3,98 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ProdLink KE Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f4f6f8;
-  color:#172033;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f6f8;
+  color: #172033;
 }
 
-header{
-  background:#172033;
-  color:white;
-  padding:20px;
+header {
+  background: #172033;
+  color: white;
+  padding: 20px;
 }
 
-header h1{margin:0 0 5px}
-
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:20px;
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
 }
 
-.card{
-  background:white;
-  padding:18px;
-  margin:12px 0;
-  border-radius:14px;
-  box-shadow:0 2px 8px #ddd;
+.card {
+  background: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #ddd;
 }
 
-input,select{
-  width:100%;
-  padding:12px;
-  margin:7px 0;
-  border:1px solid #ddd;
-  border-radius:9px;
-  font-size:15px;
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
-button{
-  border:0;
-  padding:11px 15px;
-  border-radius:9px;
-  background:#1683ff;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-  margin:4px;
+button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #1683ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.delete{
-  background:#e53935;
+button:disabled {
+  opacity: 0.6;
 }
 
-.logout{
-  background:#667085;
+.hidden {
+  display: none;
 }
 
-.hidden{
-  display:none;
+#error {
+  color: #d32f2f;
 }
 
-.message{
-  font-weight:bold;
-}
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.badge{
-  background:#eef4ff;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:13px;
-}
-
-hr{
-  border:0;
-  border-top:1px solid #eee;
-  margin:25px 0;
+#success {
+  color: #16883b;
 }
 </style>
 </head>
@@ -103,150 +76,75 @@ hr{
 
 <header>
   <h1>👑 ProdLink KE Admin</h1>
-  <p>Marketplace control center</p>
+  <p>Admin control center</p>
 </header>
 
 <div class="container">
 
-<!-- LOGIN -->
+  <!-- LOGIN -->
 
-<div id="loginCard" class="card">
+  <div id="loginCard" class="card">
 
-<h2>🔐 Admin Login</h2>
+    <h2>🔐 Admin Login</h2>
 
-<input
-  id="email"
-  type="email"
-  placeholder="Admin email"
->
+    <input
+      id="email"
+      type="email"
+      placeholder="Your admin email"
+    >
 
-<input
-  id="password"
-  type="password"
-  placeholder="Password"
->
+    <input
+      id="password"
+      type="password"
+      placeholder="Your password"
+    >
 
-<button type="button" onclick="login()">
-  Login
-</button>
-  Login
-</button>
+    <button
+      id="loginButton"
+      type="button"
+    >
+      Login
+    </button>
 
-<p id="loginMessage" class="message"></p>
+    <p id="error"></p>
+    <p id="success"></p>
 
-</div>
-
-
-<!-- DASHBOARD -->
-
-<div id="dashboard" class="hidden">
-
-<div class="card">
-
-<div class="row">
-
-<div>
-<h2>Dashboard</h2>
-<p id="welcome"></p>
-</div>
-
-<button class="logout" onclick="logout()">
-Logout
-</button>
-
-</div>
-
-</div>
+  </div>
 
 
-<!-- BUSINESSES -->
+  <!-- DASHBOARD -->
 
-<div class="card">
+  <div id="dashboard" class="card hidden">
 
-<h2>🏪 Businesses</h2>
+    <h2>🎉 Welcome to ProdLink KE</h2>
 
-<div id="businesses">
-Loading...
-</div>
+    <p id="roleText"></p>
 
-</div>
+    <button
+      id="logoutButton"
+      type="button"
+    >
+      Logout
+    </button>
 
+    <hr>
 
-<!-- PRODUCTS -->
+    <h3>🏪 Businesses</h3>
 
-<div class="card">
+    <div id="businesses">
+      Loading...
+    </div>
 
-<h2>📦 Products</h2>
-
-<div id="products">
-Loading...
-</div>
-
-</div>
-
-
-<!-- TEAM -->
-
-<div id="teamSection" class="card hidden">
-
-<h2>👥 Team</h2>
-
-<p>
-Only the Owner can manage collaborators.
-</p>
-
-<div id="team">
-Loading...
-</div>
-
-<hr>
-
-<h3>➕ Add Collaborator</h3>
-
-<p>
-For now, collaborators must first have a
-Supabase Auth account.
-</p>
-
-<input
-  id="newUserId"
-  placeholder="Collaborator User ID"
->
-
-<select id="newRole">
-
-<option value="admin">
-Admin
-</option>
-
-<option value="moderator">
-Moderator
-</option>
-
-<option value="viewer">
-Viewer
-</option>
-
-</select>
-
-<button onclick="addCollaborator()">
-Add Collaborator
-</button>
-
-<p id="teamMessage" class="message"></p>
-
-</div>
-
-</div>
+  </div>
 
 </div>
 
 
 <script>
 
-/* =========================
-   SUPABASE
-========================= */
+/* =====================================
+   SUPABASE CONFIGURATION
+===================================== */
 
 const SUPABASE_URL =
 "https://caspleasocqyefolvgno.supabase.co";
@@ -255,75 +153,139 @@ const SUPABASE_KEY =
 "sb_publishable_MvVKXlV6n8Y1sRs8VvZtYw_zqI0LgCr";
 
 
+/* =====================================
+   CREATE SUPABASE CLIENT
+===================================== */
+
 const supabaseClient =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-/* =========================
+/* =====================================
    LOGIN
-========================= */
+===================================== */
 
-async function login(){
+async function login() {
 
   const email =
-    document.getElementById("email").value.trim();
+    document
+      .getElementById("email")
+      .value
+      .trim();
 
   const password =
-    document.getElementById("password").value;
+    document
+      .getElementById("password")
+      .value;
+
+  const error =
+    document.getElementById("error");
+
+  const success =
+    document.getElementById("success");
+
+  const button =
+    document.getElementById("loginButton");
 
 
-  const {error} =
-    await supabaseClient.auth.signInWithPassword({
-
-      email:email,
-
-      password:password
-
-    });
+  error.textContent = "";
+  success.textContent = "";
 
 
-  if(error){
+  if (!email || !password) {
 
-    document.getElementById(
-      "loginMessage"
-    ).textContent =
-      "❌ " + error.message;
+    error.textContent =
+      "Please enter your email and password.";
 
     return;
   }
 
 
-  await checkAdmin();
+  button.disabled = true;
+
+  button.textContent =
+    "Logging in...";
+
+
+  try {
+
+    const result =
+      await supabaseClient.auth.signInWithPassword({
+
+        email: email,
+
+        password: password
+
+      });
+
+
+    if (result.error) {
+
+      error.textContent =
+        "❌ " +
+        result.error.message;
+
+      button.disabled = false;
+
+      button.textContent =
+        "Login";
+
+      return;
+    }
+
+
+    success.textContent =
+      "Login successful. Checking permissions...";
+
+
+    await checkAdmin();
+
+
+  } catch (err) {
+
+    error.textContent =
+      "❌ " +
+      err.message;
+
+    button.disabled = false;
+
+    button.textContent =
+      "Login";
+
+  }
+
 }
 
 
-/* =========================
+/* =====================================
    CHECK ADMIN
-========================= */
+===================================== */
 
-async function checkAdmin(){
+async function checkAdmin() {
 
-  const {
-    data:{
-      user
-    }
-  } =
+  const result =
     await supabaseClient.auth.getUser();
 
 
-  if(!user){
+  if (result.error || !result.data.user) {
+
+    document.getElementById(
+      "error"
+    ).textContent =
+      "❌ Could not find your account.";
 
     return;
   }
 
 
-  const {
-    data,
-    error
-  } =
+  const user =
+    result.data.user;
+
+
+  const adminResult =
     await supabaseClient
 
       .from("admin_users")
@@ -338,25 +300,32 @@ async function checkAdmin(){
       .maybeSingle();
 
 
-  if(error){
+  if (adminResult.error) {
 
-    console.error(error);
+    document.getElementById(
+      "error"
+    ).textContent =
+      "❌ " +
+      adminResult.error.message;
 
     return;
   }
 
 
-  if(
-    !data ||
+  if (
+    !adminResult.data ||
     ![
       "owner",
       "admin"
-    ].includes(data.role)
-  ){
+    ].includes(
+      adminResult.data.role
+    )
+  ) {
 
-    alert(
-      "❌ You do not have admin access."
-    );
+    document.getElementById(
+      "error"
+    ).textContent =
+      "❌ Your account does not have admin access.";
 
     await supabaseClient.auth.signOut();
 
@@ -375,51 +344,22 @@ async function checkAdmin(){
 
 
   document
-    .getElementById("welcome")
+    .getElementById("roleText")
     .textContent =
-      "Logged in as " +
-      data.role.toUpperCase();
-
-
-  if(data.role === "owner"){
-
-    document
-      .getElementById("teamSection")
-      .classList.remove("hidden");
-
-    loadTeam();
-  }
+      "Logged in as: " +
+      adminResult.data.role.toUpperCase();
 
 
   loadBusinesses();
 
-  loadProducts();
 }
 
 
-/* =========================
-   BUSINESSES
-========================= */
+/* =====================================
+   LOAD BUSINESSES
+===================================== */
 
-async function loadBusinesses(){
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-
-      .from("businesses")
-
-      .select("*")
-
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
-
+async function loadBusinesses() {
 
   const container =
     document.getElementById(
@@ -427,308 +367,35 @@ async function loadBusinesses(){
     );
 
 
-  if(error){
-
-    container.innerHTML =
-      "❌ " +
-      escapeHTML(error.message);
-
-    return;
-  }
-
-
-  container.innerHTML = "";
-
-
-  if(!data.length){
-
-    container.innerHTML =
-      "<p>No businesses found.</p>";
-
-    return;
-  }
-
-
-  data.forEach(
-  business => {
-
-    const card =
-      document.createElement("div");
-
-    card.className = "card";
-
-    const status =
-      business.status || "pending";
-
-    let actions = "";
-
-    if (status === "pending") {
-
-      actions = `
-
-        <button
-          onclick="approveBusiness('${business.id}')"
-        >
-          ✅ Approve
-        </button>
-
-        <button
-          class="delete"
-          onclick="rejectBusiness('${business.id}')"
-        >
-          ❌ Reject
-        </button>
-
-      `;
-
-    }
-
-    else if (status === "approved") {
-
-      actions = `
-
-        <span class="badge">
-          🟢 Approved
-        </span>
-
-        <button
-          class="delete"
-          onclick="deleteBusiness('${business.id}')"
-        >
-          🗑️ Delete
-        </button>
-
-      `;
-
-    }
-
-    else {
-
-      actions = `
-
-        <span class="badge">
-          🔴 Rejected
-        </span>
-
-        <button
-          onclick="approveBusiness('${business.id}')"
-        >
-          ✅ Approve
-        </button>
-
-        <button
-          class="delete"
-          onclick="deleteBusiness('${business.id}')"
-        >
-          🗑️ Delete
-        </button>
-
-      `;
-
-    }
-
-
-    card.innerHTML = `
-
-      <div class="row">
-
-        <div>
-
-          <h3>
-            ${escapeHTML(business.name)}
-          </h3>
-
-          <p>
-            📍 ${escapeHTML(
-              business.location || ""
-            )}
-          </p>
-
-          <p>
-            Status:
-            <strong>
-              ${escapeHTML(status)}
-            </strong>
-          </p>
-
-        </div>
-
-        <div>
-          ${actions}
-        </div>
-
-      </div>
-
-    `;
-
-    container.appendChild(card);
-
-  }
-);
-
-/* APPROVE BUSINESS */
-
-async function approveBusiness(id) {
-
-  const {
-    error
-  } =
+  const result =
     await supabaseClient
 
       .from("businesses")
-
-      .update({
-        status: "approved"
-      })
-
-      .eq(
-        "id",
-        id
-      );
-
-
-  if (error) {
-
-    alert(
-      "❌ " +
-      error.message
-    );
-
-    return;
-  }
-
-
-  loadBusinesses();
-}
-
-
-/* REJECT BUSINESS */
-
-async function rejectBusiness(id) {
-
-  if (
-    !confirm(
-      "Reject this business?"
-    )
-  ) {
-
-    return;
-  }
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-
-      .from("businesses")
-
-      .update({
-        status: "rejected"
-      })
-
-      .eq(
-        "id",
-        id
-      );
-
-
-  if (error) {
-
-    alert(
-      "❌ " +
-      error.message
-    );
-
-    return;
-  }
-
-
-  loadBusinesses();
-}
-/* =========================
-   DELETE BUSINESS
-========================= */
-
-async function deleteBusiness(id){
-
-  if(
-    !confirm(
-      "Delete this business and its products?"
-    )
-  ){
-
-    return;
-  }
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-
-      .from("businesses")
-
-      .delete()
-
-      .eq(
-        "id",
-        id
-      );
-
-
-  if(error){
-
-    alert(
-      "❌ " +
-      error.message
-    );
-
-    return;
-  }
-
-
-  loadBusinesses();
-
-  loadProducts();
-}
-
-
-/* =========================
-   PRODUCTS
-========================= */
-
-async function loadProducts(){
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-
-      .from("products")
 
       .select("*")
 
       .order(
         "created_at",
         {
-          ascending:false
+          ascending: false
         }
       );
 
 
-  const container =
-    document.getElementById(
-      "products"
-    );
+  if (result.error) {
 
-
-  if(error){
-
-    container.innerHTML =
+    container.textContent =
       "❌ " +
-      escapeHTML(error.message);
+      result.error.message;
+
+    return;
+  }
+
+
+  if (!result.data.length) {
+
+    container.textContent =
+      "No businesses found.";
 
     return;
   }
@@ -737,353 +404,65 @@ async function loadProducts(){
   container.innerHTML = "";
 
 
-  if(!data.length){
+  result.data.forEach(
+    business => {
 
-    container.innerHTML =
-      "<p>No products found.</p>";
-
-    return;
-  }
-
-
-  data.forEach(
-    product => {
-
-      const card =
+      const item =
         document.createElement(
           "div"
         );
 
-      card.className =
+
+      item.className =
         "card";
 
 
-      card.innerHTML = `
+      item.innerHTML = `
 
-        <div class="row">
+        <strong>
+          ${escapeHTML(
+            business.name
+          )}
+        </strong>
 
-          <div>
-
-            <h3>
-              ${escapeHTML(
-                product.name
-              )}
-            </h3>
-
-            <p>
-              KSh ${
-                Number(
-                  product.price
-                ).toLocaleString()
-              }
-            </p>
-
-          </div>
-
-          <button
-            class="delete"
-            onclick="deleteProduct(
-              '${product.id}'
-            )"
-          >
-            🗑️ Delete
-          </button>
-
-        </div>
+        <p>
+          Status:
+          ${escapeHTML(
+            business.status || "pending"
+          )}
+        </p>
 
       `;
 
 
-      container.appendChild(card);
+      container.appendChild(
+        item
+      );
 
     }
   );
+
 }
 
 
-/* =========================
-   DELETE PRODUCT
-========================= */
-
-async function deleteProduct(id){
-
-  if(
-    !confirm(
-      "Delete this product?"
-    )
-  ){
-
-    return;
-  }
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-
-      .from("products")
-
-      .delete()
-
-      .eq(
-        "id",
-        id
-      );
-
-
-  if(error){
-
-    alert(
-      "❌ " +
-      error.message
-    );
-
-    return;
-  }
-
-
-  loadProducts();
-}
-
-
-/* =========================
-   TEAM
-========================= */
-
-async function loadTeam(){
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-
-      .from("admin_users")
-
-      .select("*");
-
-
-  const container =
-    document.getElementById(
-      "team"
-    );
-
-
-  if(error){
-
-    container.innerHTML =
-      "❌ " +
-      escapeHTML(error.message);
-
-    return;
-  }
-
-
-  container.innerHTML = "";
-
-
-  data.forEach(
-    member => {
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-      card.className =
-        "card";
-
-
-      card.innerHTML = `
-
-        <div class="row">
-
-          <div>
-
-            <p>
-              User ID:
-              ${escapeHTML(
-                member.user_id
-              )}
-            </p>
-
-            <span class="badge">
-              ${escapeHTML(
-                member.role
-              )}
-            </span>
-
-          </div>
-
-          ${
-            member.role !== "owner"
-
-            ? `
-
-              <button
-                class="delete"
-                onclick="removeMember(
-                  '${member.user_id}'
-                )"
-              >
-                Remove
-              </button>
-
-            `
-
-            : ""
-
-          }
-
-        </div>
-
-      `;
-
-
-      container.appendChild(card);
-
-    }
-  );
-}
-
-
-/* =========================
-   ADD COLLABORATOR
-========================= */
-
-async function addCollaborator(){
-
-  const userId =
-    document
-      .getElementById("newUserId")
-      .value
-      .trim();
-
-
-  const role =
-    document
-      .getElementById("newRole")
-      .value;
-
-
-  const message =
-    document.getElementById(
-      "teamMessage"
-    );
-
-
-  if(!userId){
-
-    message.textContent =
-      "❌ Enter a User ID.";
-
-    return;
-  }
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-
-      .from("admin_users")
-
-      .insert({
-
-        user_id:userId,
-
-        role:role
-
-      });
-
-
-  if(error){
-
-    message.textContent =
-      "❌ " +
-      error.message;
-
-    return;
-  }
-
-
-  message.textContent =
-    "✅ Collaborator added.";
-
-
-  document
-    .getElementById("newUserId")
-    .value = "";
-
-
-  loadTeam();
-}
-
-
-/* =========================
-   REMOVE COLLABORATOR
-========================= */
-
-async function removeMember(userId){
-
-  if(
-    !confirm(
-      "Remove this collaborator?"
-    )
-  ){
-
-    return;
-  }
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-
-      .from("admin_users")
-
-      .delete()
-
-      .eq(
-        "user_id",
-        userId
-      );
-
-
-  if(error){
-
-    alert(
-      "❌ " +
-      error.message
-    );
-
-    return;
-  }
-
-
-  loadTeam();
-}
-
-
-/* =========================
+/* =====================================
    LOGOUT
-========================= */
+===================================== */
 
-async function logout(){
+async function logout() {
 
   await supabaseClient.auth.signOut();
 
   location.reload();
+
 }
 
 
-/* =========================
+/* =====================================
    ESCAPE HTML
-========================= */
+===================================== */
 
-function escapeHTML(value){
+function escapeHTML(value) {
 
   return String(
     value ?? ""
@@ -1117,9 +496,29 @@ function escapeHTML(value){
 }
 
 
-/* =========================
-   START
-========================= */
+/* =====================================
+   BUTTON EVENTS
+===================================== */
+
+document
+  .getElementById("loginButton")
+  .addEventListener(
+    "click",
+    login
+  );
+
+
+document
+  .getElementById("logoutButton")
+  .addEventListener(
+    "click",
+    logout
+);
+
+
+/* =====================================
+   CHECK EXISTING SESSION
+===================================== */
 
 checkAdmin();
 
