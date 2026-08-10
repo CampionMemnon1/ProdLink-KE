@@ -1,1 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="google-site-verification" content="QWSpnQhyVCxxzR3WJglYidkMotTc_j2PnOKvHTaaae0" />
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+  ProdLink KE | Find Kenyan Businesses & Products
+</title>
+
+<meta
+  name="description"
+  content="ProdLink KE helps you discover businesses, products and services across Kenya."
+>
+
+<meta
+  name="keywords"
+  content="Kenya businesses, Kenyan businesses, products in Kenya, shops in Kenya, ProdLink KE"
+>
+
+<meta
+  name="robots"
+  content="index, follow"
+>
+
+<link
+  rel="canonical"
+  href="https://campionmemnon1.github.io/ProdLink-KE/"
+>
+
+
+<!-- Open Graph -->
+
+<meta
+  property="og:title"
+  content="ProdLink KE | Find Kenyan Businesses & Products"
+>
+
+<meta
+  property="og:description"
+  content="Discover businesses, products and services across Kenya with ProdLink KE."
+>
+
+<meta
+  property="og:url"
+  content="https://campionmemnon1.github.io/ProdLink-KE/"
+>
+
+<meta
+  property="og:type"
+  content="website"
+>
+
+
+<!-- Google structured data -->
+
+<script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ProdLink KE",
+  "url": "https://campionmemnon1.github.io/ProdLink-KE/",
+  "description": "Discover businesses, products and services across Kenya."
+}
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #172033;
+}
+
+
+/* HEADER */
+
+header {
+  background: #172033;
+  color: white;
+  padding: 25px 18px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 34px;
+}
+
+header p {
+  margin-bottom: 0;
+}
+
+
+/* SEARCH */
+
+.search-area {
+  max-width: 800px;
+  margin: 25px auto;
+  padding: 0 18px;
+}
+
+.search-area input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 17px;
+}
+
+
+/* CONTENT */
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 18px;
+}
+
+
+/* BUSINESS */
+
+.business {
+  background: white;
+  padding: 18px;
+  margin: 15px 0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #ddd;
+}
+
+.business h2 {
+  margin-top: 0;
+}
+
+.location {
+  color: #667085;
+}
+
+
+/* BUTTON */
+
+button {
+  border: none;
+  padding: 11px 15px;
+  margin-top: 8px;
+  border-radius: 9px;
+  background: #1683ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: .9;
+}
+
+
+/* STATES */
+
+.loading {
+  text-align: center;
+  padding: 30px;
+}
+
+.empty {
+  text-align: center;
+  padding: 30px;
+  color: #667085;
+}
+
+.error {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #667085;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>
+  🛍️ ProdLink KE
+</h1>
+
+<p>
+  Discover Kenyan businesses, products and services
+</p>
+
+</header>
+
+
+<div class="search-area">
+
+<input
+  id="search"
+  type="search"
+  placeholder="🔎 Search businesses..."
+>
+
+</div>
+
+
+<div class="container">
+
+<div id="businesses">
+
+<div class="loading">
+  Loading businesses...
+</div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<p>
+  © 2026 ProdLink KE
+</p>
+
+</footer>
+
+
+<script>
+
+
+/* ==================================
+   SUPABASE
+================================== */
+
+/*
+   IMPORTANT:
+   Put the SAME values from your
+   current working index.html here.
+
+   Do NOT use your service-role key.
+*/
+
+const SUPABASE_URL =
+"https://caspleasocqyefolvgno.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_MvVKXlV6n8Y1sRs8VvZtYw_zqI0LgCr";
+
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* ==================================
+   BUSINESSES
+================================== */
+
+let allBusinesses = [];
+
+
+async function loadBusinesses() {
+
+  const container =
+    document.getElementById(
+      "businesses"
+    );
+
+
+  const result =
+    await supabaseClient
+
+      .from("businesses")
+
+      .select("*")
+
+      .eq(
+        "status",
+        "approved"
+      )
+
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (result.error) {
+
+    container.innerHTML = `
+
+      <p class="error">
+
+        Unable to load businesses.
+
+      </p>
+
+    `;
+
+    return;
+  }
+
+
+  allBusinesses =
+    result.data || [];
+
+
+  displayBusinesses(
+    allBusinesses
+  );
+
+}
+
+
+/* ==================================
+   DISPLAY BUSINESSES
+================================== */
+
+function displayBusinesses(
+  businesses
+) {
+
+  const container =
+    document.getElementById(
+      "businesses"
+    );
+
+
+  if (!businesses.length) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        <h2>
+          No businesses found
+        </h2>
+
+        <p>
+          Try another search.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  container.innerHTML = "";
+
+
+  businesses.forEach(
+    business => {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "business";
+
+
+      card.innerHTML = `
+
+        <h2>
+
+          ${escapeHTML(
+            business.name
+          )}
+
+        </h2>
+
+
+        <p class="location">
+
+          📍
+
+          ${escapeHTML(
+            business.location || ""
+          )}
+
+        </p>
+
+
+        ${
+          business.description
+
+          ? `
+
+            <p>
+
+              ${escapeHTML(
+                business.description
+              )}
+
+            </p>
+
+          `
+
+          : ""
+        }
+
+
+        <button
+          onclick="
+            openBusiness(
+              '${business.id}'
+            )
+          "
+        >
+
+          👀 View Business
+
+        </button>
+
+      `;
+
+
+      container.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================
+   SEARCH
+================================== */
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    function() {
+
+      const query =
+        this.value
+          .toLowerCase()
+          .trim();
+
+
+      if (!query) {
+
+        displayBusinesses(
+          allBusinesses
+        );
+
+        return;
+      }
+
+
+      const filtered =
+        allBusinesses.filter(
+          business => {
+
+            const name =
+              (
+                business.name || ""
+              )
+              .toLowerCase();
+
+
+            const location =
+              (
+                business.location || ""
+              )
+              .toLowerCase();
+
+
+            const description =
+              (
+                business.description || ""
+              )
+              .toLowerCase();
+
+
+            return (
+
+              name.includes(
+                query
+              )
+
+              ||
+
+              location.includes(
+                query
+              )
+
+              ||
+
+              description.includes(
+                query
+              )
+
+            );
+
+          }
+        );
+
+
+      displayBusinesses(
+        filtered
+      );
+
+    }
+  );
+
+
+/* ==================================
+   OPEN BUSINESS
+================================== */
+
+function openBusiness(
+  id
+) {
+
+  window.location.href =
+    "business.html?id=" +
+    encodeURIComponent(id);
+
+}
+
+
+/* ==================================
+   SECURITY
+================================== */
+
+function escapeHTML(
+  value
+) {
+
+  return String(
+    value ?? ""
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+
+/* ==================================
+   START
+================================== */
+
+loadBusinesses();
+
+</script>
+
+
+</body>
+
+</html>
