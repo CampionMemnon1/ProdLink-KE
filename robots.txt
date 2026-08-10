@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://campionmemnon1.github.io/ProdLink-KE/sitemap.xml
