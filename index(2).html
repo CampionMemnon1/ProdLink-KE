@@ -5,6 +5,8 @@
 
 <meta charset="UTF-8">
 
+<meta name="google-site-verification" content="QWSpnQhyVCxxzR3WJglYidkMotTc_j2PnOKvHTaaae0" />
+
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1.0"
@@ -58,7 +60,7 @@
 >
 
 
-<!-- Structured Data -->
+<!-- Google structured data -->
 
 <script type="application/ld+json">
 
@@ -153,6 +155,9 @@ header p {
   color: #667085;
 }
 
+
+/* BUTTON */
+
 button {
   border: none;
   padding: 11px 15px;
@@ -169,6 +174,8 @@ button:hover {
 }
 
 
+/* STATES */
+
 .loading {
   text-align: center;
   padding: 30px;
@@ -184,6 +191,9 @@ button:hover {
   color: #d32f2f;
   font-weight: bold;
 }
+
+
+/* FOOTER */
 
 footer {
   text-align: center;
@@ -225,9 +235,7 @@ footer {
 
 <div class="container">
 
-<div
-  id="businesses"
->
+<div id="businesses">
 
 <div class="loading">
   Loading businesses...
@@ -254,6 +262,14 @@ footer {
    SUPABASE
 ================================== */
 
+/*
+   IMPORTANT:
+   Put the SAME values from your
+   current working index.html here.
+
+   Do NOT use your service-role key.
+*/
+
 const SUPABASE_URL =
 "https://caspleasocqyefolvgno.supabase.co";
 
@@ -270,7 +286,7 @@ window.supabase.createClient(
 
 
 /* ==================================
-   BUSINESS LIST
+   BUSINESSES
 ================================== */
 
 let allBusinesses = [];
@@ -278,175 +294,173 @@ let allBusinesses = [];
 
 async function loadBusinesses() {
 
-const container =
-document.getElementById(
-  "businesses"
-);
+  const container =
+    document.getElementById(
+      "businesses"
+    );
 
 
-const result =
-await supabaseClient
+  const result =
+    await supabaseClient
 
-.from("businesses")
+      .from("businesses")
 
-.select("*")
+      .select("*")
 
-.eq(
-  "status",
-  "approved"
-)
+      .eq(
+        "status",
+        "approved"
+      )
 
-.order(
-  "created_at",
-  {
-    ascending: false
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (result.error) {
+
+    container.innerHTML = `
+
+      <p class="error">
+
+        Unable to load businesses.
+
+      </p>
+
+    `;
+
+    return;
   }
-);
 
 
-if (result.error) {
-
-container.innerHTML = `
-
-<p class="error">
-
-Unable to load businesses.
-
-</p>
-
-`;
-
-return;
-
-}
+  allBusinesses =
+    result.data || [];
 
 
-allBusinesses =
-result.data || [];
-
-
-displayBusinesses(
-allBusinesses
-);
+  displayBusinesses(
+    allBusinesses
+  );
 
 }
 
 
 /* ==================================
-   DISPLAY
+   DISPLAY BUSINESSES
 ================================== */
 
 function displayBusinesses(
-businesses
+  businesses
 ) {
 
-const container =
-document.getElementById(
-  "businesses"
-);
+  const container =
+    document.getElementById(
+      "businesses"
+    );
 
 
-if (!businesses.length) {
+  if (!businesses.length) {
 
-container.innerHTML = `
+    container.innerHTML = `
 
-<div class="empty">
+      <div class="empty">
 
-<h2>
-  No businesses found
-</h2>
+        <h2>
+          No businesses found
+        </h2>
 
-<p>
-  Try another search.
-</p>
+        <p>
+          Try another search.
+        </p>
 
-</div>
+      </div>
 
-`;
+    `;
 
-return;
-
-}
-
-
-container.innerHTML = "";
+    return;
+  }
 
 
-businesses.forEach(
-business => {
-
-const card =
-document.createElement(
-  "div"
-);
+  container.innerHTML = "";
 
 
-card.className =
-"business";
+  businesses.forEach(
+    business => {
+
+      const card =
+        document.createElement(
+          "div"
+        );
 
 
-card.innerHTML = `
-
-<h2>
-
-${escapeHTML(
-  business.name
-)}
-
-</h2>
+      card.className =
+        "business";
 
 
-<p class="location">
+      card.innerHTML = `
 
-📍
+        <h2>
 
-${escapeHTML(
-  business.location || ""
-)}
+          ${escapeHTML(
+            business.name
+          )}
 
-</p>
-
-
-${
-business.description
-
-? `
-
-<p>
-
-${escapeHTML(
-  business.description
-)}
-
-</p>
-
-`
-
-: ""
-
-}
+        </h2>
 
 
-<button
-  onclick="
-    openBusiness(
-      '${business.id}'
-    )
-  "
->
+        <p class="location">
 
-👀 View Business
+          📍
 
-</button>
+          ${escapeHTML(
+            business.location || ""
+          )}
 
-`;
+        </p>
 
 
-container.appendChild(
-card
-);
+        ${
+          business.description
 
-});
+          ? `
+
+            <p>
+
+              ${escapeHTML(
+                business.description
+              )}
+
+            </p>
+
+          `
+
+          : ""
+        }
+
+
+        <button
+          onclick="
+            openBusiness(
+              '${business.id}'
+            )
+          "
+        >
+
+          👀 View Business
+
+        </button>
+
+      `;
+
+
+      container.appendChild(
+        card
+      );
+
+    }
+  );
 
 }
 
@@ -456,98 +470,95 @@ card
 ================================== */
 
 document
-.getElementById(
-  "search"
-)
-.addEventListener(
-  "input",
-  function() {
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    function() {
 
-    const query =
-      this.value
-        .toLowerCase()
-        .trim();
+      const query =
+        this.value
+          .toLowerCase()
+          .trim();
 
 
-    if (!query) {
+      if (!query) {
+
+        displayBusinesses(
+          allBusinesses
+        );
+
+        return;
+      }
+
+
+      const filtered =
+        allBusinesses.filter(
+          business => {
+
+            const name =
+              (
+                business.name || ""
+              )
+              .toLowerCase();
+
+
+            const location =
+              (
+                business.location || ""
+              )
+              .toLowerCase();
+
+
+            const description =
+              (
+                business.description || ""
+              )
+              .toLowerCase();
+
+
+            return (
+
+              name.includes(
+                query
+              )
+
+              ||
+
+              location.includes(
+                query
+              )
+
+              ||
+
+              description.includes(
+                query
+              )
+
+            );
+
+          }
+        );
+
 
       displayBusinesses(
-        allBusinesses
+        filtered
       );
-
-      return;
 
     }
-
-
-    const filtered =
-      allBusinesses.filter(
-        business => {
-
-          const name =
-            (
-              business.name || ""
-            )
-            .toLowerCase();
-
-
-          const location =
-            (
-              business.location || ""
-            )
-            .toLowerCase();
-
-
-          const description =
-            (
-              business.description || ""
-            )
-            .toLowerCase();
-
-
-          return (
-
-            name.includes(
-              query
-            )
-
-            ||
-
-            location.includes(
-              query
-            )
-
-            ||
-
-            description.includes(
-              query
-            )
-
-          );
-
-        }
-      );
-
-
-    displayBusinesses(
-      filtered
-    );
-
-  }
-);
+  );
 
 
 /* ==================================
-   BUSINESS PAGE
+   OPEN BUSINESS
 ================================== */
 
 function openBusiness(
   id
 ) {
 
-window.location.href =
-  "business.html?id=" +
-  encodeURIComponent(id);
+  window.location.href =
+    "business.html?id=" +
+    encodeURIComponent(id);
 
 }
 
@@ -560,34 +571,34 @@ function escapeHTML(
   value
 ) {
 
-return String(
-  value ?? ""
-)
+  return String(
+    value ?? ""
+  )
 
-.replace(
-  /&/g,
-  "&amp;"
-)
+  .replace(
+    /&/g,
+    "&amp;"
+  )
 
-.replace(
-  /</g,
-  "&lt;"
-)
+  .replace(
+    /</g,
+    "&lt;"
+  )
 
-.replace(
-  />/g,
-  "&gt;"
-)
+  .replace(
+    />/g,
+    "&gt;"
+  )
 
-.replace(
-  /"/g,
-  "&quot;"
-)
+  .replace(
+    /"/g,
+    "&quot;"
+  )
 
-.replace(
-  /'/g,
-  "&#039;"
-);
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
