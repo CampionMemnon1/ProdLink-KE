@@ -53,11 +53,25 @@ header h1 {
 
 .business-name {
   font-size: 30px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .location {
   color: #667085;
+}
+
+.category {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.info {
+  margin: 10px 0;
+}
+
+.section-title {
+  margin-top: 22px;
+  margin-bottom: 8px;
 }
 
 .product {
@@ -89,6 +103,10 @@ button {
 
 .whatsapp {
   background: #16883b;
+}
+
+.email {
+  background: #7c3aed;
 }
 
 .back {
@@ -210,7 +228,6 @@ new URLSearchParams(
   window.location.search
 );
 
-
 const businessId =
 params.get("id");
 
@@ -253,6 +270,10 @@ async function loadBusiness() {
 
   if (result.error) {
 
+    console.error(
+      result.error
+    );
+
     showError(
       result.error.message
     );
@@ -288,7 +309,6 @@ async function loadBusiness() {
 ================================ */
 
 function displayBusiness(
-function displayBusiness(
   business
 ) {
 
@@ -300,12 +320,13 @@ function displayBusiness(
 
   card.innerHTML = `
 
-    <h2
-      class="business-name"
-    >
+    <h2 class="business-name">
+
       ${escapeHTML(
-        business.name || "Unnamed Business"
+        business.name ||
+        "Unnamed Business"
       )}
+
     </h2>
 
 
@@ -314,12 +335,13 @@ function displayBusiness(
 
       ? `
 
-        <p>
+        <p class="category">
+
           🏷️
-          <strong>Category:</strong>
           ${escapeHTML(
             business.category
           )}
+
         </p>
 
       `
@@ -329,13 +351,14 @@ function displayBusiness(
     }
 
 
-    <p
-      class="location"
-    >
+    <p class="location">
+
       📍
       ${escapeHTML(
-        business.location || "Location not provided"
+        business.location ||
+        "Location not provided"
       )}
+
     </p>
 
 
@@ -344,15 +367,15 @@ function displayBusiness(
 
       ? `
 
-        <div>
-          <h3>📝 About this business</h3>
+        <h3 class="section-title">
+          📝 About this business
+        </h3>
 
-          <p>
-            ${escapeHTML(
-              business.description
-            )}
-          </p>
-        </div>
+        <p>
+          ${escapeHTML(
+            business.description
+          )}
+        </p>
 
       `
 
@@ -366,22 +389,26 @@ function displayBusiness(
 
       ? `
 
-        <div>
-          <h3>📦 Products & Services</h3>
+        <h3 class="section-title">
+          📦 Products & Services
+        </h3>
 
-          <p>
-            ${escapeHTML(
-              business.products
-            )}
-          </p>
-        </div>
+        <p>
+          ${escapeHTML(
+            business.products
+          )}
+        </p>
 
       `
 
       : `
 
+        <h3 class="section-title">
+          📦 Products & Services
+        </h3>
+
         <p>
-          📦 No products or services listed yet.
+          No products or services listed yet.
         </p>
 
       `
@@ -418,6 +445,7 @@ function displayBusiness(
       ? `
 
         <button
+          class="email"
           onclick="
             window.location.href =
             'mailto:${encodeURIComponent(
@@ -465,7 +493,7 @@ function displayBusiness(
 
 
 /* ===============================
-   LOAD PRODUCTS
+   LOAD SEPARATE PRODUCTS
 ================================ */
 
 async function loadProducts(
@@ -487,8 +515,9 @@ async function loadProducts(
 
   if (result.error) {
 
-    console.error(
-      result.error
+    console.log(
+      "Separate products table:",
+      result.error.message
     );
 
     return;
@@ -511,18 +540,15 @@ async function loadProducts(
     );
 
 
-  card.classList.remove(
-    "hidden"
-  );
-
-
   if (!products.length) {
-
-    container.innerHTML =
-      "<p>No products listed yet.</p>";
 
     return;
   }
+
+
+  card.classList.remove(
+    "hidden"
+  );
 
 
   container.innerHTML = "";
@@ -544,20 +570,35 @@ async function loadProducts(
       item.innerHTML = `
 
         <h3>
+
           ${escapeHTML(
-            product.name
+            product.name ||
+            "Unnamed Product"
           )}
+
         </h3>
 
 
-        <p class="price">
+        ${
+          product.price !== null &&
+          product.price !== undefined
 
-          KSh
-          ${Number(
-            product.price || 0
-          ).toLocaleString()}
+          ? `
 
-        </p>
+            <p class="price">
+
+              KSh
+              ${Number(
+                product.price
+              ).toLocaleString()}
+
+            </p>
+
+          `
+
+          : ""
+
+        }
 
 
         ${
@@ -566,9 +607,11 @@ async function loadProducts(
           ? `
 
             <p>
+
               ${escapeHTML(
                 product.description
               )}
+
             </p>
 
           `
@@ -599,10 +642,11 @@ function openWhatsApp(
 ) {
 
   const clean =
-    number.replace(
-      /[^0-9]/g,
-      ""
-    );
+    String(number)
+      .replace(
+        /[^0-9]/g,
+        ""
+      );
 
 
   window.open(
