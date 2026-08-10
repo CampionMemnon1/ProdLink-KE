@@ -288,6 +288,7 @@ async function loadBusiness() {
 ================================ */
 
 function displayBusiness(
+function displayBusiness(
   business
 ) {
 
@@ -303,9 +304,29 @@ function displayBusiness(
       class="business-name"
     >
       ${escapeHTML(
-        business.name
+        business.name || "Unnamed Business"
       )}
     </h2>
+
+
+    ${
+      business.category
+
+      ? `
+
+        <p>
+          🏷️
+          <strong>Category:</strong>
+          ${escapeHTML(
+            business.category
+          )}
+        </p>
+
+      `
+
+      : ""
+
+    }
 
 
     <p
@@ -313,7 +334,7 @@ function displayBusiness(
     >
       📍
       ${escapeHTML(
-        business.location || ""
+        business.location || "Location not provided"
       )}
     </p>
 
@@ -323,15 +344,47 @@ function displayBusiness(
 
       ? `
 
-        <p>
-          ${escapeHTML(
-            business.description
-          )}
-        </p>
+        <div>
+          <h3>📝 About this business</h3>
+
+          <p>
+            ${escapeHTML(
+              business.description
+            )}
+          </p>
+        </div>
 
       `
 
       : ""
+
+    }
+
+
+    ${
+      business.products
+
+      ? `
+
+        <div>
+          <h3>📦 Products & Services</h3>
+
+          <p>
+            ${escapeHTML(
+              business.products
+            )}
+          </p>
+        </div>
+
+      `
+
+      : `
+
+        <p>
+          📦 No products or services listed yet.
+        </p>
+
+      `
 
     }
 
@@ -350,6 +403,29 @@ function displayBusiness(
           "
         >
           📞 Call
+        </button>
+
+      `
+
+      : ""
+
+    }
+
+
+    ${
+      business.email
+
+      ? `
+
+        <button
+          onclick="
+            window.location.href =
+            'mailto:${encodeURIComponent(
+              business.email
+            )}'
+          "
+        >
+          📧 Email
         </button>
 
       `
