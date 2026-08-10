@@ -321,7 +321,9 @@ async function loadBusinesses() {
 
 
   if (result.error) {
-
+   
+    console.error("Supabase error:", result.error);
+    
     container.innerHTML = `
 
       <p class="error">
@@ -329,7 +331,8 @@ async function loadBusinesses() {
         Unable to load businesses.
 
       </p>
-
+      
+      <p>${result.error.message}</p>
     `;
 
     return;
