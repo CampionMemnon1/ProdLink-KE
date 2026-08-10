@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>List Your Business | ProdLink KE</title>
+
+  <meta
+    name="description"
+    content="List your Kenyan business on ProdLink KE and connect with customers looking for local businesses, products and services."
+  >
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #d1d5db;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #111827;
+    }
+
+    .intro {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 16px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #16a34a;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #15803d;
+    }
+
+    button:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 8px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 18px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🛍️ ProdLink KE</h1>
+    <p>List your Kenyan business</p>
+  </header>
+
+  <main class="container">
+
+    <div class="card">
+
+      <h2>🏪 Add Your Business</h2>
+
+      <p class="intro">
+        Tell customers about your business.
+        Your listing will be reviewed by the ProdLink KE
+        admin before it appears publicly.
+      </p>
+
+      <form id="businessForm">
+
+        <label for="name">
+          Business Name *
+        </label>
+
+        <input
+          type="text"
+          id="name"
+          placeholder="Example: Memnon Phones"
+          required
+        >
+
+        <label for="category">
+          Business Category *
+        </label>
+
+        <select id="category" required>
+
+          <option value="">
+            Select a category
+          </option>
+
+          <option value="Retail">
+            Retail
+          </option>
+
+          <option value="Technology">
+            Technology
+          </option>
+
+          <option value="Food & Restaurant">
+            Food & Restaurant
+          </option>
+
+          <option value="Fashion">
+            Fashion
+          </option>
+
+          <option value="Beauty">
+            Beauty
+          </option>
+
+          <option value="Construction">
+            Construction
+          </option>
+
+          <option value="Transport">
+            Transport
+          </option>
+
+          <option value="Agriculture">
+            Agriculture
+          </option>
+
+          <option value="Professional Services">
+            Professional Services
+          </option>
+
+          <option value="Other">
+            Other
+          </option>
+
+        </select>
+
+        <label for="location">
+          Location *
+        </label>
+
+        <input
+          type="text"
+          id="location"
+          placeholder="Example: Nairobi, Kenya"
+          required
+        >
+
+        <label for="phone">
+          Phone Number *
+        </label>
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Example: 0712345678"
+          required
+        >
+
+        <label for="email">
+          Email
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="business@example.com"
+        >
+
+        <label for="description">
+          Business Description *
+        </label>
+
+        <textarea
+          id="description"
+          placeholder="Tell customers what your business does..."
+          required
+        ></textarea>
+
+        <label for="products">
+          Products / Services *
+        </label>
+
+        <textarea
+          id="products"
+          placeholder="Example: Phones, chargers, screen protectors and phone repairs."
+          required
+        ></textarea>
+
+        <button
+          type="submit"
+          id="submitButton"
+        >
+          Submit Business
+        </button>
+
+      </form>
+
+      <div
+        id="message"
+        class="message"
+      ></div>
+
+      <a
+        class="back"
+        href="index.html"
+      >
+        ← Back to ProdLink KE
+      </a>
+
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 ProdLink KE
+  </footer>
+
+
+  <script>
+
+    // =====================================================
+    // SUPABASE CONNECTION
+    // =====================================================
+
+    const SUPABASE_URL =
+      "https://caspleasocqyefolvgno.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_MvVKXlV6n8Y1sRs8VvZtYw_zqI0LgCr";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    // =====================================================
+    // FORM
+    // =====================================================
+
+    const form =
+      document.getElementById(
+        "businessForm"
+      );
+
+    const message =
+      document.getElementById(
+        "message"
+      );
+
+    const submitButton =
+      document.getElementById(
+        "submitButton"
+      );
+
+
+    // =====================================================
+    // SUBMIT BUSINESS
+    // =====================================================
+
+    form.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          "Submitting...";
+
+
+        message.className =
+          "message";
+
+        message.style.display =
+          "none";
+
+
+        const name =
+          document.getElementById(
+            "name"
+          ).value.trim();
+
+
+        const category =
+          document.getElementById(
+            "category"
+          ).value;
+
+
+        const location =
+          document.getElementById(
+            "location"
+          ).value.trim();
+
+
+        const phone =
+          document.getElementById(
+            "phone"
+          ).value.trim();
+
+
+        const email =
+          document.getElementById(
+            "email"
+          ).value.trim();
+
+
+        const description =
+          document.getElementById(
+            "description"
+          ).value.trim();
+
+
+        const products =
+          document.getElementById(
+            "products"
+          ).value.trim();
+
+
+        try {
+
+          const { data, error } =
+            await supabaseClient
+
+              .from("businesses")
+
+              .insert([
+                {
+                  name: name,
+                  category: category,
+                  location: location,
+                  phone: phone,
+                  email: email,
+                  description: description,
+                  products: products,
+                  status: "pending"
+                }
+              ])
+
+              .select();
+
+
+          if (error) {
+
+            console.error(
+              "Supabase error:",
+              error
+            );
+
+            throw error;
+
+          }
+
+
+          message.className =
+            "message success";
+
+          message.innerHTML = `
+            <strong>🎉 Business submitted successfully!</strong>
+            <br><br>
+            Your business has been sent for admin review.
+            It will appear on ProdLink KE after it is approved.
+          `;
+
+          message.style.display =
+            "block";
+
+
+          form.reset();
+
+
+        } catch (error) {
+
+          console.error(
+            error
+          );
+
+
+          message.className =
+            "message error";
+
+          message.innerHTML = `
+            <strong>Unable to submit your business.</strong>
+            <br><br>
+            ${error.message || "Please try again later."}
+          `;
+
+          message.style.display =
+            "block";
+
+
+        } finally {
+
+          submitButton.disabled =
+            false;
+
+          submitButton.textContent =
+            "Submit Business";
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
