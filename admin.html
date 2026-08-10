@@ -941,42 +941,87 @@ item.innerHTML = `
 
 <div class="row">
 
-<div>
+  <div>
 
-<h3>
-${escapeHTML(
-business.name
-)}
-</h3>
+    <h3>
+      ${escapeHTML(
+        business.name || "Unnamed Business"
+      )}
+    </h3>
+
+    <p>
+      🏷️
+      <strong>Category:</strong>
+      ${escapeHTML(
+        business.category || "Not provided"
+      )}
+    </p>
+
+    <p>
+      📍
+      <strong>Location:</strong>
+      ${escapeHTML(
+        business.location || "Not provided"
+      )}
+    </p>
+
+    <p>
+      📞
+      <strong>Phone:</strong>
+      ${escapeHTML(
+        business.phone || "Not provided"
+      )}
+    </p>
+
+    <p>
+      📧
+      <strong>Email:</strong>
+      ${escapeHTML(
+        business.email || "Not provided"
+      )}
+    </p>
+
+    <hr>
+
+    <p>
+      📝
+      <strong>Description:</strong>
+      <br>
+      ${escapeHTML(
+        business.description ||
+        "No description provided."
+      )}
+    </p>
+
+    <p>
+      📦
+      <strong>Products / Services:</strong>
+      <br>
+      ${escapeHTML(
+        business.products ||
+        "No products or services provided."
+      )}
+    </p>
+
+    <span
+      class="
+      badge
+      ${badgeClass}
+      "
+    >
+      ${escapeHTML(
+        status.toUpperCase()
+      )}
+    </span>
+
+  </div>
 
 
-<p>
-📍
-${escapeHTML(
-business.location || ""
-)}
-</p>
+  <div>
 
+    ${buttons}
 
-<span
-class="
-badge
-${badgeClass}
-"
->
-${escapeHTML(
-status.toUpperCase()
-)}
-</span>
-
-</div>
-
-
-<div>
-
-${buttons}
-
-</div>
+  </div>
 
 </div>
 
