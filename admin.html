@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>ProdLink KE Admin</title>
 
@@ -149,10 +155,6 @@ button:hover {
   margin: 5px 0;
 }
 
-.section-title {
-  margin-top: 0;
-}
-
 .item {
   border: 1px solid #eee;
   padding: 15px;
@@ -167,17 +169,22 @@ hr {
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-  <h1>👑 ProdLink KE Admin</h1>
+<h1>
+  👑 ProdLink KE Admin
+</h1>
 
-  <p>
-    Marketplace Control Center
-  </p>
+<p>
+  Marketplace Control Center
+</p>
 
 </header>
 
@@ -185,47 +192,45 @@ hr {
 <div class="container">
 
 
-<!-- ==============================
-     LOGIN
-================================ -->
+<!-- LOGIN -->
 
 <div
   id="loginCard"
   class="card"
 >
 
-  <h2>🔐 Admin Login</h2>
+<h2>
+  🔐 Admin Login
+</h2>
 
-  <input
-    id="email"
-    type="email"
-    placeholder="Admin email"
-  >
+<input
+  id="email"
+  type="email"
+  placeholder="Admin email"
+>
 
-  <input
-    id="password"
-    type="password"
-    placeholder="Password"
-  >
+<input
+  id="password"
+  type="password"
+  placeholder="Password"
+>
 
-  <button
-    id="loginButton"
-    type="button"
-  >
-    Login
-  </button>
+<button
+  id="loginButton"
+  type="button"
+>
+  Login
+</button>
 
-  <p
-    id="loginError"
-    class="error"
-  ></p>
+<p
+  id="loginError"
+  class="error"
+></p>
 
 </div>
 
 
-<!-- ==============================
-     DASHBOARD
-================================ -->
+<!-- DASHBOARD -->
 
 <div
   id="dashboard"
@@ -233,207 +238,196 @@ hr {
 >
 
 
-<!-- TOP -->
+<!-- ACCOUNT -->
 
 <div class="card">
 
-  <div class="row">
+<div class="row">
 
-    <div>
+<div>
 
-      <h2>
-        👋 Welcome
-      </h2>
+<h2>
+  👋 Welcome
+</h2>
 
-      <p id="roleText"></p>
-
-    </div>
-
-    <button
-      class="secondary"
-      id="logoutButton"
-    >
-      Logout
-    </button>
-
-  </div>
+<p id="roleText"></p>
 
 </div>
 
 
-<!-- ==============================
-     STATISTICS
-================================ -->
+<button
+  class="secondary"
+  id="logoutButton"
+>
+  Logout
+</button>
 
-<div class="card">
-
-  <h2 class="section-title">
-    📊 Overview
-  </h2>
-
-  <div class="stat-grid">
-
-    <div class="stat">
-
-      <div>
-        🟡 Pending
-      </div>
-
-      <h2 id="pendingCount">
-        0
-      </h2>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div>
-        🟢 Approved
-      </div>
-
-      <h2 id="approvedCount">
-        0
-      </h2>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div>
-        🔴 Rejected
-      </div>
-
-      <h2 id="rejectedCount">
-        0
-      </h2>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div>
-        📦 Products
-      </div>
-
-      <h2 id="productCount">
-        0
-      </h2>
-
-    </div>
-
-  </div>
+</div>
 
 </div>
 
 
-<!-- ==============================
-     BUSINESSES
-================================ -->
+<!-- STATISTICS -->
 
 <div class="card">
 
-  <h2>
-    🏪 Businesses
-  </h2>
+<h2>
+  📊 Overview
+</h2>
 
-  <div
-    id="businesses"
-  >
-    Loading...
-  </div>
+<div class="stat-grid">
+
+
+<div class="stat">
+
+<div>
+  🟡 Pending
+</div>
+
+<h2 id="pendingCount">
+  0
+</h2>
 
 </div>
 
 
-<!-- ==============================
-     PRODUCTS
-================================ -->
+<div class="stat">
 
-<div class="card">
+<div>
+  🟢 Approved
+</div>
 
-  <h2>
-    📦 Products
-  </h2>
-
-  <div
-    id="products"
-  >
-    Loading...
-  </div>
+<h2 id="approvedCount">
+  0
+</h2>
 
 </div>
 
 
-<!-- ==============================
-     TEAM
-================================ -->
+<div class="stat">
+
+<div>
+  🔴 Rejected
+</div>
+
+<h2 id="rejectedCount">
+  0
+</h2>
+
+</div>
+
+
+<div class="stat">
+
+<div>
+  📦 Products
+</div>
+
+<h2 id="productCount">
+  0
+</h2>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- BUSINESSES -->
+
+<div class="card">
+
+<h2>
+  🏪 Businesses
+</h2>
+
+<div id="businesses">
+  Loading...
+</div>
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+<div class="card">
+
+<h2>
+  📦 Products
+</h2>
+
+<div id="products">
+  Loading...
+</div>
+
+</div>
+
+
+<!-- TEAM -->
 
 <div
   id="teamSection"
   class="card hidden"
 >
 
-  <h2>
-    👥 Team Management
-  </h2>
+<h2>
+  👥 Team Management
+</h2>
 
-  <p>
-    Only the Owner can manage collaborators.
-  </p>
-
-
-  <h3>
-    Current Team
-  </h3>
-
-  <div id="team">
-    Loading...
-  </div>
+<p>
+  Only the Owner can manage collaborators.
+</p>
 
 
-  <hr>
+<h3>
+  Current Team
+</h3>
+
+<div id="team">
+  Loading...
+</div>
 
 
-  <h3>
-    ➕ Add Collaborator
-  </h3>
-
-  <input
-    id="newUserId"
-    placeholder="Collaborator User ID"
-  >
+<hr>
 
 
-  <select id="newRole">
+<h3>
+  ➕ Add Collaborator
+</h3>
 
-    <option value="admin">
-      Admin
-    </option>
-
-    <option value="moderator">
-      Moderator
-    </option>
-
-    <option value="viewer">
-      Viewer
-    </option>
-
-  </select>
+<input
+  id="newUserId"
+  placeholder="Collaborator User ID"
+>
 
 
-  <button
-    id="addCollaboratorButton"
-  >
-    Add Collaborator
-  </button>
+<select id="newRole">
+
+<option value="admin">
+  Admin
+</option>
+
+<option value="moderator">
+  Moderator
+</option>
+
+<option value="viewer">
+  Viewer
+</option>
+
+</select>
 
 
-  <p
-    id="teamMessage"
-  ></p>
+<button
+  id="addCollaboratorButton"
+>
+  Add Collaborator
+</button>
+
+
+<p id="teamMessage"></p>
 
 </div>
 
@@ -445,15 +439,16 @@ hr {
 
 <script>
 
+
 /* ==================================
    SUPABASE
 ================================== */
 
 const SUPABASE_URL =
-"https://caspleasocqyefolvgno.supabase.co";
+"PASTE_YOUR_PROJECT_URL_HERE";
 
 const SUPABASE_KEY =
-"sb_publishable_MvVKXlV6n8Y1sRs8VvZtYw_zqI0LgCr";
+"PASTE_YOUR_PUBLISHABLE_KEY_HERE";
 
 
 const supabaseClient =
@@ -472,74 +467,92 @@ let currentRole = null;
 
 async function login() {
 
-  const email =
-    document
-      .getElementById("email")
-      .value
-      .trim();
+const email =
+document
+  .getElementById("email")
+  .value
+  .trim();
 
 
-  const password =
-    document
-      .getElementById("password")
-      .value;
+const password =
+document
+  .getElementById("password")
+  .value;
 
 
-  const errorBox =
-    document
-      .getElementById("loginError");
+const errorBox =
+document
+  .getElementById("loginError");
 
 
-  errorBox.textContent = "";
+errorBox.textContent = "";
 
 
-  if (!email || !password) {
+if (!email || !password) {
 
-    errorBox.textContent =
-      "Please enter your email and password.";
+errorBox.textContent =
+"Please enter your email and password.";
 
-    return;
-  }
+return;
 
-
-  const button =
-    document
-      .getElementById("loginButton");
+}
 
 
-  button.disabled = true;
-
-  button.textContent =
-    "Logging in...";
-
-
-  const result =
-    await supabaseClient.auth
-      .signInWithPassword({
-
-        email: email,
-
-        password: password
-
-      });
+const button =
+document
+  .getElementById("loginButton");
 
 
-  if (result.error) {
+button.disabled = true;
 
-    errorBox.textContent =
-      "❌ " +
-      result.error.message;
-
-    button.disabled = false;
-
-    button.textContent =
-      "Login";
-
-    return;
-  }
+button.textContent =
+"Logging in...";
 
 
-  await checkAdmin();
+try {
+
+const result =
+await supabaseClient.auth
+.signInWithPassword({
+
+email: email,
+
+password: password
+
+});
+
+
+if (result.error) {
+
+errorBox.textContent =
+"❌ " +
+result.error.message;
+
+button.disabled = false;
+
+button.textContent =
+"Login";
+
+return;
+
+}
+
+
+await checkAdmin();
+
+
+} catch (err) {
+
+errorBox.textContent =
+"❌ " +
+err.message;
+
+button.disabled = false;
+
+button.textContent =
+"Login";
+
+}
 
 }
 
@@ -550,110 +563,113 @@ async function login() {
 
 async function checkAdmin() {
 
-  const result =
-    await supabaseClient.auth
-      .getUser();
+const result =
+await supabaseClient.auth
+.getUser();
 
 
-  if (
-    result.error ||
-    !result.data.user
-  ) {
+if (
+result.error ||
+!result.data.user
+) {
 
-    return;
-  }
+return;
 
-
-  const user =
-    result.data.user;
+}
 
 
-  const adminResult =
-    await supabaseClient
-
-      .from("admin_users")
-
-      .select("role")
-
-      .eq(
-        "user_id",
-        user.id
-      )
-
-      .maybeSingle();
+const user =
+result.data.user;
 
 
-  if (adminResult.error) {
+const adminResult =
+await supabaseClient
 
-    document
-      .getElementById("loginError")
-      .textContent =
-      "❌ " +
-      adminResult.error.message;
+.from("admin_users")
 
-    return;
-  }
+.select("role")
 
+.eq(
+  "user_id",
+  user.id
+)
 
-  if (
-    !adminResult.data ||
-    ![
-      "owner",
-      "admin"
-    ].includes(
-      adminResult.data.role
-    )
-  ) {
-
-    document
-      .getElementById("loginError")
-      .textContent =
-      "❌ Your account does not have admin access.";
-
-    await supabaseClient.auth
-      .signOut();
-
-    return;
-  }
+.maybeSingle();
 
 
-  currentRole =
-    adminResult.data.role;
+if (adminResult.error) {
+
+document
+.getElementById("loginError")
+.textContent =
+"❌ " +
+adminResult.error.message;
+
+return;
+
+}
 
 
-  document
-    .getElementById("loginCard")
-    .classList.add("hidden");
+if (
+!adminResult.data ||
+![
+  "owner",
+  "admin"
+].includes(
+  adminResult.data.role
+)
+) {
+
+document
+.getElementById("loginError")
+.textContent =
+"❌ Your account does not have admin access.";
+
+await supabaseClient.auth
+.signOut();
+
+return;
+
+}
 
 
-  document
-    .getElementById("dashboard")
-    .classList.remove("hidden");
+currentRole =
+adminResult.data.role;
 
 
-  document
-    .getElementById("roleText")
-    .textContent =
-      "Logged in as: " +
-      currentRole.toUpperCase();
+document
+.getElementById("loginCard")
+.classList.add("hidden");
 
 
-  if (
-    currentRole === "owner"
-  ) {
-
-    document
-      .getElementById("teamSection")
-      .classList.remove("hidden");
-
-    loadTeam();
-
-  }
+document
+.getElementById("dashboard")
+.classList.remove("hidden");
 
 
-  loadBusinesses();
+document
+.getElementById("roleText")
+.textContent =
+"Logged in as: " +
+currentRole.toUpperCase();
 
-  loadProducts();
+
+if (
+currentRole === "owner"
+) {
+
+document
+.getElementById("teamSection")
+.classList.remove("hidden");
+
+loadTeam();
+
+}
+
+
+loadBusinesses();
+
+loadProducts();
 
 }
 
@@ -664,319 +680,314 @@ async function checkAdmin() {
 
 async function loadBusinesses() {
 
-  const container =
-    document
-      .getElementById(
-        "businesses"
-      );
+const container =
+document
+.getElementById("businesses");
 
 
-  container.innerHTML =
-    "Loading...";
+container.innerHTML =
+"Loading...";
 
 
-  const result =
-    await supabaseClient
+const result =
+await supabaseClient
 
-      .from("businesses")
+.from("businesses")
 
-      .select("*")
+.select("*")
 
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
-
-
-  if (result.error) {
-
-    container.innerHTML =
-      "<p class='error'>" +
-      escapeHTML(
-        result.error.message
-      ) +
-      "</p>";
-
-    return;
+.order(
+  "created_at",
+  {
+    ascending: false
   }
+);
 
 
-  const businesses =
-    result.data || [];
+if (result.error) {
+
+container.innerHTML =
+"<p class='error'>" +
+escapeHTML(
+  result.error.message
+) +
+"</p>";
+
+return;
+
+}
 
 
-  let pending = 0;
-
-  let approved = 0;
-
-  let rejected = 0;
+const businesses =
+result.data || [];
 
 
-  businesses.forEach(
-    business => {
+let pending = 0;
 
-      if (
-        business.status ===
-        "pending"
-      ) {
+let approved = 0;
 
-        pending++;
-
-      }
-
-      else if (
-        business.status ===
-        "approved"
-      ) {
-
-        approved++;
-
-      }
-
-      else if (
-        business.status ===
-        "rejected"
-      ) {
-
-        rejected++;
-
-      }
-
-    }
-  );
+let rejected = 0;
 
 
-  document
-    .getElementById(
-      "pendingCount"
-    )
-    .textContent =
-      pending;
+businesses.forEach(
+business => {
+
+if (
+business.status ===
+"pending"
+) {
+
+pending++;
+
+}
+
+else if (
+business.status ===
+"approved"
+) {
+
+approved++;
+
+}
+
+else if (
+business.status ===
+"rejected"
+) {
+
+rejected++;
+
+}
+
+});
 
 
-  document
-    .getElementById(
-      "approvedCount"
-    )
-    .textContent =
-      approved;
+document
+.getElementById("pendingCount")
+.textContent =
+pending;
 
 
-  document
-    .getElementById(
-      "rejectedCount"
-    )
-    .textContent =
-      rejected;
+document
+.getElementById("approvedCount")
+.textContent =
+approved;
 
 
-  if (!businesses.length) {
-
-    container.innerHTML =
-      "<p>No businesses found.</p>";
-
-    return;
-  }
+document
+.getElementById("rejectedCount")
+.textContent =
+rejected;
 
 
-  container.innerHTML = "";
+if (!businesses.length) {
+
+container.innerHTML =
+"<p>No businesses found.</p>";
+
+return;
+
+}
 
 
-  businesses.forEach(
-    business => {
-
-      const item =
-        document.createElement(
-          "div"
-        );
+container.innerHTML = "";
 
 
-      item.className =
-        "item";
+businesses.forEach(
+business => {
+
+const item =
+document.createElement(
+"div"
+);
 
 
-      const status =
-        business.status ||
-        "pending";
+item.className =
+"item";
 
 
-      let badgeClass =
-        "pending";
+const status =
+business.status ||
+"pending";
 
 
-      if (
-        status ===
-        "approved"
-      ) {
-
-        badgeClass =
-          "approved";
-
-      }
-
-      else if (
-        status ===
-        "rejected"
-      ) {
-
-        badgeClass =
-          "rejected";
-
-      }
+let badgeClass =
+"pending";
 
 
-      let buttons = "";
+if (
+status === "approved"
+) {
+
+badgeClass =
+"approved";
+
+}
+
+else if (
+status === "rejected"
+) {
+
+badgeClass =
+"rejected";
+
+}
+
 
 let buttons = "";
-      if (
-        status ===
-        "pending"
-      ) {
-
-        buttons = `
-
-          <button
-            class="approve"
-            onclick="
-              approveBusiness(
-                '${business.id}'
-              )
-            "
-          >
-            ✅ Approve
-          </button>
 
 
-          <button
-            class="reject"
-            onclick="
-              rejectBusiness(
-                '${business.id}'
-              )
-            "
-          >
-            ❌ Reject
-          </button>
+/* PENDING */
 
-        `;
+if (
+status === "pending"
+) {
 
-      }
+buttons = `
 
-
-      if (
-        status ===
-        "approved"
-      ) {
-
-        buttons = `
-
-          <button
-            class="reject"
-            onclick="
-              rejectBusiness(
-                '${business.id}'
-              )
-            "
-          >
-            ❌ Reject
-          </button>
-
-        `;
-
-      }
+<button
+class="approve"
+onclick="
+approveBusiness(
+'${business.id}'
+)
+"
+>
+✅ Approve
+</button>
 
 
-      if (
-        status ===
-        "rejected"
-      ) {
+<button
+class="reject"
+onclick="
+rejectBusiness(
+'${business.id}'
+)
+"
+>
+❌ Reject
+</button>
 
-        buttons = `
+`;
 
-          <button
-            class="approve"
-            onclick="
-              approveBusiness(
-                '${business.id}'
-              )
-            "
-          >
-            ✅ Approve
-          </button>
-
-        `;
-
-      }
+}
 
 
-      buttons += `
+/* APPROVED */
 
-        <button
-          class="delete"
-          onclick="
-            deleteBusiness(
-              '${business.id}'
-            )
-          "
-        >
-          🗑️ Delete
-        </button>
+else if (
+status === "approved"
+) {
 
-      `;
+buttons = `
 
+<button
+class="reject"
+onclick="
+rejectBusiness(
+'${business.id}'
+)
+"
+>
+❌ Reject
+</button>
 
-      item.innerHTML = `
+`;
 
-        <div class="row">
-
-          <div>
-
-            <h3>
-              ${escapeHTML(
-                business.name
-              )}
-            </h3>
+}
 
 
-            <p>
-              📍
-              ${escapeHTML(
-                business.location || ""
-              )}
-            </p>
+/* REJECTED */
+
+else {
+
+buttons = `
+
+<button
+class="approve"
+onclick="
+approveBusiness(
+'${business.id}'
+)
+"
+>
+✅ Approve
+</button>
+
+`;
+
+}
 
 
-            <span
-              class="
-                badge
-                ${badgeClass}
-              "
-            >
-              ${status.toUpperCase()}
-            </span>
+/* DELETE */
 
-          </div>
+buttons += `
 
+<button
+class="delete"
+onclick="
+deleteBusiness(
+'${business.id}'
+)
+"
+>
+🗑️ Delete
+</button>
 
-          <div>
-
-            ${buttons}
-
-          </div>
-
-        </div>
-
-      `;
+`;
 
 
-      container.appendChild(
-        item
-      );
+item.innerHTML = `
 
-    }
-  );
+<div class="row">
+
+<div>
+
+<h3>
+${escapeHTML(
+business.name
+)}
+</h3>
+
+
+<p>
+📍
+${escapeHTML(
+business.location || ""
+)}
+</p>
+
+
+<span
+class="
+badge
+${badgeClass}
+"
+>
+${escapeHTML(
+status.toUpperCase()
+)}
+</span>
+
+</div>
+
+
+<div>
+
+${buttons}
+
+</div>
+
+</div>
+
+`;
+
+
+container.appendChild(
+item
+);
+
+});
 
 }
 
@@ -986,36 +997,37 @@ let buttons = "";
 ================================== */
 
 async function approveBusiness(
-  id
+id
 ) {
 
-  const result =
-    await supabaseClient
+const result =
+await supabaseClient
 
-      .from("businesses")
+.from("businesses")
 
-      .update({
-        status: "approved"
-      })
+.update({
+status: "approved"
+})
 
-      .eq(
-        "id",
-        id
-      );
-
-
-  if (result.error) {
-
-    alert(
-      "❌ " +
-      result.error.message
-    );
-
-    return;
-  }
+.eq(
+"id",
+id
+);
 
 
-  loadBusinesses();
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+loadBusinesses();
 
 }
 
@@ -1025,46 +1037,48 @@ async function approveBusiness(
 ================================== */
 
 async function rejectBusiness(
-  id
+id
 ) {
 
-  if (
-    !confirm(
-      "Reject this business?"
-    )
-  ) {
+if (
+!confirm(
+"Reject this business?"
+)
+) {
 
-    return;
-  }
+return;
 
-
-  const result =
-    await supabaseClient
-
-      .from("businesses")
-
-      .update({
-        status: "rejected"
-      })
-
-      .eq(
-        "id",
-        id
-      );
+}
 
 
-  if (result.error) {
+const result =
+await supabaseClient
 
-    alert(
-      "❌ " +
-      result.error.message
-    );
+.from("businesses")
 
-    return;
-  }
+.update({
+status: "rejected"
+})
+
+.eq(
+"id",
+id
+);
 
 
-  loadBusinesses();
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+loadBusinesses();
 
 }
 
@@ -1074,44 +1088,46 @@ async function rejectBusiness(
 ================================== */
 
 async function deleteBusiness(
-  id
+id
 ) {
 
-  if (
-    !confirm(
-      "Delete this business permanently?"
-    )
-  ) {
+if (
+!confirm(
+"Delete this business permanently?"
+)
+) {
 
-    return;
-  }
+return;
 
-
-  const result =
-    await supabaseClient
-
-      .from("businesses")
-
-      .delete()
-
-      .eq(
-        "id",
-        id
-      );
+}
 
 
-  if (result.error) {
+const result =
+await supabaseClient
 
-    alert(
-      "❌ " +
-      result.error.message
-    );
+.from("businesses")
 
-    return;
-  }
+.delete()
+
+.eq(
+"id",
+id
+);
 
 
-  loadBusinesses();
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+loadBusinesses();
 
 }
 
@@ -1122,127 +1138,125 @@ async function deleteBusiness(
 
 async function loadProducts() {
 
-  const container =
-    document
-      .getElementById(
-        "products"
-      );
+const container =
+document
+.getElementById("products");
 
 
-  container.innerHTML =
-    "Loading...";
+container.innerHTML =
+"Loading...";
 
 
-  const result =
-    await supabaseClient
+const result =
+await supabaseClient
 
-      .from("products")
+.from("products")
 
-      .select("*")
+.select("*")
 
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
-
-
-  if (result.error) {
-
-    container.innerHTML =
-      "<p class='error'>" +
-      escapeHTML(
-        result.error.message
-      ) +
-      "</p>";
-
-    return;
-  }
+.order(
+"created_at",
+{
+ascending: false
+}
+);
 
 
-  const products =
-    result.data || [];
+if (result.error) {
+
+container.innerHTML =
+"<p class='error'>" +
+escapeHTML(
+result.error.message
+) +
+"</p>";
+
+return;
+
+}
 
 
-  document
-    .getElementById(
-      "productCount"
-    )
-    .textContent =
-      products.length;
+const products =
+result.data || [];
 
 
-  if (!products.length) {
-
-    container.innerHTML =
-      "<p>No products found.</p>";
-
-    return;
-  }
+document
+.getElementById("productCount")
+.textContent =
+products.length;
 
 
-  container.innerHTML = "";
+if (!products.length) {
+
+container.innerHTML =
+"<p>No products found.</p>";
+
+return;
+
+}
 
 
-  products.forEach(
-    product => {
-
-      const item =
-        document.createElement(
-          "div"
-        );
+container.innerHTML = "";
 
 
-      item.className =
-        "item";
+products.forEach(
+product => {
+
+const item =
+document.createElement(
+"div"
+);
 
 
-      item.innerHTML = `
-
-        <div class="row">
-
-          <div>
-
-            <h3>
-              ${escapeHTML(
-                product.name
-              )}
-            </h3>
-
-            <p>
-              Price:
-              KSh
-              ${Number(
-                product.price || 0
-              ).toLocaleString()}
-            </p>
-
-          </div>
+item.className =
+"item";
 
 
-          <button
-            class="delete"
-            onclick="
-              deleteProduct(
-                '${product.id}'
-              )
-            "
-          >
-            🗑️ Delete
-          </button>
+item.innerHTML = `
 
-        </div>
+<div class="row">
 
-      `;
+<div>
+
+<h3>
+${escapeHTML(
+product.name
+)}
+</h3>
 
 
-      container.appendChild(
-        item
-      );
+<p>
+Price:
+KSh
+${Number(
+product.price || 0
+).toLocaleString()}
+</p>
 
-    }
-  );
+</div>
+
+
+<button
+class="delete"
+onclick="
+deleteProduct(
+'${product.id}'
+)
+"
+>
+🗑️ Delete
+</button>
+
+</div>
+
+`;
+
+
+container.appendChild(
+item
+);
+
+});
 
 }
 
@@ -1252,44 +1266,46 @@ async function loadProducts() {
 ================================== */
 
 async function deleteProduct(
-  id
+id
 ) {
 
-  if (
-    !confirm(
-      "Delete this product permanently?"
-    )
-  ) {
+if (
+!confirm(
+"Delete this product permanently?"
+)
+) {
 
-    return;
-  }
+return;
 
-
-  const result =
-    await supabaseClient
-
-      .from("products")
-
-      .delete()
-
-      .eq(
-        "id",
-        id
-      );
+}
 
 
-  if (result.error) {
+const result =
+await supabaseClient
 
-    alert(
-      "❌ " +
-      result.error.message
-    );
+.from("products")
 
-    return;
-  }
+.delete()
+
+.eq(
+"id",
+id
+);
 
 
-  loadProducts();
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+loadProducts();
 
 }
 
@@ -1300,116 +1316,114 @@ async function deleteProduct(
 
 async function loadTeam() {
 
-  const container =
-    document
-      .getElementById(
-        "team"
-      );
+const container =
+document
+.getElementById("team");
 
 
-  const result =
-    await supabaseClient
+const result =
+await supabaseClient
 
-      .from("admin_users")
+.from("admin_users")
 
-      .select("*");
-
-
-  if (result.error) {
-
-    container.innerHTML =
-      "<p class='error'>" +
-      escapeHTML(
-        result.error.message
-      ) +
-      "</p>";
-
-    return;
-  }
+.select("*");
 
 
-  container.innerHTML = "";
+if (result.error) {
+
+container.innerHTML =
+"<p class='error'>" +
+escapeHTML(
+result.error.message
+) +
+"</p>";
+
+return;
+
+}
 
 
-  result.data.forEach(
-    member => {
-
-      const item =
-        document.createElement(
-          "div"
-        );
+container.innerHTML = "";
 
 
-      item.className =
-        "item";
+result.data.forEach(
+member => {
+
+const item =
+document.createElement(
+"div"
+);
 
 
-      const role =
-        member.role;
+item.className =
+"item";
 
 
-      item.innerHTML = `
-
-        <p>
-
-          <strong>
-            User ID:
-          </strong>
-
-          <br>
-
-          ${escapeHTML(
-            member.user_id
-          )}
-
-        </p>
+const role =
+member.role;
 
 
-        <span class="badge">
+item.innerHTML = `
 
-          ${escapeHTML(
-            role.toUpperCase()
-          )}
+<p>
 
-        </span>
+<strong>
+User ID:
+</strong>
 
+<br>
 
-        ${
-          role !== "owner"
+${escapeHTML(
+member.user_id
+)}
 
-          ? `
-
-            <button
-              class="delete"
-              onclick="
-                removeMember(
-                  '${member.user_id}'
-                )
-              "
-            >
-              ❌ Remove
-            </button>
-
-          `
-
-          : `
-
-            <p>
-              👑 Owner — Protected
-            </p>
-
-          `
-        }
-
-      `;
+</p>
 
 
-      container.appendChild(
-        item
-      );
+<span class="badge">
 
-    }
-  );
+${escapeHTML(
+role.toUpperCase()
+)}
+
+</span>
+
+
+${
+role !== "owner"
+
+? `
+
+<button
+class="delete"
+onclick="
+removeMember(
+'${member.user_id}'
+)
+"
+>
+❌ Remove
+</button>
+
+`
+
+: `
+
+<p>
+👑 Owner — Protected
+</p>
+
+`
+}
+
+`;
+
+
+container.appendChild(
+item
+);
+
+});
 
 }
 
@@ -1420,87 +1434,83 @@ async function loadTeam() {
 
 async function addCollaborator() {
 
-  const userId =
-    document
-      .getElementById(
-        "newUserId"
-      )
-      .value
-      .trim();
+const userId =
+document
+.getElementById("newUserId")
+.value
+.trim();
 
 
-  const role =
-    document
-      .getElementById(
-        "newRole"
-      )
-      .value;
+const role =
+document
+.getElementById("newRole")
+.value;
 
 
-  const message =
-    document
-      .getElementById(
-        "teamMessage"
-      );
+const message =
+document
+.getElementById("teamMessage");
 
 
-  message.textContent = "";
+message.textContent = "";
 
 
-  if (!userId) {
+if (!userId) {
 
-    message.textContent =
-      "❌ Enter a User ID.";
+message.className =
+"error";
 
-    return;
-  }
+message.textContent =
+"❌ Enter a User ID.";
 
+return;
 
-  const result =
-    await supabaseClient
-
-      .from("admin_users")
-
-      .insert({
-
-        user_id:
-          userId,
-
-        role:
-          role
-
-      });
+}
 
 
-  if (result.error) {
+const result =
+await supabaseClient
 
-    message.className =
-      "error";
+.from("admin_users")
 
-    message.textContent =
-      "❌ " +
-      result.error.message;
+.insert({
 
-    return;
-  }
+user_id:
+userId,
 
+role:
+role
 
-  message.className =
-    "success";
-
-
-  message.textContent =
-    "✅ Collaborator added.";
+});
 
 
-  document
-    .getElementById(
-      "newUserId"
-    )
-    .value = "";
+if (result.error) {
+
+message.className =
+"error";
+
+message.textContent =
+"❌ " +
+result.error.message;
+
+return;
+
+}
 
 
-  loadTeam();
+message.className =
+"success";
+
+message.textContent =
+"✅ Collaborator added.";
+
+
+document
+.getElementById("newUserId")
+.value = "";
+
+
+loadTeam();
 
 }
 
@@ -1510,44 +1520,46 @@ async function addCollaborator() {
 ================================== */
 
 async function removeMember(
-  userId
+userId
 ) {
 
-  if (
-    !confirm(
-      "Remove this collaborator?"
-    )
-  ) {
+if (
+!confirm(
+"Remove this collaborator?"
+)
+) {
 
-    return;
-  }
+return;
 
-
-  const result =
-    await supabaseClient
-
-      .from("admin_users")
-
-      .delete()
-
-      .eq(
-        "user_id",
-        userId
-      );
+}
 
 
-  if (result.error) {
+const result =
+await supabaseClient
 
-    alert(
-      "❌ " +
-      result.error.message
-    );
+.from("admin_users")
 
-    return;
-  }
+.delete()
+
+.eq(
+"user_id",
+userId
+);
 
 
-  loadTeam();
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+loadTeam();
 
 }
 
@@ -1558,10 +1570,10 @@ async function removeMember(
 
 async function logout() {
 
-  await supabaseClient.auth
-    .signOut();
+await supabaseClient.auth
+.signOut();
 
-  location.reload();
+location.reload();
 
 }
 
@@ -1571,83 +1583,71 @@ async function logout() {
 ================================== */
 
 function escapeHTML(
-  value
+value
 ) {
 
-  return String(
-    value ?? ""
-  )
+return String(
+value ?? ""
+)
 
-  .replace(
-    /&/g,
-    "&amp;"
-  )
+.replace(
+/&/g,
+"&amp;"
+)
 
-  .replace(
-    /</g,
-    "&lt;"
-  )
+.replace(
+/</g,
+"&lt;"
+)
 
-  .replace(
-    />/g,
-    "&gt;"
-  )
+.replace(
+/>/g,
+"&gt;"
+)
 
-  .replace(
-    /"/g,
-    "&quot;"
-  )
+.replace(
+/"/g,
+"&quot;"
+)
 
-  .replace(
-    /'/g,
-    "&#039;"
-  );
+.replace(
+/'/g,
+"&#039;"
+);
 
 }
 
 
 /* ==================================
-   BUTTONS
+   BUTTON EVENTS
 ================================== */
 
 document
-  .getElementById(
-    "loginButton"
-  )
-  .addEventListener(
-    "click",
-    login
-  );
+.getElementById("loginButton")
+.addEventListener(
+"click",
+login
+);
 
 
 document
-  .getElementById(
-    "logoutButton"
-  )
-  .addEventListener(
-    "click",
-    logout
-  );
+.getElementById("logoutButton")
+.addEventListener(
+"click",
+logout
+);
 
 
 document
-  .getElementById(
-    "addCollaboratorButton"
-  )
-  .addEventListener(
-    "click",
-    addCollaborator
-  );
+.getElementById(
+"addCollaboratorButton"
+)
+.addEventListener(
+"click",
+addCollaborator
+);
 
-function viewBusiness(id) {
 
-  window.open(
-    "business.html?id=" +
-    encodeURIComponent(id),
-    "_blank"
-  );
-
-  }
 /* ==================================
    START
 ================================== */
@@ -1657,4 +1657,5 @@ checkAdmin();
 </script>
 
 </body>
+
 </html>
