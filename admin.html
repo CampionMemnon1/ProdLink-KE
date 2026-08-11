@@ -40,8 +40,13 @@ header h1 {
   margin: 0;
 }
 
+header p {
+  margin: 6px 0 0;
+  color: #d1d5db;
+}
+
 .container {
-  max-width: 1000px;
+  max-width: 1050px;
   margin: auto;
   padding: 18px;
 }
@@ -55,13 +60,19 @@ header h1 {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   padding: 12px;
   margin: 7px 0;
   border: 1px solid #ddd;
   border-radius: 9px;
   font-size: 15px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
 }
 
 button {
@@ -76,7 +87,12 @@ button {
 }
 
 button:hover {
-  opacity: 0.9;
+  opacity: .9;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
 }
 
 .approve {
@@ -92,6 +108,14 @@ button:hover {
   background: #667085;
 }
 
+.owner {
+  background: #b8860b;
+}
+
+.request {
+  background: #7c3aed;
+}
+
 .hidden {
   display: none;
 }
@@ -99,9 +123,16 @@ button:hover {
 .row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.item {
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 10px;
 }
 
 .badge {
@@ -110,6 +141,7 @@ button:hover {
   border-radius: 20px;
   font-size: 13px;
   font-weight: bold;
+  margin: 3px 0;
 }
 
 .pending {
@@ -127,6 +159,21 @@ button:hover {
   color: #842029;
 }
 
+.ownerBadge {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.adminBadge {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.viewerBadge {
+  background: #e5e7eb;
+  color: #374151;
+}
+
 .error {
   color: #d32f2f;
   font-weight: bold;
@@ -135,6 +182,10 @@ button:hover {
 .success {
   color: #16883b;
   font-weight: bold;
+}
+
+.muted {
+  color: #667085;
 }
 
 .stat-grid {
@@ -155,10 +206,11 @@ button:hover {
   margin: 5px 0;
 }
 
-.item {
-  border: 1px solid #eee;
-  padding: 15px;
-  border-radius: 12px;
+.notice {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  padding: 14px;
+  border-radius: 10px;
   margin-top: 10px;
 }
 
@@ -166,6 +218,17 @@ hr {
   border: none;
   border-top: 1px solid #eee;
   margin: 22px 0;
+}
+
+.small {
+  font-size: 13px;
+}
+
+.danger-box {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  padding: 12px;
+  border-radius: 10px;
 }
 
 </style>
@@ -183,7 +246,7 @@ hr {
 </h1>
 
 <p>
-  Marketplace Control Center
+  Secure Marketplace Control Center
 </p>
 
 </header>
@@ -192,7 +255,9 @@ hr {
 <div class="container">
 
 
-<!-- LOGIN -->
+<!-- ======================================================
+     LOGIN
+======================================================= -->
 
 <div
   id="loginCard"
@@ -217,7 +282,6 @@ hr {
 
 <button
   id="loginButton"
-  type="button"
 >
   Login
 </button>
@@ -230,7 +294,9 @@ hr {
 </div>
 
 
-<!-- DASHBOARD -->
+<!-- ======================================================
+     DASHBOARD
+======================================================= -->
 
 <div
   id="dashboard"
@@ -254,7 +320,6 @@ hr {
 
 </div>
 
-
 <button
   class="secondary"
   id="logoutButton"
@@ -267,7 +332,9 @@ hr {
 </div>
 
 
-<!-- STATISTICS -->
+<!-- ======================================================
+     OVERVIEW
+======================================================= -->
 
 <div class="card">
 
@@ -280,12 +347,10 @@ hr {
 
 <div class="stat">
 
-<div>
-  🟡 Pending
-</div>
+<div>🟡 Pending</div>
 
 <h2 id="pendingCount">
-  0
+0
 </h2>
 
 </div>
@@ -293,12 +358,10 @@ hr {
 
 <div class="stat">
 
-<div>
-  🟢 Approved
-</div>
+<div>🟢 Approved</div>
 
 <h2 id="approvedCount">
-  0
+0
 </h2>
 
 </div>
@@ -306,12 +369,10 @@ hr {
 
 <div class="stat">
 
-<div>
-  🔴 Rejected
-</div>
+<div>🔴 Rejected</div>
 
 <h2 id="rejectedCount">
-  0
+0
 </h2>
 
 </div>
@@ -319,12 +380,24 @@ hr {
 
 <div class="stat">
 
-<div>
-  📦 Products
-</div>
+<div>📦 Products</div>
 
 <h2 id="productCount">
-  0
+0
+</h2>
+
+</div>
+
+
+<div
+  class="stat"
+  id="requestStat"
+>
+
+<div>🔔 Requests</div>
+
+<h2 id="requestCount">
+0
 </h2>
 
 </div>
@@ -335,12 +408,14 @@ hr {
 </div>
 
 
-<!-- BUSINESSES -->
+<!-- ======================================================
+     BUSINESS WORKFLOW
+======================================================= -->
 
 <div class="card">
 
 <h2>
-  🏪 Businesses
+  🏪 Business Workflow
 </h2>
 
 <div id="businesses">
@@ -350,12 +425,14 @@ hr {
 </div>
 
 
-<!-- PRODUCTS -->
+<!-- ======================================================
+     PRODUCTS
+======================================================= -->
 
 <div class="card">
 
 <h2>
-  📦 Products
+  📦 Product Management
 </h2>
 
 <div id="products">
@@ -365,20 +442,222 @@ hr {
 </div>
 
 
-<!-- TEAM -->
+<!-- ======================================================
+     BUSINESS DELETE REQUESTS
+======================================================= -->
 
 <div
-  id="teamSection"
+  id="businessRequestsSection"
   class="card hidden"
 >
 
 <h2>
-  👥 Team Management
+  🔔 Business Deletion Requests
+</h2>
+
+<p class="muted">
+  Only Owners can approve or reject these requests.
+</p>
+
+<div id="businessRequests">
+  Loading...
+</div>
+
+</div>
+
+
+<!-- ======================================================
+     TEAM REQUESTS
+======================================================= -->
+
+<div
+  id="teamRequestsSection"
+  class="card hidden"
+>
+
+<h2>
+  👥 Team Change Requests
+</h2>
+
+<p class="muted">
+  Requests from Admins to add, remove, or change collaborators.
+</p>
+
+<div id="teamRequests">
+  Loading...
+</div>
+
+</div>
+
+
+<!-- ======================================================
+     ADMIN TEAM REQUEST FORM
+======================================================= -->
+
+<div
+  id="adminRequestSection"
+  class="card hidden"
+>
+
+<h2>
+  📝 Request Team Change
 </h2>
 
 <p>
-  Only the Owner can manage collaborators.
+  Team membership is controlled by the Owners.
+  Submit a request and explain why the change is needed.
 </p>
+
+<label>
+  Action
+</label>
+
+<select id="teamAction">
+
+<option value="add">
+  Add Collaborator
+</option>
+
+<option value="remove">
+  Remove Collaborator
+</option>
+
+<option value="change_role">
+  Change Role
+</option>
+
+</select>
+
+
+<label>
+  Collaborator User ID
+</label>
+
+<input
+  id="requestUserId"
+  placeholder="UUID of the Supabase user"
+>
+
+
+<label>
+  Requested Role
+</label>
+
+<select id="requestRole">
+
+<option value="admin">
+  Admin
+</option>
+
+<option value="moderator">
+  Moderator
+</option>
+
+<option value="viewer">
+  Viewer
+</option>
+
+</select>
+
+
+<label>
+  Reason *
+</label>
+
+<textarea
+  id="teamRequestReason"
+  placeholder="Explain why this team change is needed..."
+></textarea>
+
+
+<button
+  class="request"
+  id="submitTeamRequest"
+>
+  📝 Send Request
+</button>
+
+
+<p
+  id="teamRequestMessage"
+></p>
+
+</div>
+
+
+<!-- ======================================================
+     BUSINESS DELETE REQUEST FORM
+======================================================= -->
+
+<div
+  id="deleteRequestSection"
+  class="card hidden"
+>
+
+<h2>
+  🗑️ Request Business Removal
+</h2>
+
+<p>
+  Admins cannot directly delete businesses.
+  An Owner must approve the removal.
+</p>
+
+<select id="deleteBusinessSelect">
+
+<option value="">
+  Select business
+</option>
+
+</select>
+
+
+<textarea
+  id="deleteReason"
+  placeholder="Explain why this business should be removed..."
+></textarea>
+
+
+<button
+  class="request"
+  id="submitDeleteRequest"
+>
+  🗑️ Send Removal Request
+</button>
+
+
+<p
+  id="deleteRequestMessage"
+></p>
+
+</div>
+
+
+<!-- ======================================================
+     OWNER TEAM MANAGEMENT
+======================================================= -->
+
+<div
+  id="ownerTeamSection"
+  class="card hidden"
+>
+
+<h2>
+  👑 Owner Team Management
+</h2>
+
+<div class="notice">
+
+<strong>
+  Owner controls
+</strong>
+
+<br>
+
+Only the two designated Owners can directly add,
+remove, or change team members.
+
+</div>
 
 
 <h3>
@@ -398,12 +677,12 @@ hr {
 </h3>
 
 <input
-  id="newUserId"
+  id="ownerUserId"
   placeholder="Collaborator User ID"
 >
 
 
-<select id="newRole">
+<select id="ownerRole">
 
 <option value="admin">
   Admin
@@ -421,13 +700,14 @@ hr {
 
 
 <button
-  id="addCollaboratorButton"
+  class="owner"
+  id="ownerAddButton"
 >
-  Add Collaborator
+  👑 Add Collaborator
 </button>
 
 
-<p id="teamMessage"></p>
+<p id="ownerTeamMessage"></p>
 
 </div>
 
@@ -440,9 +720,9 @@ hr {
 <script>
 
 
-/* ==================================
+/* =========================================================
    SUPABASE
-================================== */
+========================================================= */
 
 const SUPABASE_URL =
 "https://caspleasocqyefolvgno.supabase.co";
@@ -458,31 +738,47 @@ window.supabase.createClient(
 );
 
 
+/* =========================================================
+   OWNER IDS
+========================================================= */
+
+const OWNER_IDS = [
+
+"e3e32904-bf82-4b28-9aa1-045594596b66",
+
+"fdbbceec-d70c-4cef-96a7-bad3aada9ef1"
+
+];
+
+
+let currentUser = null;
+
 let currentRole = null;
 
 
-/* ==================================
+/* =========================================================
    LOGIN
-================================== */
+========================================================= */
 
 async function login() {
 
 const email =
 document
-  .getElementById("email")
-  .value
-  .trim();
+.getElementById("email")
+.value
+.trim();
 
 
 const password =
 document
-  .getElementById("password")
-  .value;
+.getElementById("password")
+.value;
 
 
 const errorBox =
-document
-  .getElementById("loginError");
+document.getElementById(
+"loginError"
+);
 
 
 errorBox.textContent = "";
@@ -499,8 +795,9 @@ return;
 
 
 const button =
-document
-  .getElementById("loginButton");
+document.getElementById(
+"loginButton"
+);
 
 
 button.disabled = true;
@@ -509,15 +806,12 @@ button.textContent =
 "Logging in...";
 
 
-try {
-
 const result =
 await supabaseClient.auth
 .signInWithPassword({
 
-email: email,
-
-password: password
+email,
+password
 
 });
 
@@ -541,12 +835,6 @@ return;
 await checkAdmin();
 
 
-} catch (err) {
-
-errorBox.textContent =
-"❌ " +
-err.message;
-
 button.disabled = false;
 
 button.textContent =
@@ -554,12 +842,10 @@ button.textContent =
 
 }
 
-}
 
-
-/* ==================================
+/* =========================================================
    CHECK ADMIN
-================================== */
+========================================================= */
 
 async function checkAdmin() {
 
@@ -578,7 +864,7 @@ return;
 }
 
 
-const user =
+currentUser =
 result.data.user;
 
 
@@ -590,8 +876,8 @@ await supabaseClient
 .select("role")
 
 .eq(
-  "user_id",
-  user.id
+"user_id",
+currentUser.id
 )
 
 .maybeSingle();
@@ -610,23 +896,14 @@ return;
 }
 
 
-if (
-!adminResult.data ||
-![
-  "owner",
-  "admin"
-].includes(
-  adminResult.data.role
-)
-) {
+if (!adminResult.data) {
 
 document
 .getElementById("loginError")
 .textContent =
-"❌ Your account does not have admin access.";
+"❌ Your account does not have ProdLink KE admin access.";
 
-await supabaseClient.auth
-.signOut();
+await supabaseClient.auth.signOut();
 
 return;
 
@@ -636,6 +913,47 @@ return;
 currentRole =
 adminResult.data.role;
 
+
+/* =====================================================
+   VERIFY OWNER IDS
+===================================================== */
+
+if (
+OWNER_IDS.includes(
+currentUser.id
+)
+) {
+
+currentRole =
+"owner";
+
+}
+
+
+if (
+![
+"owner",
+"admin"
+].includes(
+currentRole
+)
+) {
+
+document
+.getElementById("loginError")
+.textContent =
+"❌ Your account does not have admin access.";
+
+await supabaseClient.auth.signOut();
+
+return;
+
+}
+
+
+/* =====================================================
+   SHOW DASHBOARD
+===================================================== */
 
 document
 .getElementById("loginCard")
@@ -654,35 +972,85 @@ document
 currentRole.toUpperCase();
 
 
+loadBusinesses();
+
+loadProducts();
+
+
 if (
 currentRole === "owner"
 ) {
 
 document
-.getElementById("teamSection")
-.classList.remove("hidden");
+.getElementById(
+"ownerTeamSection"
+)
+.classList.remove(
+"hidden"
+);
+
+
+document
+.getElementById(
+"businessRequestsSection"
+)
+.classList.remove(
+"hidden"
+);
+
+
+document
+.getElementById(
+"teamRequestsSection"
+)
+.classList.remove(
+"hidden"
+);
+
 
 loadTeam();
 
-}
+loadBusinessRequests();
 
-
-loadBusinesses();
-
-loadProducts();
+loadTeamRequests();
 
 }
 
 
-/* ==================================
-   LOAD BUSINESSES
-================================== */
+else {
+
+document
+.getElementById(
+"adminRequestSection"
+)
+.classList.remove(
+"hidden"
+);
+
+
+document
+.getElementById(
+"deleteRequestSection"
+)
+.classList.remove(
+"hidden"
+);
+
+}
+
+}
+
+
+/* =========================================================
+   BUSINESSES
+========================================================= */
 
 async function loadBusinesses() {
 
 const container =
-document
-.getElementById("businesses");
+document.getElementById(
+"businesses"
+);
 
 
 container.innerHTML =
@@ -697,10 +1065,10 @@ await supabaseClient
 .select("*")
 
 .order(
-  "created_at",
-  {
-    ascending: false
-  }
+"created_at",
+{
+ascending: false
+}
 );
 
 
@@ -709,7 +1077,7 @@ if (result.error) {
 container.innerHTML =
 "<p class='error'>" +
 escapeHTML(
-  result.error.message
+result.error.message
 ) +
 "</p>";
 
@@ -735,49 +1103,82 @@ business => {
 if (
 business.status ===
 "pending"
-) {
-
-pending++;
-
-}
+) pending++;
 
 else if (
 business.status ===
 "approved"
-) {
-
-approved++;
-
-}
+) approved++;
 
 else if (
 business.status ===
 "rejected"
-) {
-
-rejected++;
-
-}
+) rejected++;
 
 });
 
 
 document
-.getElementById("pendingCount")
+.getElementById(
+"pendingCount"
+)
 .textContent =
 pending;
 
 
 document
-.getElementById("approvedCount")
+.getElementById(
+"approvedCount"
+)
 .textContent =
 approved;
 
 
 document
-.getElementById("rejectedCount")
+.getElementById(
+"rejectedCount"
+)
 .textContent =
 rejected;
+
+
+/* Populate admin deletion selector */
+
+const selector =
+document.getElementById(
+"deleteBusinessSelect"
+);
+
+
+if (selector) {
+
+selector.innerHTML =
+`<option value="">
+Select business
+</option>`;
+
+businesses.forEach(
+business => {
+
+const option =
+document.createElement(
+"option"
+);
+
+option.value =
+business.id;
+
+option.textContent =
+business.name ||
+"Unnamed Business";
+
+selector.appendChild(
+option
+);
+
+});
+
+}
 
 
 if (!businesses.length) {
@@ -811,58 +1212,47 @@ business.status ||
 "pending";
 
 
-let badgeClass =
+let badge =
 "pending";
 
 
 if (
-status === "approved"
-) {
-
-badgeClass =
+status ===
+"approved"
+) badge =
 "approved";
 
-}
 
-else if (
-status === "rejected"
-) {
-
-badgeClass =
+if (
+status ===
+"rejected"
+) badge =
 "rejected";
-
-}
 
 
 let buttons = "";
 
 
-/* PENDING */
-
 if (
-status === "pending"
+status ===
+"pending"
 ) {
 
-buttons = `
+buttons += `
 
 <button
 class="approve"
 onclick="
-approveBusiness(
-'${business.id}'
-)
+approveBusiness('${business.id}')
 "
 >
 ✅ Approve
 </button>
 
-
 <button
 class="reject"
 onclick="
-rejectBusiness(
-'${business.id}'
-)
+rejectBusiness('${business.id}')
 "
 >
 ❌ Reject
@@ -872,21 +1262,18 @@ rejectBusiness(
 
 }
 
-
-/* APPROVED */
 
 else if (
-status === "approved"
+status ===
+"approved"
 ) {
 
-buttons = `
+buttons += `
 
 <button
 class="reject"
 onclick="
-rejectBusiness(
-'${business.id}'
-)
+rejectBusiness('${business.id}')
 "
 >
 ❌ Reject
@@ -896,19 +1283,15 @@ rejectBusiness(
 
 }
 
-
-/* REJECTED */
 
 else {
 
-buttons = `
+buttons += `
 
 <button
 class="approve"
 onclick="
-approveBusiness(
-'${business.id}'
-)
+approveBusiness('${business.id}')
 "
 >
 ✅ Approve
@@ -919,16 +1302,19 @@ approveBusiness(
 }
 
 
-/* DELETE */
+/* Only Owners get direct deletion */
+
+if (
+currentRole ===
+"owner"
+) {
 
 buttons += `
 
 <button
 class="delete"
 onclick="
-deleteBusiness(
-'${business.id}'
-)
+ownerDeleteBusiness('${business.id}')
 "
 >
 🗑️ Delete
@@ -936,92 +1322,104 @@ deleteBusiness(
 
 `;
 
+}
+
 
 item.innerHTML = `
 
 <div class="row">
 
-  <div>
+<div>
 
-    <h3>
-      ${escapeHTML(
-        business.name || "Unnamed Business"
-      )}
-    </h3>
-
-    <p>
-      🏷️
-      <strong>Category:</strong>
-      ${escapeHTML(
-        business.category || "Not provided"
-      )}
-    </p>
-
-    <p>
-      📍
-      <strong>Location:</strong>
-      ${escapeHTML(
-        business.location || "Not provided"
-      )}
-    </p>
-
-    <p>
-      📞
-      <strong>Phone:</strong>
-      ${escapeHTML(
-        business.phone || "Not provided"
-      )}
-    </p>
-
-    <p>
-      📧
-      <strong>Email:</strong>
-      ${escapeHTML(
-        business.email || "Not provided"
-      )}
-    </p>
-
-    <hr>
-
-    <p>
-      📝
-      <strong>Description:</strong>
-      <br>
-      ${escapeHTML(
-        business.description ||
-        "No description provided."
-      )}
-    </p>
-
-    <p>
-      📦
-      <strong>Products / Services:</strong>
-      <br>
-      ${escapeHTML(
-        business.products ||
-        "No products or services provided."
-      )}
-    </p>
-
-    <span
-      class="
-      badge
-      ${badgeClass}
-      "
-    >
-      ${escapeHTML(
-        status.toUpperCase()
-      )}
-    </span>
-
-  </div>
+<h3>
+${escapeHTML(
+business.name ||
+"Unnamed Business"
+)}
+</h3>
 
 
-  <div>
+<p>
+🏷️
+<strong>Category:</strong>
+${escapeHTML(
+business.category ||
+"Not provided"
+)}
+</p>
 
-    ${buttons}
 
-  </div>
+<p>
+📍
+<strong>Location:</strong>
+${escapeHTML(
+business.location ||
+"Not provided"
+)}
+</p>
+
+
+<p>
+📞
+<strong>Phone:</strong>
+${escapeHTML(
+business.phone ||
+"Not provided"
+)}
+</p>
+
+
+<p>
+📧
+<strong>Email:</strong>
+${escapeHTML(
+business.email ||
+"Not provided"
+)}
+</p>
+
+
+<hr>
+
+
+<p>
+📝
+<strong>Description:</strong>
+<br>
+${escapeHTML(
+business.description ||
+"No description provided."
+)}
+</p>
+
+
+<p>
+📦
+<strong>Products / Services:</strong>
+<br>
+${escapeHTML(
+business.products ||
+"No products or services provided."
+)}
+</p>
+
+
+<span
+class="badge ${badge}"
+>
+${escapeHTML(
+status.toUpperCase()
+)}
+</span>
+
+</div>
+
+
+<div>
+
+${buttons}
+
+</div>
 
 </div>
 
@@ -1037,9 +1435,9 @@ item
 }
 
 
-/* ==================================
-   APPROVE
-================================== */
+/* =========================================================
+   APPROVE BUSINESS
+========================================================= */
 
 async function approveBusiness(
 id
@@ -1051,7 +1449,8 @@ await supabaseClient
 .from("businesses")
 
 .update({
-status: "approved"
+status:
+"approved"
 })
 
 .eq(
@@ -1077,9 +1476,9 @@ loadBusinesses();
 }
 
 
-/* ==================================
-   REJECT
-================================== */
+/* =========================================================
+   REJECT BUSINESS
+========================================================= */
 
 async function rejectBusiness(
 id
@@ -1089,11 +1488,7 @@ if (
 !confirm(
 "Reject this business?"
 )
-) {
-
-return;
-
-}
+) return;
 
 
 const result =
@@ -1102,7 +1497,8 @@ await supabaseClient
 .from("businesses")
 
 .update({
-status: "rejected"
+status:
+"rejected"
 })
 
 .eq(
@@ -1128,23 +1524,33 @@ loadBusinesses();
 }
 
 
-/* ==================================
-   DELETE BUSINESS
-================================== */
+/* =========================================================
+   OWNER DIRECT DELETE
+========================================================= */
 
-async function deleteBusiness(
+async function ownerDeleteBusiness(
 id
 ) {
+
+if (
+currentRole !==
+"owner"
+) {
+
+alert(
+"Only Owners can directly delete businesses."
+);
+
+return;
+
+}
+
 
 if (
 !confirm(
 "Delete this business permanently?"
 )
-) {
-
-return;
-
-}
+) return;
 
 
 const result =
@@ -1177,15 +1583,16 @@ loadBusinesses();
 }
 
 
-/* ==================================
+/* =========================================================
    PRODUCTS
-================================== */
+========================================================= */
 
 async function loadProducts() {
 
 const container =
-document
-.getElementById("products");
+document.getElementById(
+"products"
+);
 
 
 container.innerHTML =
@@ -1226,7 +1633,9 @@ result.data || [];
 
 
 document
-.getElementById("productCount")
+.getElementById(
+"productCount"
+)
 .textContent =
 products.length;
 
@@ -1257,6 +1666,32 @@ item.className =
 "item";
 
 
+let deleteButton = "";
+
+
+/* Product deletion remains Owner-only */
+
+if (
+currentRole ===
+"owner"
+) {
+
+deleteButton = `
+
+<button
+class="delete"
+onclick="
+deleteProduct('${product.id}')
+"
+>
+🗑️ Delete
+</button>
+
+`;
+
+}
+
+
 item.innerHTML = `
 
 <div class="row">
@@ -1265,32 +1700,46 @@ item.innerHTML = `
 
 <h3>
 ${escapeHTML(
-product.name
+product.name ||
+"Unnamed Product"
 )}
 </h3>
 
 
 <p>
-Price:
+💰 Price:
 KSh
 ${Number(
 product.price || 0
 ).toLocaleString()}
 </p>
 
+
+${
+product.description
+
+? `
+
+<p>
+${escapeHTML(
+product.description
+)}
+</p>
+
+`
+
+: ""
+
+}
+
 </div>
 
 
-<button
-class="delete"
-onclick="
-deleteProduct(
-'${product.id}'
-)
-"
->
-🗑️ Delete
-</button>
+<div>
+
+${deleteButton}
+
+</div>
 
 </div>
 
@@ -1306,23 +1755,33 @@ item
 }
 
 
-/* ==================================
+/* =========================================================
    DELETE PRODUCT
-================================== */
+========================================================= */
 
 async function deleteProduct(
 id
 ) {
 
 if (
-!confirm(
-"Delete this product permanently?"
-)
+currentRole !==
+"owner"
 ) {
+
+alert(
+"Only Owners can delete products."
+);
 
 return;
 
 }
+
+
+if (
+!confirm(
+"Delete this product permanently?"
+)
+) return;
 
 
 const result =
@@ -1355,21 +1814,1081 @@ loadProducts();
 }
 
 
-/* ==================================
-   TEAM
-================================== */
+/* =========================================================
+   ADMIN — BUSINESS DELETE REQUEST
+========================================================= */
 
-async function loadTeam() {
+async function submitDeleteRequest() {
 
-const container =
+const businessId =
 document
-.getElementById("team");
+.getElementById(
+"deleteBusinessSelect"
+)
+.value;
+
+
+const reason =
+document
+.getElementById(
+"deleteReason"
+)
+.value
+.trim();
+
+
+const message =
+document.getElementById(
+"deleteRequestMessage"
+);
+
+
+message.className = "";
+
+
+if (!businessId) {
+
+message.className =
+"error";
+
+message.textContent =
+"❌ Select a business.";
+
+return;
+
+}
+
+
+if (
+reason.length <
+10
+) {
+
+message.className =
+"error";
+
+message.textContent =
+"❌ Please provide a clear reason of at least 10 characters.";
+
+return;
+
+}
 
 
 const result =
 await supabaseClient
 
-.from("admin_users")
+.from(
+"business_requests"
+)
+
+.insert({
+
+business_id:
+businessId,
+
+action:
+"delete",
+
+reason:
+reason,
+
+requested_by:
+currentUser.id,
+
+status:
+"pending"
+
+});
+
+
+if (result.error) {
+
+message.className =
+"error";
+
+message.textContent =
+"❌ " +
+result.error.message;
+
+return;
+
+}
+
+
+message.className =
+"success";
+
+message.textContent =
+"✅ Removal request sent to the Owners.";
+
+
+document
+.getElementById(
+"deleteReason"
+)
+.value = "";
+
+
+loadBusinesses();
+
+}
+
+
+/* =========================================================
+   OWNER — BUSINESS REQUESTS
+========================================================= */
+
+async function loadBusinessRequests() {
+
+if (
+currentRole !==
+"owner"
+) return;
+
+
+const container =
+document.getElementById(
+"businessRequests"
+);
+
+
+container.innerHTML =
+"Loading...";
+
+
+const result =
+await supabaseClient
+
+.from(
+"business_requests"
+)
+
+.select("*")
+
+.order(
+"created_at",
+{
+ascending:
+false
+}
+);
+
+
+if (result.error) {
+
+container.innerHTML =
+"<p class='error'>" +
+escapeHTML(
+result.error.message
+) +
+"</p>";
+
+return;
+
+}
+
+
+const requests =
+result.data || [];
+
+
+const pending =
+requests.filter(
+r =>
+r.status ===
+"pending"
+).length;
+
+
+document
+.getElementById(
+"requestCount"
+)
+.textContent =
+pending;
+
+
+if (!requests.length) {
+
+container.innerHTML =
+"<p>No business requests.</p>";
+
+return;
+
+}
+
+
+container.innerHTML = "";
+
+
+for (
+const request of
+requests
+) {
+
+const item =
+document.createElement(
+"div"
+);
+
+
+item.className =
+"item";
+
+
+let businessName =
+"Unknown business";
+
+
+const businessResult =
+await supabaseClient
+
+.from(
+"businesses"
+)
+
+.select("name")
+
+.eq(
+"id",
+request.business_id
+)
+
+.maybeSingle();
+
+
+if (
+businessResult.data
+) {
+
+businessName =
+businessResult.data.name;
+
+}
+
+
+let buttons = "";
+
+
+if (
+request.status ===
+"pending"
+) {
+
+buttons = `
+
+<button
+class="approve"
+onclick="
+approveDeletion(${request.id})
+"
+>
+✅ Approve Delete
+</button>
+
+
+<button
+class="reject"
+onclick="
+rejectDeletion(${request.id})
+"
+>
+❌ Reject
+</button>
+
+`;
+
+}
+
+
+item.innerHTML = `
+
+<h3>
+🗑️ ${escapeHTML(
+businessName
+)}
+</h3>
+
+
+<p>
+<strong>Reason:</strong>
+<br>
+${escapeHTML(
+request.reason
+)}
+</p>
+
+
+<p class="small">
+Requested:
+${new Date(
+request.created_at
+).toLocaleString()}
+</p>
+
+
+<span
+class="badge ${escapeHTML(
+request.status
+)}"
+>
+${escapeHTML(
+request.status.toUpperCase()
+)}
+</span>
+
+
+<div>
+${buttons}
+</div>
+
+`;
+
+
+container.appendChild(
+item
+);
+
+}
+
+}
+
+
+/* =========================================================
+   APPROVE BUSINESS DELETION
+========================================================= */
+
+async function approveDeletion(
+requestId
+) {
+
+if (
+currentRole !==
+"owner"
+) {
+
+alert(
+"Only Owners can approve deletions."
+);
+
+return;
+
+}
+
+
+if (
+!confirm(
+"Approve this business deletion?"
+)
+) return;
+
+
+const result =
+await supabaseClient.rpc(
+"approve_business_deletion",
+{
+request_id:
+requestId
+}
+);
+
+
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+loadBusinesses();
+
+loadBusinessRequests();
+
+}
+
+
+/* =========================================================
+   REJECT BUSINESS DELETION
+========================================================= */
+
+async function rejectDeletion(
+requestId
+) {
+
+if (
+currentRole !==
+"owner"
+) return;
+
+
+const result =
+await supabaseClient.rpc(
+"reject_business_deletion",
+{
+request_id:
+requestId
+}
+);
+
+
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+loadBusinessRequests();
+
+}
+
+
+/* =========================================================
+   ADMIN — TEAM REQUEST
+========================================================= */
+
+async function submitTeamRequest() {
+
+const action =
+document
+.getElementById(
+"teamAction"
+)
+.value;
+
+
+const userId =
+document
+.getElementById(
+"requestUserId"
+)
+.value
+.trim();
+
+
+const role =
+document
+.getElementById(
+"requestRole"
+)
+.value;
+
+
+const reason =
+document
+.getElementById(
+"teamRequestReason"
+)
+.value
+.trim();
+
+
+const message =
+document
+.getElementById(
+"teamRequestMessage"
+);
+
+
+message.className = "";
+
+
+if (!userId) {
+
+message.className =
+"error";
+
+message.textContent =
+"❌ Enter the collaborator User ID.";
+
+return;
+
+}
+
+
+if (
+reason.length <
+10
+) {
+
+message.className =
+"error";
+
+message.textContent =
+"❌ Please provide a clear reason of at least 10 characters.";
+
+return;
+
+}
+
+
+const result =
+await supabaseClient
+
+.from(
+"team_requests"
+)
+
+.insert({
+
+action:
+action,
+
+target_user_id:
+userId,
+
+requested_role:
+action ===
+"remove"
+? null
+: role,
+
+reason:
+reason,
+
+requested_by:
+currentUser.id,
+
+status:
+"pending"
+
+});
+
+
+if (result.error) {
+
+message.className =
+"error";
+
+message.textContent =
+"❌ " +
+result.error.message;
+
+return;
+
+}
+
+
+message.className =
+"success";
+
+message.textContent =
+"✅ Team request sent to the Owners.";
+
+
+document
+.getElementById(
+"requestUserId"
+)
+.value = "";
+
+
+document
+.getElementById(
+"teamRequestReason"
+)
+.value = "";
+
+
+}
+
+
+/* =========================================================
+   OWNER — TEAM REQUESTS
+========================================================= */
+
+async function loadTeamRequests() {
+
+if (
+currentRole !==
+"owner"
+) return;
+
+
+const container =
+document.getElementById(
+"teamRequests"
+);
+
+
+container.innerHTML =
+"Loading...";
+
+
+const result =
+await supabaseClient
+
+.from(
+"team_requests"
+)
+
+.select("*")
+
+.order(
+"created_at",
+{
+ascending:
+false
+}
+);
+
+
+if (result.error) {
+
+container.innerHTML =
+"<p class='error'>" +
+escapeHTML(
+result.error.message
+) +
+"</p>";
+
+return;
+
+}
+
+
+const requests =
+result.data || [];
+
+
+if (!requests.length) {
+
+container.innerHTML =
+"<p>No team requests.</p>";
+
+return;
+
+}
+
+
+container.innerHTML = "";
+
+
+requests.forEach(
+request => {
+
+const item =
+document.createElement(
+"div"
+);
+
+
+item.className =
+"item";
+
+
+let buttons = "";
+
+
+if (
+request.status ===
+"pending"
+) {
+
+buttons = `
+
+<button
+class="approve"
+onclick="
+approveTeamRequest(${request.id})
+"
+>
+✅ Approve
+</button>
+
+<button
+class="reject"
+onclick="
+rejectTeamRequest(${request.id})
+"
+>
+❌ Reject
+</button>
+
+`;
+
+}
+
+
+item.innerHTML = `
+
+<h3>
+👥 ${escapeHTML(
+request.action
+.replace(
+"_",
+" "
+)
+.toUpperCase()
+)}
+</h3>
+
+
+<p>
+<strong>User:</strong>
+<br>
+${escapeHTML(
+request.target_user_id
+)}
+</p>
+
+
+${
+request.requested_role
+
+? `
+
+<p>
+<strong>Requested Role:</strong>
+${escapeHTML(
+request.requested_role
+)}
+</p>
+
+`
+
+: ""
+
+}
+
+
+<p>
+<strong>Reason:</strong>
+<br>
+${escapeHTML(
+request.reason
+)}
+</p>
+
+
+<p class="small">
+Requested:
+${new Date(
+request.created_at
+).toLocaleString()}
+</p>
+
+
+<span
+class="badge ${escapeHTML(
+request.status
+)}"
+>
+${escapeHTML(
+request.status.toUpperCase()
+)}
+</span>
+
+
+<div>
+${buttons}
+</div>
+
+`;
+
+
+container.appendChild(
+item
+);
+
+});
+
+}
+
+
+/* =========================================================
+   APPROVE TEAM REQUEST
+========================================================= */
+
+async function approveTeamRequest(
+requestId
+) {
+
+if (
+currentRole !==
+"owner"
+) return;
+
+
+const result =
+await supabaseClient
+
+.from(
+"team_requests"
+)
+
+.select("*")
+
+.eq(
+"id",
+requestId
+)
+
+.eq(
+"status",
+"pending"
+)
+
+.single();
+
+
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+const request =
+result.data;
+
+
+let operation;
+
+
+if (
+request.action ===
+"add"
+) {
+
+operation =
+await supabaseClient
+
+.from(
+"admin_users"
+)
+
+.insert({
+
+user_id:
+request.target_user_id,
+
+role:
+request.requested_role
+
+});
+
+}
+
+
+else if (
+request.action ===
+"remove"
+) {
+
+operation =
+await supabaseClient
+
+.from(
+"admin_users"
+)
+
+.delete()
+
+.eq(
+"user_id",
+request.target_user_id
+);
+
+}
+
+
+else if (
+request.action ===
+"change_role"
+) {
+
+operation =
+await supabaseClient
+
+.from(
+"admin_users"
+)
+
+.update({
+
+role:
+request.requested_role
+
+})
+
+.eq(
+"user_id",
+request.target_user_id
+);
+
+}
+
+
+if (
+operation.error
+) {
+
+alert(
+"❌ " +
+operation.error.message
+);
+
+return;
+
+}
+
+
+const review =
+await supabaseClient
+
+.from(
+"team_requests"
+)
+
+.update({
+
+status:
+"approved",
+
+reviewed_by:
+currentUser.id,
+
+reviewed_at:
+new Date()
+.toISOString()
+
+})
+
+.eq(
+"id",
+requestId
+);
+
+
+if (
+review.error
+) {
+
+alert(
+"❌ " +
+review.error.message
+);
+
+return;
+
+}
+
+
+loadTeam();
+
+loadTeamRequests();
+
+}
+
+
+/* =========================================================
+   REJECT TEAM REQUEST
+========================================================= */
+
+async function rejectTeamRequest(
+requestId
+) {
+
+if (
+currentRole !==
+"owner"
+) return;
+
+
+const result =
+await supabaseClient
+
+.from(
+"team_requests"
+)
+
+.update({
+
+status:
+"rejected",
+
+reviewed_by:
+currentUser.id,
+
+reviewed_at:
+new Date()
+.toISOString()
+
+})
+
+.eq(
+"id",
+requestId
+)
+
+.eq(
+"status",
+"pending"
+);
+
+
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+loadTeamRequests();
+
+}
+
+
+/* =========================================================
+   OWNER TEAM
+========================================================= */
+
+async function loadTeam() {
+
+if (
+currentRole !==
+"owner"
+) return;
+
+
+const container =
+document.getElementById(
+"team"
+);
+
+
+container.innerHTML =
+"Loading...";
+
+
+const result =
+await supabaseClient
+
+.from(
+"admin_users"
+)
 
 .select("*");
 
@@ -1404,11 +2923,29 @@ item.className =
 "item";
 
 
-const role =
-member.role;
+let badgeClass =
+"viewerBadge";
+
+
+if (
+member.role ===
+"owner"
+) badgeClass =
+"ownerBadge";
+
+
+if (
+member.role ===
+"admin"
+) badgeClass =
+"adminBadge";
 
 
 item.innerHTML = `
+
+<div class="row">
+
+<div>
 
 <p>
 
@@ -1425,41 +2962,77 @@ member.user_id
 </p>
 
 
-<span class="badge">
-
+<span
+class="badge ${badgeClass}"
+>
 ${escapeHTML(
-role.toUpperCase()
+member.role
+.toUpperCase()
 )}
-
 </span>
 
+</div>
+
+
+<div>
 
 ${
-role !== "owner"
+member.role !==
+"owner"
 
 ? `
 
 <button
 class="delete"
 onclick="
-removeMember(
-'${member.user_id}'
-)
+removeMember('${member.user_id}')
 "
 >
 ❌ Remove
 </button>
 
+<select
+onchange="
+changeRole(
+'${member.user_id}',
+this.value
+)
+"
+>
+
+<option value="">
+Change role
+</option>
+
+<option value="admin">
+Admin
+</option>
+
+<option value="moderator">
+Moderator
+</option>
+
+<option value="viewer">
+Viewer
+</option>
+
+</select>
+
 `
 
 : `
 
-<p>
-👑 Owner — Protected
-</p>
+<strong>
+👑 Protected Owner
+</strong>
 
 `
+
 }
+
+</div>
+
+</div>
 
 `;
 
@@ -1473,31 +3046,33 @@ item
 }
 
 
-/* ==================================
-   ADD COLLABORATOR
-================================== */
+/* =========================================================
+   OWNER ADD
+========================================================= */
 
-async function addCollaborator() {
+async function ownerAddMember() {
 
 const userId =
 document
-.getElementById("newUserId")
+.getElementById(
+"ownerUserId"
+)
 .value
 .trim();
 
 
 const role =
 document
-.getElementById("newRole")
+.getElementById(
+"ownerRole"
+)
 .value;
 
 
 const message =
-document
-.getElementById("teamMessage");
-
-
-message.textContent = "";
+document.getElementById(
+"ownerTeamMessage"
+);
 
 
 if (!userId) {
@@ -1516,7 +3091,9 @@ return;
 const result =
 await supabaseClient
 
-.from("admin_users")
+.from(
+"admin_users"
+)
 
 .insert({
 
@@ -1551,7 +3128,9 @@ message.textContent =
 
 
 document
-.getElementById("newUserId")
+.getElementById(
+"ownerUserId"
+)
 .value = "";
 
 
@@ -1560,29 +3139,48 @@ loadTeam();
 }
 
 
-/* ==================================
-   REMOVE MEMBER
-================================== */
+/* =========================================================
+   OWNER REMOVE
+========================================================= */
 
 async function removeMember(
 userId
 ) {
 
 if (
-!confirm(
-"Remove this collaborator?"
+currentRole !==
+"owner"
+) return;
+
+
+if (
+OWNER_IDS.includes(
+userId
 )
 ) {
+
+alert(
+"Protected Owner accounts cannot be removed."
+);
 
 return;
 
 }
 
 
+if (
+!confirm(
+"Remove this collaborator?"
+)
+) return;
+
+
 const result =
 await supabaseClient
 
-.from("admin_users")
+.from(
+"admin_users"
+)
 
 .delete()
 
@@ -1609,9 +3207,75 @@ loadTeam();
 }
 
 
-/* ==================================
+/* =========================================================
+   OWNER CHANGE ROLE
+========================================================= */
+
+async function changeRole(
+userId,
+role
+) {
+
+if (
+!role ||
+currentRole !==
+"owner"
+) return;
+
+
+if (
+OWNER_IDS.includes(
+userId
+)
+) {
+
+alert(
+"Protected Owners cannot have their role changed."
+);
+
+return;
+
+}
+
+
+const result =
+await supabaseClient
+
+.from(
+"admin_users"
+)
+
+.update({
+role:
+role
+})
+
+.eq(
+"user_id",
+userId
+);
+
+
+if (result.error) {
+
+alert(
+"❌ " +
+result.error.message
+);
+
+return;
+
+}
+
+
+loadTeam();
+
+}
+
+
+/* =========================================================
    LOGOUT
-================================== */
+========================================================= */
 
 async function logout() {
 
@@ -1623,9 +3287,9 @@ location.reload();
 }
 
 
-/* ==================================
+/* =========================================================
    ESCAPE HTML
-================================== */
+========================================================= */
 
 function escapeHTML(
 value
@@ -1663,12 +3327,14 @@ value ?? ""
 }
 
 
-/* ==================================
+/* =========================================================
    BUTTON EVENTS
-================================== */
+========================================================= */
 
 document
-.getElementById("loginButton")
+.getElementById(
+"loginButton"
+)
 .addEventListener(
 "click",
 login
@@ -1676,7 +3342,9 @@ login
 
 
 document
-.getElementById("logoutButton")
+.getElementById(
+"logoutButton"
+)
 .addEventListener(
 "click",
 logout
@@ -1685,17 +3353,37 @@ logout
 
 document
 .getElementById(
-"addCollaboratorButton"
+"submitTeamRequest"
 )
 .addEventListener(
 "click",
-addCollaborator
+submitTeamRequest
 );
 
 
-/* ==================================
+document
+.getElementById(
+"submitDeleteRequest"
+)
+.addEventListener(
+"click",
+submitDeleteRequest
+);
+
+
+document
+.getElementById(
+"ownerAddButton"
+)
+.addEventListener(
+"click",
+ownerAddMember
+);
+
+
+/* =========================================================
    START
-================================== */
+========================================================= */
 
 checkAdmin();
 
