@@ -163,6 +163,7 @@ button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 
 .ownerBadge { background: #fff4cc; color: #8a5b00; }
 .adminBadge { background: #dbeafe; color: #1e40af; }
+.moderatorBadge { background: #ede9fe; color: #5b21b6; }
 .viewerBadge { background: #e5e7eb; color: #374151; }
 
 .error { color: #b42318; font-weight: 700; }
@@ -325,7 +326,7 @@ label {
       </p>
     </div>
     <div>
-      <span class="badge adminBadge">SECURE ACCESS</span>
+      <span class="badge adminBadge">ROLE-BASED ACCESS</span>
     </div>
   </div>
 </div>
@@ -961,7 +962,9 @@ currentRole =
 if (
 ![
 "owner",
-"admin"
+"admin",
+"moderator",
+"viewer"
 ].includes(
 currentRole
 )
@@ -1005,64 +1008,24 @@ loadBusinesses();
 loadProducts();
 
 
-if (
-currentRole === "owner"
-) {
+if (currentRole === "owner") {
 
-document
-.getElementById(
-"ownerTeamSection"
-)
-.classList.remove(
-"hidden"
-);
-
-
-document
-.getElementById(
-"businessRequestsSection"
-)
-.classList.remove(
-"hidden"
-);
-
-
-document
-.getElementById(
-"teamRequestsSection"
-)
-.classList.remove(
-"hidden"
-);
-
+document.getElementById("ownerTeamSection").classList.remove("hidden");
+document.getElementById("businessRequestsSection").classList.remove("hidden");
+document.getElementById("teamRequestsSection").classList.remove("hidden");
 
 loadTeam();
-
 loadBusinessRequests();
-
 loadTeamRequests();
 
-}
+} else if (currentRole === "admin") {
 
+document.getElementById("adminRequestSection").classList.remove("hidden");
+document.getElementById("deleteRequestSection").classList.remove("hidden");
 
-else {
+} else if (currentRole === "moderator") {
 
-document
-.getElementById(
-"adminRequestSection"
-)
-.classList.remove(
-"hidden"
-);
-
-
-document
-.getElementById(
-"deleteRequestSection"
-)
-.classList.remove(
-"hidden"
-);
+document.getElementById("deleteRequestSection").classList.remove("hidden");
 
 }
 
@@ -1261,7 +1224,7 @@ status ===
 let buttons = "";
 
 
-if (
+if (["owner", "admin", "moderator"].includes(currentRole) &&
 status ===
 "pending"
 ) {
@@ -1291,7 +1254,7 @@ rejectBusiness('${business.id}')
 }
 
 
-else if (
+else if (["owner", "admin", "moderator"].includes(currentRole) &&
 status ===
 "approved"
 ) {
@@ -1312,7 +1275,7 @@ rejectBusiness('${business.id}')
 }
 
 
-else {
+else if (["owner", "admin", "moderator"].includes(currentRole)) {
 
 buttons += `
 
@@ -1471,6 +1434,11 @@ async function approveBusiness(
 id
 ) {
 
+if (!["owner", "admin", "moderator"].includes(currentRole)) {
+alert("Your role is read-only and cannot approve businesses.");
+return;
+}
+
 const result =
 await supabaseClient
 
@@ -1511,6 +1479,11 @@ loadBusinesses();
 async function rejectBusiness(
 id
 ) {
+
+if (!["owner", "admin", "moderator"].includes(currentRole)) {
+alert("Your role is read-only and cannot reject businesses.");
+return;
+}
 
 if (
 !confirm(
@@ -1847,6 +1820,11 @@ loadProducts();
 ========================================================= */
 
 async function submitDeleteRequest() {
+
+if (!["owner", "admin", "moderator"].includes(currentRole)) {
+alert("Your role does not have permission to request business removal.");
+return;
+}
 
 const businessId =
 document
@@ -2287,6 +2265,11 @@ loadBusinessRequests();
 ========================================================= */
 
 async function submitTeamRequest() {
+
+if (currentRole !== "admin") {
+alert("Only Admins can submit team change requests.");
+return;
+}
 
 const action =
 document
@@ -2967,6 +2950,12 @@ member.role ===
 "admin"
 ) badgeClass =
 "adminBadge";
+
+if (
+member.role ===
+"moderator"
+) badgeClass =
+"moderatorBadge";
 
 
 item.innerHTML = `
