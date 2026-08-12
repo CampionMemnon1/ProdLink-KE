@@ -16,7 +16,9 @@
 
 <style>
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 :root {
   --navy: #101828;
@@ -36,10 +38,14 @@
 
 body {
   margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Arial, sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   background:
-    radial-gradient(circle at top right, rgba(37, 99, 235, .08), transparent 28%),
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, .08),
+      transparent 28%
+    ),
     var(--bg);
   color: var(--text);
   line-height: 1.5;
@@ -55,8 +61,17 @@ header {
   box-shadow: 0 4px 18px rgba(16, 24, 40, .18);
 }
 
-header h1 { margin: 0; font-size: 25px; letter-spacing: -.4px; }
-header p { margin: 5px 0 0; color: #d0d5dd; font-size: 14px; }
+header h1 {
+  margin: 0;
+  font-size: 25px;
+  letter-spacing: -.4px;
+}
+
+header p {
+  margin: 5px 0 0;
+  color: #d0d5dd;
+  font-size: 14px;
+}
 
 .container {
   max-width: 1180px;
@@ -78,7 +93,9 @@ header p { margin: 5px 0 0; color: #d0d5dd; font-size: 14px; }
   letter-spacing: -.3px;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   width: 100%;
   padding: 12px 13px;
   margin: 7px 0;
@@ -91,12 +108,17 @@ input, select, textarea {
   transition: border-color .15s, box-shadow .15s;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border-color: #84adff;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
 }
 
-textarea { min-height: 100px; resize: vertical; }
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
 
 button {
   border: none;
@@ -110,17 +132,45 @@ button {
   transition: transform .12s, opacity .12s, box-shadow .12s;
 }
 
-button:hover { opacity: .94; transform: translateY(-1px); }
-button:active { transform: translateY(0); }
-button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+button:hover {
+  opacity: .94;
+  transform: translateY(-1px);
+}
 
-.approve { background: var(--green); }
-.reject, .delete { background: var(--red); }
-.secondary { background: #475467; }
-.owner { background: var(--amber); }
-.request { background: var(--purple); }
+button:active {
+  transform: translateY(0);
+}
 
-.hidden { display: none; }
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.approve {
+  background: var(--green);
+}
+
+.reject,
+.delete {
+  background: var(--red);
+}
+
+.secondary {
+  background: #475467;
+}
+
+.owner {
+  background: var(--amber);
+}
+
+.request {
+  background: var(--purple);
+}
+
+.hidden {
+  display: none !important;
+}
 
 .row {
   display: flex;
@@ -144,7 +194,9 @@ button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
   box-shadow: 0 5px 18px rgba(16, 24, 40, .06);
 }
 
-.item h3 { margin-top: 0; }
+.item h3 {
+  margin-top: 0;
+}
 
 .badge {
   display: inline-block;
@@ -157,18 +209,54 @@ button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
   letter-spacing: .35px;
 }
 
-.pending { background: #fff4cc; color: #8a5b00; }
-.approved { background: #dcfce7; color: #166534; }
-.rejected { background: #fee2e2; color: #991b1b; }
+.pending {
+  background: #fff4cc;
+  color: #8a5b00;
+}
 
-.ownerBadge { background: #fff4cc; color: #8a5b00; }
-.adminBadge { background: #dbeafe; color: #1e40af; }
-.viewerBadge { background: #e5e7eb; color: #374151; }
+.approved {
+  background: #dcfce7;
+  color: #166534;
+}
 
-.error { color: #b42318; font-weight: 700; }
-.success { color: #16883b; font-weight: 700; }
-.muted { color: var(--muted); }
-.small { font-size: 13px; color: var(--muted); }
+.rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.ownerBadge {
+  background: #fff4cc;
+  color: #8a5b00;
+}
+
+.adminBadge {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.viewerBadge {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.error {
+  color: #b42318;
+  font-weight: 700;
+}
+
+.success {
+  color: #16883b;
+  font-weight: 700;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 13px;
+  color: var(--muted);
+}
 
 .stat-grid {
   display: grid;
@@ -223,7 +311,9 @@ label {
   margin: 42px auto;
 }
 
-#loginCard h2 { margin-top: 0; }
+#loginCard h2 {
+  margin-top: 0;
+}
 
 #dashboard > .card:first-child {
   background: linear-gradient(135deg, #ffffff, #f8fbff);
@@ -232,20 +322,184 @@ label {
 #businesses .item p,
 #products .item p,
 #businessRequests .item p,
-#teamRequests .item p { margin: 8px 0; }
-
-@media (max-width: 700px) {
-  .container { padding: 12px; }
-  .card { padding: 15px; border-radius: 14px; }
-  header { padding: 17px 14px; }
-  header h1 { font-size: 21px; }
-  button { width: 100%; margin: 5px 0; }
-  .row > div { width: 100%; }
+#teamRequests .item p {
+  margin: 8px 0;
 }
 
 
-/* Account menu / modals */
-.account-menu-wrap{position:relative}.menu-button{width:44px!important;height:44px;padding:0!important;border-radius:12px;background:#eef2f7;color:#172033;font-size:24px;line-height:1;margin:4px}.account-menu{position:absolute;right:4px;top:54px;width:230px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 14px 35px rgba(16,24,40,.16);padding:7px;z-index:100}.account-menu button{display:block;width:100%!important;margin:2px 0;text-align:left;background:transparent;color:var(--text);font-weight:700}.account-menu button:hover{background:#f2f4f7;transform:none}.account-menu .danger-option{color:var(--red)}.modal-backdrop{position:fixed;inset:0;background:rgba(16,24,40,.55);display:flex;align-items:center;justify-content:center;padding:18px;z-index:200}.modal{width:min(560px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 20px 60px rgba(16,24,40,.25)}.modal-header{display:flex;justify-content:space-between;align-items:center;gap:12px}.modal-header h2{margin:0}.close-button{background:#eef2f7;color:#172033;width:40px!important;padding:8px!important}.history-item{border:1px solid var(--border);border-radius:12px;padding:14px;margin:10px 0}.history-item h4{margin:0 0 7px}
+/* =========================================================
+   ACCOUNT MENU
+========================================================= */
+
+.account-menu-wrap {
+  position: relative;
+}
+
+.menu-button {
+  width: 44px !important;
+  height: 44px;
+  padding: 0 !important;
+  border-radius: 12px;
+  background: #eef2f7;
+  color: #172033;
+  font-size: 24px;
+  line-height: 1;
+  margin: 4px;
+}
+
+.account-menu {
+  position: absolute;
+  right: 4px;
+  top: 54px;
+  width: 230px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(16, 24, 40, .16);
+  padding: 7px;
+  z-index: 100;
+}
+
+.account-menu button {
+  display: block;
+  width: 100% !important;
+  margin: 2px 0;
+  text-align: left;
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.account-menu button:hover {
+  background: #f2f4f7;
+  transform: none;
+}
+
+.account-menu .danger-option {
+  color: var(--red);
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 24, 40, .55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 200;
+}
+
+/*
+  IMPORTANT:
+  This fixes the X button.
+  When a modal has BOTH modal-backdrop and hidden,
+  hidden must win and remove the modal from the screen.
+*/
+.modal-backdrop.hidden {
+  display: none !important;
+}
+
+.modal {
+  width: min(560px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(16, 24, 40, .25);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.close-button {
+  background: #eef2f7;
+  color: #172033;
+  width: 40px !important;
+  height: 40px;
+  padding: 8px !important;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.close-button:hover {
+  background: #e4e7ec;
+  color: #101828;
+  transform: none;
+}
+
+.history-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 10px 0;
+}
+
+.history-item h4 {
+  margin: 0 0 7px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 15px;
+    border-radius: 14px;
+  }
+
+  header {
+    padding: 17px 14px;
+  }
+
+  header h1 {
+    font-size: 21px;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .row > div {
+    width: 100%;
+  }
+
+  .menu-button {
+    width: 44px !important;
+  }
+
+  .account-menu {
+    right: 0;
+    width: 220px;
+  }
+
+  .close-button {
+    width: 40px !important;
+  }
+}
+
 </style>
 
 </head>
@@ -319,20 +573,39 @@ label {
 >
 
 <div class="card" style="border-left: 5px solid #2563eb;">
+
   <div class="row">
+
     <div>
-      <div class="small">PRODLINK KE • CONTROL CENTER</div>
-      <h2 style="margin: 4px 0;">Marketplace Moderation Dashboard</h2>
-      <p class="muted" style="margin-bottom: 0;">
+
+      <div class="small">
+        PRODLINK KE • CONTROL CENTER
+      </div>
+
+      <h2 style="margin: 4px 0;">
+        Marketplace Moderation Dashboard
+      </h2>
+
+      <p
+        class="muted"
+        style="margin-bottom: 0;"
+      >
         Review businesses, products, team requests and deletion requests from one place.
       </p>
-    </div>
-    <div>
-      <span class="badge adminBadge">SECURE ACCESS</span>
-    </div>
-  </div>
-</div>
 
+    </div>
+
+    <div>
+
+      <span class="badge adminBadge">
+        SECURE ACCESS
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
 
 
 <!-- ACCOUNT -->
@@ -351,14 +624,47 @@ label {
 
 </div>
 
+
 <div class="account-menu-wrap">
-<button class="menu-button" id="accountMenuButton" title="Account menu" aria-label="Account menu">⋮</button>
-<div id="accountMenu" class="account-menu hidden">
-<button id="menuHistoryButton">📜 History</button>
-<button id="menuPasswordButton">🔐 Change password</button>
-<button id="menuInviteButton" class="hidden">✉️ Send invitation</button>
-<button id="menuLogoutButton" class="danger-option">🚪 Logout</button>
+
+<button
+  class="menu-button"
+  id="accountMenuButton"
+  title="Account menu"
+  aria-label="Account menu"
+>
+  ⋮
+</button>
+
+<div
+  id="accountMenu"
+  class="account-menu hidden"
+>
+
+<button id="menuHistoryButton">
+  📜 History
+</button>
+
+<button id="menuPasswordButton">
+  🔐 Change password
+</button>
+
+<button
+  id="menuInviteButton"
+  class="hidden"
+>
+  ✉️ Send invitation
+</button>
+
+<button
+  id="menuLogoutButton"
+  class="danger-option"
+>
+  🚪 Logout
+</button>
+
 </div>
+
 </div>
 
 </div>
@@ -745,35 +1051,172 @@ remove, or change team members.
 
 </div>
 
-<div id="historyModal" class="modal-backdrop hidden">
+
+<!-- ======================================================
+     HISTORY MODAL
+======================================================= -->
+
+<div
+  id="historyModal"
+  class="modal-backdrop hidden"
+>
+
 <div class="modal">
-<div class="modal-header"><h2>📜 Activity History</h2><button class="close-button" onclick="closeModal('historyModal')">✕</button></div>
-<p class="muted">Owners can review team history. Other roles see their own submitted requests.</p>
-<div id="historyContent">Loading history...</div>
-</div>
+
+<div class="modal-header">
+
+<h2>
+  📜 Activity History
+</h2>
+
+<button
+  type="button"
+  class="close-button"
+  onclick="closeModal('historyModal')"
+  aria-label="Close"
+>
+  ✕
+</button>
+
 </div>
 
-<div id="passwordModal" class="modal-backdrop hidden">
+<p class="muted">
+  Owners can review team history. Other roles see their own submitted requests.
+</p>
+
+<div id="historyContent">
+  Loading history...
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ======================================================
+     PASSWORD MODAL
+======================================================= -->
+
+<div
+  id="passwordModal"
+  class="modal-backdrop hidden"
+>
+
 <div class="modal">
-<div class="modal-header"><h2>🔐 Change Password</h2><button class="close-button" onclick="closeModal('passwordModal')">✕</button></div>
-<p class="muted">Changes the password for your current ProdLink account. Your role stays the same.</p>
-<input id="newPassword" type="password" placeholder="New password (minimum 8 characters)">
-<input id="confirmPassword" type="password" placeholder="Confirm new password">
-<button id="savePasswordButton">Save password</button>
+
+<div class="modal-header">
+
+<h2>
+  🔐 Change Password
+</h2>
+
+<button
+  type="button"
+  class="close-button"
+  onclick="closeModal('passwordModal')"
+  aria-label="Close"
+>
+  ✕
+</button>
+
+</div>
+
+<p class="muted">
+  Changes the password for your current ProdLink account.
+  Your role stays the same.
+</p>
+
+<input
+  id="newPassword"
+  type="password"
+  placeholder="New password (minimum 8 characters)"
+>
+
+<input
+  id="confirmPassword"
+  type="password"
+  placeholder="Confirm new password"
+>
+
+<button id="savePasswordButton">
+  Save password
+</button>
+
 <p id="passwordMessage"></p>
-</div>
+
 </div>
 
-<div id="inviteModal" class="modal-backdrop hidden">
+</div>
+
+
+<!-- ======================================================
+     INVITATION MODAL
+======================================================= -->
+
+<div
+  id="inviteModal"
+  class="modal-backdrop hidden"
+>
+
 <div class="modal">
-<div class="modal-header"><h2>✉️ Invite Team Member</h2><button class="close-button" onclick="closeModal('inviteModal')">✕</button></div>
-<p class="muted">Owner only. Choose the role to offer this person. Invitation delivery uses the secure backend function.</p>
-<input id="inviteEmail" type="email" placeholder="person@example.com">
-<select id="inviteRole"><option value="admin">Admin</option><option value="moderator">Moderator</option><option value="viewer">Viewer</option></select>
-<button id="sendInviteButton" class="owner">✉️ Send Invitation</button>
+
+<div class="modal-header">
+
+<h2>
+  ✉️ Invite Team Member
+</h2>
+
+<button
+  type="button"
+  class="close-button"
+  onclick="closeModal('inviteModal')"
+  aria-label="Close"
+>
+  ✕
+</button>
+
+</div>
+
+<p class="muted">
+  Owner only. Choose the role to offer this person.
+  Invitation delivery uses the secure backend function.
+</p>
+
+<input
+  id="inviteEmail"
+  type="email"
+  placeholder="person@example.com"
+>
+
+<select id="inviteRole">
+
+<option value="admin">
+  Admin
+</option>
+
+<option value="moderator">
+  Moderator
+</option>
+
+<option value="viewer">
+  Viewer
+</option>
+
+</select>
+
+<button
+  id="sendInviteButton"
+  class="owner"
+>
+  ✉️ Send Invitation
+</button>
+
 <p id="inviteMessage"></p>
+
 </div>
+
 </div>
+
 
 </div>
 
@@ -788,19 +1231,21 @@ remove, or change team members.
 ========================================================= */
 
 const SUPABASE_URL =
-"https://caspleasocqyefolvgno.supabase.co";
+  "https://caspleasocqyefolvgno.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_MvVKXlV6n8Y1sRs8VvZtYw_zqI0LgCr";
+  "sb_publishable_MvVKXlV6n8Y1sRs8VvZtYw_zqI0LgCr";
 
 
 const supabaseClient =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
-const INVITATION_FUNCTION = "send-team-invitation";
+
+const INVITATION_FUNCTION =
+  "send-team-invitation";
 
 
 /* =========================================================
@@ -809,9 +1254,9 @@ const INVITATION_FUNCTION = "send-team-invitation";
 
 const OWNER_IDS = [
 
-"e3e32904-bf82-4b28-9aa1-045594596b66",
+  "e3e32904-bf82-4b28-9aa1-045594596b66",
 
-"fdbbceec-d70c-4cef-96a7-bad3aada9ef1"
+  "fdbbceec-d70c-4cef-96a7-bad3aada9ef1"
 
 ];
 
@@ -827,83 +1272,73 @@ let currentRole = null;
 
 async function login() {
 
-const email =
-document
-.getElementById("email")
-.value
-.trim();
+  const email =
+    document
+      .getElementById("email")
+      .value
+      .trim();
 
+  const password =
+    document
+      .getElementById("password")
+      .value;
 
-const password =
-document
-.getElementById("password")
-.value;
+  const errorBox =
+    document.getElementById(
+      "loginError"
+    );
 
+  errorBox.textContent = "";
 
-const errorBox =
-document.getElementById(
-"loginError"
-);
+  if (!email || !password) {
 
+    errorBox.textContent =
+      "Please enter your email and password.";
 
-errorBox.textContent = "";
+    return;
 
+  }
 
-if (!email || !password) {
+  const button =
+    document.getElementById(
+      "loginButton"
+    );
 
-errorBox.textContent =
-"Please enter your email and password.";
+  button.disabled = true;
 
-return;
+  button.textContent =
+    "Logging in...";
 
-}
+  const result =
+    await supabaseClient.auth
+      .signInWithPassword({
 
+        email,
+        password
 
-const button =
-document.getElementById(
-"loginButton"
-);
+      });
 
+  if (result.error) {
 
-button.disabled = true;
+    errorBox.textContent =
+      "❌ " +
+      result.error.message;
 
-button.textContent =
-"Logging in...";
+    button.disabled = false;
 
+    button.textContent =
+      "Login";
 
-const result =
-await supabaseClient.auth
-.signInWithPassword({
+    return;
 
-email,
-password
+  }
 
-});
+  await checkAdmin();
 
+  button.disabled = false;
 
-if (result.error) {
-
-errorBox.textContent =
-"❌ " +
-result.error.message;
-
-button.disabled = false;
-
-button.textContent =
-"Login";
-
-return;
-
-}
-
-
-await checkAdmin();
-
-
-button.disabled = false;
-
-button.textContent =
-"Login";
+  button.textContent =
+    "Login";
 
 }
 
@@ -914,197 +1349,208 @@ button.textContent =
 
 async function checkAdmin() {
 
-const result =
-await supabaseClient.auth
-.getUser();
+  const result =
+    await supabaseClient.auth
+      .getUser();
 
+  if (
+    result.error ||
+    !result.data.user
+  ) {
 
-if (
-result.error ||
-!result.data.user
-) {
+    return;
 
-return;
+  }
 
-}
+  currentUser =
+    result.data.user;
 
 
-currentUser =
-result.data.user;
+  const adminResult =
+    await supabaseClient
 
+      .from("admin_users")
 
-const adminResult =
-await supabaseClient
+      .select("role")
 
-.from("admin_users")
+      .eq(
+        "user_id",
+        currentUser.id
+      )
 
-.select("role")
+      .maybeSingle();
 
-.eq(
-"user_id",
-currentUser.id
-)
 
-.maybeSingle();
+  if (adminResult.error) {
 
+    document
+      .getElementById("loginError")
+      .textContent =
+        "❌ " +
+        adminResult.error.message;
 
-if (adminResult.error) {
+    return;
 
-document
-.getElementById("loginError")
-.textContent =
-"❌ " +
-adminResult.error.message;
+  }
 
-return;
 
-}
+  if (!adminResult.data) {
 
+    document
+      .getElementById("loginError")
+      .textContent =
+        "❌ Your account does not have ProdLink KE admin access.";
 
-if (!adminResult.data) {
+    await supabaseClient.auth.signOut();
 
-document
-.getElementById("loginError")
-.textContent =
-"❌ Your account does not have ProdLink KE admin access.";
+    return;
 
-await supabaseClient.auth.signOut();
+  }
 
-return;
 
-}
+  currentRole =
+    adminResult.data.role;
 
 
-currentRole =
-adminResult.data.role;
+  /* =====================================================
+     VERIFY OWNER IDS
+  ===================================================== */
 
+  if (
+    OWNER_IDS.includes(
+      currentUser.id
+    )
+  ) {
 
-/* =====================================================
-   VERIFY OWNER IDS
-===================================================== */
+    currentRole =
+      "owner";
 
-if (
-OWNER_IDS.includes(
-currentUser.id
-)
-) {
+  }
 
-currentRole =
-"owner";
 
-}
+  if (
+    ![
+      "owner",
+      "admin"
+    ].includes(
+      currentRole
+    )
+  ) {
 
+    document
+      .getElementById("loginError")
+      .textContent =
+        "❌ Your account does not have admin access.";
 
-if (
-![
-"owner",
-"admin"
-].includes(
-currentRole
-)
-) {
+    await supabaseClient.auth.signOut();
 
-document
-.getElementById("loginError")
-.textContent =
-"❌ Your account does not have admin access.";
+    return;
 
-await supabaseClient.auth.signOut();
+  }
 
-return;
 
-}
+  /* =====================================================
+     SHOW DASHBOARD
+  ===================================================== */
 
+  document
+    .getElementById("loginCard")
+    .classList.add("hidden");
 
-/* =====================================================
-   SHOW DASHBOARD
-===================================================== */
 
-document
-.getElementById("loginCard")
-.classList.add("hidden");
+  document
+    .getElementById("dashboard")
+    .classList.remove("hidden");
 
 
-document
-.getElementById("dashboard")
-.classList.remove("hidden");
+  document
+    .getElementById("roleText")
+    .textContent =
+      "Logged in as: " +
+      currentRole.toUpperCase();
 
 
-document
-.getElementById("roleText")
-.textContent =
-"Logged in as: " +
-currentRole.toUpperCase();
+  if (
+    currentRole === "owner"
+  ) {
 
-if(currentRole === "owner") document.getElementById("menuInviteButton").classList.remove("hidden");
-else document.getElementById("menuInviteButton").classList.add("hidden");
+    document
+      .getElementById("menuInviteButton")
+      .classList.remove("hidden");
 
+  } else {
 
-loadBusinesses();
+    document
+      .getElementById("menuInviteButton")
+      .classList.add("hidden");
 
-loadProducts();
+  }
 
 
-if (
-currentRole === "owner"
-) {
+  loadBusinesses();
 
-document
-.getElementById(
-"ownerTeamSection"
-)
-.classList.remove(
-"hidden"
-);
+  loadProducts();
 
 
-document
-.getElementById(
-"businessRequestsSection"
-)
-.classList.remove(
-"hidden"
-);
+  if (
+    currentRole === "owner"
+  ) {
 
+    document
+      .getElementById(
+        "ownerTeamSection"
+      )
+      .classList.remove(
+        "hidden"
+      );
 
-document
-.getElementById(
-"teamRequestsSection"
-)
-.classList.remove(
-"hidden"
-);
 
+    document
+      .getElementById(
+        "businessRequestsSection"
+      )
+      .classList.remove(
+        "hidden"
+      );
 
-loadTeam();
 
-loadBusinessRequests();
+    document
+      .getElementById(
+        "teamRequestsSection"
+      )
+      .classList.remove(
+        "hidden"
+      );
 
-loadTeamRequests();
 
-}
+    loadTeam();
 
+    loadBusinessRequests();
 
-else {
+    loadTeamRequests();
 
-document
-.getElementById(
-"adminRequestSection"
-)
-.classList.remove(
-"hidden"
-);
+  }
 
+  else {
 
-document
-.getElementById(
-"deleteRequestSection"
-)
-.classList.remove(
-"hidden"
-);
+    document
+      .getElementById(
+        "adminRequestSection"
+      )
+      .classList.remove(
+        "hidden"
+      );
 
-}
+
+    document
+      .getElementById(
+        "deleteRequestSection"
+      )
+      .classList.remove(
+        "hidden"
+      );
+
+  }
 
 }
 
@@ -1115,390 +1561,376 @@ document
 
 async function loadBusinesses() {
 
-const container =
-document.getElementById(
-"businesses"
-);
+  const container =
+    document.getElementById(
+      "businesses"
+    );
 
+  container.innerHTML =
+    "Loading...";
 
-container.innerHTML =
-"Loading...";
 
+  const result =
+    await supabaseClient
 
-const result =
-await supabaseClient
+      .from("businesses")
 
-.from("businesses")
+      .select("*")
 
-.select("*")
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
 
-.order(
-"created_at",
-{
-ascending: false
-}
-);
 
+  if (result.error) {
 
-if (result.error) {
+    container.innerHTML =
+      "<p class='error'>" +
+      escapeHTML(
+        result.error.message
+      ) +
+      "</p>";
 
-container.innerHTML =
-"<p class='error'>" +
-escapeHTML(
-result.error.message
-) +
-"</p>";
+    return;
 
-return;
+  }
 
-}
 
+  const businesses =
+    result.data || [];
 
-const businesses =
-result.data || [];
 
+  let pending = 0;
 
-let pending = 0;
+  let approved = 0;
 
-let approved = 0;
+  let rejected = 0;
 
-let rejected = 0;
 
+  businesses.forEach(
+    business => {
 
-businesses.forEach(
-business => {
+      if (
+        business.status ===
+        "pending"
+      ) pending++;
 
-if (
-business.status ===
-"pending"
-) pending++;
+      else if (
+        business.status ===
+        "approved"
+      ) approved++;
 
-else if (
-business.status ===
-"approved"
-) approved++;
+      else if (
+        business.status ===
+        "rejected"
+      ) rejected++;
 
-else if (
-business.status ===
-"rejected"
-) rejected++;
+    }
+  );
 
-});
 
+  document
+    .getElementById(
+      "pendingCount"
+    )
+    .textContent =
+      pending;
 
-document
-.getElementById(
-"pendingCount"
-)
-.textContent =
-pending;
 
+  document
+    .getElementById(
+      "approvedCount"
+    )
+    .textContent =
+      approved;
 
-document
-.getElementById(
-"approvedCount"
-)
-.textContent =
-approved;
 
+  document
+    .getElementById(
+      "rejectedCount"
+    )
+    .textContent =
+      rejected;
 
-document
-.getElementById(
-"rejectedCount"
-)
-.textContent =
-rejected;
 
+  const selector =
+    document.getElementById(
+      "deleteBusinessSelect"
+    );
 
-/* Populate admin deletion selector */
 
-const selector =
-document.getElementById(
-"deleteBusinessSelect"
-);
+  if (selector) {
 
+    selector.innerHTML =
+      `<option value="">
+        Select business
+      </option>`;
 
-if (selector) {
+    businesses.forEach(
+      business => {
 
-selector.innerHTML =
-`<option value="">
-Select business
-</option>`;
+        const option =
+          document.createElement(
+            "option"
+          );
 
-businesses.forEach(
-business => {
+        option.value =
+          business.id;
 
-const option =
-document.createElement(
-"option"
-);
+        option.textContent =
+          business.name ||
+          "Unnamed Business";
 
-option.value =
-business.id;
+        selector.appendChild(
+          option
+        );
 
-option.textContent =
-business.name ||
-"Unnamed Business";
+      }
+    );
 
-selector.appendChild(
-option
-);
+  }
 
-});
 
-}
+  if (!businesses.length) {
 
+    container.innerHTML =
+      "<p>No businesses found.</p>";
 
-if (!businesses.length) {
+    return;
 
-container.innerHTML =
-"<p>No businesses found.</p>";
+  }
 
-return;
 
-}
+  container.innerHTML = "";
 
 
-container.innerHTML = "";
+  businesses.forEach(
+    business => {
 
+      const item =
+        document.createElement(
+          "div"
+        );
 
-businesses.forEach(
-business => {
+      item.className =
+        "item";
 
-const item =
-document.createElement(
-"div"
-);
 
+      const status =
+        business.status ||
+        "pending";
 
-item.className =
-"item";
 
+      let badge =
+        "pending";
 
-const status =
-business.status ||
-"pending";
 
+      if (
+        status ===
+        "approved"
+      ) badge =
+        "approved";
 
-let badge =
-"pending";
 
+      if (
+        status ===
+        "rejected"
+      ) badge =
+        "rejected";
 
-if (
-status ===
-"approved"
-) badge =
-"approved";
 
+      let buttons = "";
 
-if (
-status ===
-"rejected"
-) badge =
-"rejected";
 
+      if (
+        status ===
+        "pending"
+      ) {
 
-let buttons = "";
+        buttons += `
 
+          <button
+            class="approve"
+            onclick="
+              approveBusiness('${business.id}')
+            "
+          >
+            ✅ Approve
+          </button>
 
-if (
-status ===
-"pending"
-) {
+          <button
+            class="reject"
+            onclick="
+              rejectBusiness('${business.id}')
+            "
+          >
+            ❌ Reject
+          </button>
 
-buttons += `
+        `;
 
-<button
-class="approve"
-onclick="
-approveBusiness('${business.id}')
-"
->
-✅ Approve
-</button>
+      }
 
-<button
-class="reject"
-onclick="
-rejectBusiness('${business.id}')
-"
->
-❌ Reject
-</button>
 
-`;
+      else if (
+        status ===
+        "approved"
+      ) {
 
-}
+        buttons += `
 
+          <button
+            class="reject"
+            onclick="
+              rejectBusiness('${business.id}')
+            "
+          >
+            ❌ Reject
+          </button>
 
-else if (
-status ===
-"approved"
-) {
+        `;
 
-buttons += `
+      }
 
-<button
-class="reject"
-onclick="
-rejectBusiness('${business.id}')
-"
->
-❌ Reject
-</button>
 
-`;
+      else {
 
-}
+        buttons += `
 
+          <button
+            class="approve"
+            onclick="
+              approveBusiness('${business.id}')
+            "
+          >
+            ✅ Approve
+          </button>
 
-else {
+        `;
 
-buttons += `
+      }
 
-<button
-class="approve"
-onclick="
-approveBusiness('${business.id}')
-"
->
-✅ Approve
-</button>
 
-`;
+      if (
+        currentRole ===
+        "owner"
+      ) {
 
-}
+        buttons += `
 
+          <button
+            class="delete"
+            onclick="
+              ownerDeleteBusiness('${business.id}')
+            "
+          >
+            🗑️ Delete
+          </button>
 
-/* Only Owners get direct deletion */
+        `;
 
-if (
-currentRole ===
-"owner"
-) {
+      }
 
-buttons += `
 
-<button
-class="delete"
-onclick="
-ownerDeleteBusiness('${business.id}')
-"
->
-🗑️ Delete
-</button>
+      item.innerHTML = `
 
-`;
+        <div class="row">
 
-}
+          <div>
 
+            <h3>
+              ${escapeHTML(
+                business.name ||
+                "Unnamed Business"
+              )}
+            </h3>
 
-item.innerHTML = `
+            <p>
+              🏷️
+              <strong>Category:</strong>
+              ${escapeHTML(
+                business.category ||
+                "Not provided"
+              )}
+            </p>
 
-<div class="row">
+            <p>
+              📍
+              <strong>Location:</strong>
+              ${escapeHTML(
+                business.location ||
+                "Not provided"
+              )}
+            </p>
 
-<div>
+            <p>
+              📞
+              <strong>Phone:</strong>
+              ${escapeHTML(
+                business.phone ||
+                "Not provided"
+              )}
+            </p>
 
-<h3>
-${escapeHTML(
-business.name ||
-"Unnamed Business"
-)}
-</h3>
+            <p>
+              📧
+              <strong>Email:</strong>
+              ${escapeHTML(
+                business.email ||
+                "Not provided"
+              )}
+            </p>
 
+            <hr>
 
-<p>
-🏷️
-<strong>Category:</strong>
-${escapeHTML(
-business.category ||
-"Not provided"
-)}
-</p>
+            <p>
+              📝
+              <strong>Description:</strong>
+              <br>
+              ${escapeHTML(
+                business.description ||
+                "No description provided."
+              )}
+            </p>
 
+            <p>
+              📦
+              <strong>Products / Services:</strong>
+              <br>
+              ${escapeHTML(
+                business.products ||
+                "No products or services provided."
+              )}
+            </p>
 
-<p>
-📍
-<strong>Location:</strong>
-${escapeHTML(
-business.location ||
-"Not provided"
-)}
-</p>
+            <span
+              class="badge ${badge}"
+            >
+              ${escapeHTML(
+                status.toUpperCase()
+              )}
+            </span>
 
+          </div>
 
-<p>
-📞
-<strong>Phone:</strong>
-${escapeHTML(
-business.phone ||
-"Not provided"
-)}
-</p>
+          <div>
+            ${buttons}
+          </div>
 
+        </div>
 
-<p>
-📧
-<strong>Email:</strong>
-${escapeHTML(
-business.email ||
-"Not provided"
-)}
-</p>
+      `;
 
 
-<hr>
+      container.appendChild(
+        item
+      );
 
-
-<p>
-📝
-<strong>Description:</strong>
-<br>
-${escapeHTML(
-business.description ||
-"No description provided."
-)}
-</p>
-
-
-<p>
-📦
-<strong>Products / Services:</strong>
-<br>
-${escapeHTML(
-business.products ||
-"No products or services provided."
-)}
-</p>
-
-
-<span
-class="badge ${badge}"
->
-${escapeHTML(
-status.toUpperCase()
-)}
-</span>
-
-</div>
-
-
-<div>
-
-${buttons}
-
-</div>
-
-</div>
-
-`;
-
-
-container.appendChild(
-item
-);
-
-});
+    }
+  );
 
 }
 
@@ -1508,38 +1940,38 @@ item
 ========================================================= */
 
 async function approveBusiness(
-id
+  id
 ) {
 
-const result =
-await supabaseClient
+  const result =
+    await supabaseClient
 
-.from("businesses")
+      .from("businesses")
 
-.update({
-status:
-"approved"
-})
+      .update({
+        status:
+          "approved"
+      })
 
-.eq(
-"id",
-id
-);
-
-
-if (result.error) {
-
-alert(
-"❌ " +
-result.error.message
-);
-
-return;
-
-}
+      .eq(
+        "id",
+        id
+      );
 
 
-loadBusinesses();
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  loadBusinesses();
 
 }
 
@@ -1549,45 +1981,45 @@ loadBusinesses();
 ========================================================= */
 
 async function rejectBusiness(
-id
+  id
 ) {
 
-if (
-!confirm(
-"Reject this business?"
-)
-) return;
+  if (
+    !confirm(
+      "Reject this business?"
+    )
+  ) return;
 
 
-const result =
-await supabaseClient
+  const result =
+    await supabaseClient
 
-.from("businesses")
+      .from("businesses")
 
-.update({
-status:
-"rejected"
-})
+      .update({
+        status:
+          "rejected"
+      })
 
-.eq(
-"id",
-id
-);
-
-
-if (result.error) {
-
-alert(
-"❌ " +
-result.error.message
-);
-
-return;
-
-}
+      .eq(
+        "id",
+        id
+      );
 
 
-loadBusinesses();
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  loadBusinesses();
 
 }
 
@@ -1597,56 +2029,56 @@ loadBusinesses();
 ========================================================= */
 
 async function ownerDeleteBusiness(
-id
+  id
 ) {
 
-if (
-currentRole !==
-"owner"
-) {
+  if (
+    currentRole !==
+    "owner"
+  ) {
 
-alert(
-"Only Owners can directly delete businesses."
-);
+    alert(
+      "Only Owners can directly delete businesses."
+    );
 
-return;
+    return;
 
-}
-
-
-if (
-!confirm(
-"Delete this business permanently?"
-)
-) return;
+  }
 
 
-const result =
-await supabaseClient
-
-.from("businesses")
-
-.delete()
-
-.eq(
-"id",
-id
-);
+  if (
+    !confirm(
+      "Delete this business permanently?"
+    )
+  ) return;
 
 
-if (result.error) {
+  const result =
+    await supabaseClient
 
-alert(
-"❌ " +
-result.error.message
-);
+      .from("businesses")
 
-return;
+      .delete()
 
-}
+      .eq(
+        "id",
+        id
+      );
 
 
-loadBusinesses();
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  loadBusinesses();
 
 }
 
@@ -1657,168 +2089,161 @@ loadBusinesses();
 
 async function loadProducts() {
 
-const container =
-document.getElementById(
-"products"
-);
+  const container =
+    document.getElementById(
+      "products"
+    );
 
 
-container.innerHTML =
-"Loading...";
+  container.innerHTML =
+    "Loading...";
 
 
-const result =
-await supabaseClient
+  const result =
+    await supabaseClient
 
-.from("products")
+      .from("products")
 
-.select("*")
+      .select("*")
 
-.order(
-"created_at",
-{
-ascending: false
-}
-);
-
-
-if (result.error) {
-
-container.innerHTML =
-"<p class='error'>" +
-escapeHTML(
-result.error.message
-) +
-"</p>";
-
-return;
-
-}
+      .order(
+        "created_at",
+        {
+          ascending:
+            false
+        }
+      );
 
 
-const products =
-result.data || [];
+  if (result.error) {
+
+    container.innerHTML =
+      "<p class='error'>" +
+      escapeHTML(
+        result.error.message
+      ) +
+      "</p>";
+
+    return;
+
+  }
 
 
-document
-.getElementById(
-"productCount"
-)
-.textContent =
-products.length;
+  const products =
+    result.data || [];
 
 
-if (!products.length) {
-
-container.innerHTML =
-"<p>No products found.</p>";
-
-return;
-
-}
+  document
+    .getElementById(
+      "productCount"
+    )
+    .textContent =
+      products.length;
 
 
-container.innerHTML = "";
+  if (!products.length) {
+
+    container.innerHTML =
+      "<p>No products found.</p>";
+
+    return;
+
+  }
 
 
-products.forEach(
-product => {
-
-const item =
-document.createElement(
-"div"
-);
+  container.innerHTML = "";
 
 
-item.className =
-"item";
+  products.forEach(
+    product => {
+
+      const item =
+        document.createElement(
+          "div"
+        );
 
 
-let deleteButton = "";
+      item.className =
+        "item";
 
 
-/* Product deletion remains Owner-only */
-
-if (
-currentRole ===
-"owner"
-) {
-
-deleteButton = `
-
-<button
-class="delete"
-onclick="
-deleteProduct('${product.id}')
-"
->
-🗑️ Delete
-</button>
-
-`;
-
-}
+      let deleteButton =
+        "";
 
 
-item.innerHTML = `
+      if (
+        currentRole ===
+        "owner"
+      ) {
 
-<div class="row">
+        deleteButton = `
 
-<div>
+          <button
+            class="delete"
+            onclick="
+              deleteProduct('${product.id}')
+            "
+          >
+            🗑️ Delete
+          </button>
 
-<h3>
-${escapeHTML(
-product.name ||
-"Unnamed Product"
-)}
-</h3>
+        `;
 
-
-<p>
-💰 Price:
-KSh
-${Number(
-product.price || 0
-).toLocaleString()}
-</p>
+      }
 
 
-${
-product.description
+      item.innerHTML = `
 
-? `
+        <div class="row">
 
-<p>
-${escapeHTML(
-product.description
-)}
-</p>
+          <div>
 
-`
+            <h3>
+              ${escapeHTML(
+                product.name ||
+                "Unnamed Product"
+              )}
+            </h3>
 
-: ""
+            <p>
+              💰 Price:
+              KSh
+              ${Number(
+                product.price || 0
+              ).toLocaleString()}
+            </p>
 
-}
+            ${
+              product.description
+                ? `
+                  <p>
+                    ${escapeHTML(
+                      product.description
+                    )}
+                  </p>
+                `
+                : ""
+            }
 
-</div>
+          </div>
+
+          <div>
+
+            ${deleteButton}
+
+          </div>
+
+        </div>
+
+      `;
 
 
-<div>
+      container.appendChild(
+        item
+      );
 
-${deleteButton}
-
-</div>
-
-</div>
-
-`;
-
-
-container.appendChild(
-item
-);
-
-});
+    }
+  );
 
 }
 
@@ -1828,56 +2253,56 @@ item
 ========================================================= */
 
 async function deleteProduct(
-id
+  id
 ) {
 
-if (
-currentRole !==
-"owner"
-) {
+  if (
+    currentRole !==
+    "owner"
+  ) {
 
-alert(
-"Only Owners can delete products."
-);
+    alert(
+      "Only Owners can delete products."
+    );
 
-return;
+    return;
 
-}
-
-
-if (
-!confirm(
-"Delete this product permanently?"
-)
-) return;
+  }
 
 
-const result =
-await supabaseClient
-
-.from("products")
-
-.delete()
-
-.eq(
-"id",
-id
-);
+  if (
+    !confirm(
+      "Delete this product permanently?"
+    )
+  ) return;
 
 
-if (result.error) {
+  const result =
+    await supabaseClient
 
-alert(
-"❌ " +
-result.error.message
-);
+      .from("products")
 
-return;
+      .delete()
 
-}
+      .eq(
+        "id",
+        id
+      );
 
 
-loadProducts();
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  loadProducts();
 
 }
 
@@ -1888,117 +2313,117 @@ loadProducts();
 
 async function submitDeleteRequest() {
 
-const businessId =
-document
-.getElementById(
-"deleteBusinessSelect"
-)
-.value;
+  const businessId =
+    document
+      .getElementById(
+        "deleteBusinessSelect"
+      )
+      .value;
 
 
-const reason =
-document
-.getElementById(
-"deleteReason"
-)
-.value
-.trim();
+  const reason =
+    document
+      .getElementById(
+        "deleteReason"
+      )
+      .value
+      .trim();
 
 
-const message =
-document.getElementById(
-"deleteRequestMessage"
-);
+  const message =
+    document.getElementById(
+      "deleteRequestMessage"
+    );
 
 
-message.className = "";
+  message.className = "";
 
 
-if (!businessId) {
+  if (!businessId) {
 
-message.className =
-"error";
+    message.className =
+      "error";
 
-message.textContent =
-"❌ Select a business.";
+    message.textContent =
+      "❌ Select a business.";
 
-return;
+    return;
 
-}
-
-
-if (
-reason.length <
-10
-) {
-
-message.className =
-"error";
-
-message.textContent =
-"❌ Please provide a clear reason of at least 10 characters.";
-
-return;
-
-}
+  }
 
 
-const result =
-await supabaseClient
+  if (
+    reason.length <
+    10
+  ) {
 
-.from(
-"business_requests"
-)
+    message.className =
+      "error";
 
-.insert({
+    message.textContent =
+      "❌ Please provide a clear reason of at least 10 characters.";
 
-business_id:
-businessId,
+    return;
 
-action:
-"delete",
-
-reason:
-reason,
-
-requested_by:
-currentUser.id,
-
-status:
-"pending"
-
-});
+  }
 
 
-if (result.error) {
+  const result =
+    await supabaseClient
 
-message.className =
-"error";
+      .from(
+        "business_requests"
+      )
 
-message.textContent =
-"❌ " +
-result.error.message;
+      .insert({
 
-return;
+        business_id:
+          businessId,
 
-}
+        action:
+          "delete",
 
+        reason:
+          reason,
 
-message.className =
-"success";
+        requested_by:
+          currentUser.id,
 
-message.textContent =
-"✅ Removal request sent to the Owners.";
+        status:
+          "pending"
 
-
-document
-.getElementById(
-"deleteReason"
-)
-.value = "";
+      });
 
 
-loadBusinesses();
+  if (result.error) {
+
+    message.className =
+      "error";
+
+    message.textContent =
+      "❌ " +
+      result.error.message;
+
+    return;
+
+  }
+
+
+  message.className =
+    "success";
+
+  message.textContent =
+    "✅ Removal request sent to the Owners.";
+
+
+  document
+    .getElementById(
+      "deleteReason"
+    )
+    .value = "";
+
+
+  loadBusinesses();
 
 }
 
@@ -2009,227 +2434,259 @@ loadBusinesses();
 
 async function loadBusinessRequests() {
 
-if (
-currentRole !==
-"owner"
-) return;
+  if (
+    currentRole !==
+    "owner"
+  ) return;
 
 
-const container =
-document.getElementById(
-"businessRequests"
-);
+  const container =
+    document.getElementById(
+      "businessRequests"
+    );
 
 
-container.innerHTML =
-"Loading...";
+  container.innerHTML =
+    "Loading...";
 
 
-const result =
-await supabaseClient
+  const result =
+    await supabaseClient
 
-.from(
-"business_requests"
-)
+      .from(
+        "business_requests"
+      )
 
-.select("*")
+      .select("*")
 
-.order(
-"created_at",
-{
-ascending:
-false
-}
-);
+      .order(
+        "created_at",
+        {
+          ascending:
+            false
+        }
+      );
 
 
-if (result.error) {
+  if (result.error) {
 
-container.innerHTML =
-"<p class='error'>" +
-escapeHTML(
-result.error.message
-) +
-"</p>";
+    container.innerHTML =
+      "<p class='error'>" +
+      escapeHTML(
+        result.error.message
+      ) +
+      "</p>";
 
-return;
+    return;
 
-}
+  }
 
 
-const requests =
-result.data || [];
+  const requests =
+    result.data || [];
 
 
-const pending =
-requests.filter(
-r =>
-r.status ===
-"pending"
-).length;
+  const pending =
+    requests.filter(
+      r =>
+        r.status ===
+        "pending"
+    ).length;
 
 
-document
-.getElementById(
-"requestCount"
-)
-.textContent =
-pending;
+  document
+    .getElementById(
+      "requestCount"
+    )
+    .textContent =
+      pending;
 
 
-if (!requests.length) {
+  if (!requests.length) {
 
-container.innerHTML =
-"<p>No business requests.</p>";
+    container.innerHTML =
+      "<p>No business requests.</p>";
 
-return;
+    return;
 
-}
+  }
 
 
-container.innerHTML = "";
+  container.innerHTML = "";
 
 
-for (
-const request of
-requests
-) {
+  for (
+    const request of
+    requests
+  ) {
 
-const item =
-document.createElement(
-"div"
-);
+    const item =
+      document.createElement(
+        "div"
+      );
 
 
-item.className =
-"item";
+    item.className =
+      "item";
 
 
-let businessName =
-"Unknown business";
+    let businessName =
+      "Unknown business";
 
 
-const businessResult =
-await supabaseClient
+    const businessResult =
+      await supabaseClient
 
-.from(
-"businesses"
-)
+        .from(
+          "businesses"
+        )
 
-.select("name")
+        .select("name")
 
-.eq(
-"id",
-request.business_id
-)
+        .eq(
+          "id",
+          request.business_id
+        )
 
-.maybeSingle();
+        .maybeSingle();
 
 
-if (
-businessResult.data
-) {
+    if (
+      businessResult.data
+    ) {
 
-businessName =
-businessResult.data.name;
+      businessName =
+        businessResult.data.name;
 
-}
+    }
 
 
-let buttons = "";
+    let buttons =
+      "";
 
 
-if (
-request.status ===
-"pending"
-) {
+    if (
+      request.status ===
+      "pending"
+    ) {
 
-buttons = `
+      buttons = `
 
-<button
-class="approve"
-onclick="
-approveDeletion(${request.id})
-"
->
-✅ Approve Delete
-</button>
+        <button
+          class="approve"
+          onclick="
+            approveDeletion(${request.id})
+          "
+        >
+          ✅ Approve Delete
+        </button>
 
+        <button
+          class="reject"
+          onclick="
+            rejectDeletion(${request.id})
+          "
+        >
+          ❌ Reject
+        </button>
 
-<button
-class="reject"
-onclick="
-rejectDeletion(${request.id})
-"
->
-❌ Reject
-</button>
+      `;
 
-`;
+    }
 
-}
 
+    item.innerHTML = `
 
-item.innerHTML = `
+      <h3>
+        🗑️ ${escapeHTML(
+          businessName
+        )}
+      </h3>
 
-<h3>
-🗑️ ${escapeHTML(
-businessName
-)}
-</h3>
+      <p>
 
+        <strong>
+          Requested by:
+        </strong>
 
-<p>
-<strong>Requested by:</strong>
-${escapeHTML(request.requested_by_name || "Unknown user")}
-<br>
-<strong>Email:</strong>
-${escapeHTML(request.requested_by_email || "Not available")}
-<br>
-<strong>Role:</strong>
-${escapeHTML(request.requested_by_role || "Unknown")}
-</p>
+        ${escapeHTML(
+          request.requested_by_name ||
+          "Unknown user"
+        )}
 
-<p>
-<strong>Reason:</strong>
-<br>
-${escapeHTML(
-request.reason
-)}
-</p>
+        <br>
 
+        <strong>
+          Email:
+        </strong>
 
-<p class="small">
-Requested:
-${new Date(
-request.created_at
-).toLocaleString()}
-</p>
+        ${escapeHTML(
+          request.requested_by_email ||
+          "Not available"
+        )}
 
+        <br>
 
-<span
-class="badge ${escapeHTML(
-request.status
-)}"
->
-${escapeHTML(
-request.status.toUpperCase()
-)}
-</span>
+        <strong>
+          Role:
+        </strong>
 
+        ${escapeHTML(
+          request.requested_by_role ||
+          "Unknown"
+        )}
 
-<div>
-${buttons}
-</div>
+      </p>
 
-`;
 
+      <p>
 
-container.appendChild(
-item
-);
+        <strong>
+          Reason:
+        </strong>
 
-}
+        <br>
+
+        ${escapeHTML(
+          request.reason
+        )}
+
+      </p>
+
+
+      <p class="small">
+
+        Requested:
+        ${new Date(
+          request.created_at
+        ).toLocaleString()}
+
+      </p>
+
+
+      <span
+        class="badge ${escapeHTML(
+          request.status
+        )}"
+      >
+        ${escapeHTML(
+          request.status.toUpperCase()
+        )}
+      </span>
+
+
+      <div>
+        ${buttons}
+      </div>
+
+    `;
+
+
+    container.appendChild(
+      item
+    );
+
+  }
 
 }
 
@@ -2239,55 +2696,55 @@ item
 ========================================================= */
 
 async function approveDeletion(
-requestId
+  requestId
 ) {
 
-if (
-currentRole !==
-"owner"
-) {
+  if (
+    currentRole !==
+    "owner"
+  ) {
 
-alert(
-"Only Owners can approve deletions."
-);
+    alert(
+      "Only Owners can approve deletions."
+    );
 
-return;
+    return;
 
-}
-
-
-if (
-!confirm(
-"Approve this business deletion?"
-)
-) return;
+  }
 
 
-const result =
-await supabaseClient.rpc(
-"approve_business_deletion",
-{
-request_id:
-requestId
-}
-);
+  if (
+    !confirm(
+      "Approve this business deletion?"
+    )
+  ) return;
 
 
-if (result.error) {
-
-alert(
-"❌ " +
-result.error.message
-);
-
-return;
-
-}
+  const result =
+    await supabaseClient.rpc(
+      "approve_business_deletion",
+      {
+        request_id:
+          requestId
+      }
+    );
 
 
-loadBusinesses();
+  if (result.error) {
 
-loadBusinessRequests();
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  loadBusinesses();
+
+  loadBusinessRequests();
 
 }
 
@@ -2297,38 +2754,38 @@ loadBusinessRequests();
 ========================================================= */
 
 async function rejectDeletion(
-requestId
+  requestId
 ) {
 
-if (
-currentRole !==
-"owner"
-) return;
+  if (
+    currentRole !==
+    "owner"
+  ) return;
 
 
-const result =
-await supabaseClient.rpc(
-"reject_business_deletion",
-{
-request_id:
-requestId
-}
-);
+  const result =
+    await supabaseClient.rpc(
+      "reject_business_deletion",
+      {
+        request_id:
+          requestId
+      }
+    );
 
 
-if (result.error) {
+  if (result.error) {
 
-alert(
-"❌ " +
-result.error.message
-);
+    alert(
+      "❌ " +
+      result.error.message
+    );
 
-return;
+    return;
 
-}
+  }
 
 
-loadBusinessRequests();
+  loadBusinessRequests();
 
 }
 
@@ -2339,146 +2796,144 @@ loadBusinessRequests();
 
 async function submitTeamRequest() {
 
-const action =
-document
-.getElementById(
-"teamAction"
-)
-.value;
+  const action =
+    document
+      .getElementById(
+        "teamAction"
+      )
+      .value;
 
 
-const userId =
-document
-.getElementById(
-"requestUserId"
-)
-.value
-.trim();
+  const userId =
+    document
+      .getElementById(
+        "requestUserId"
+      )
+      .value
+      .trim();
 
 
-const role =
-document
-.getElementById(
-"requestRole"
-)
-.value;
+  const role =
+    document
+      .getElementById(
+        "requestRole"
+      )
+      .value;
 
 
-const reason =
-document
-.getElementById(
-"teamRequestReason"
-)
-.value
-.trim();
+  const reason =
+    document
+      .getElementById(
+        "teamRequestReason"
+      )
+      .value
+      .trim();
 
 
-const message =
-document
-.getElementById(
-"teamRequestMessage"
-);
+  const message =
+    document.getElementById(
+      "teamRequestMessage"
+    );
 
 
-message.className = "";
+  message.className = "";
 
 
-if (!userId) {
+  if (!userId) {
 
-message.className =
-"error";
+    message.className =
+      "error";
 
-message.textContent =
-"❌ Enter the collaborator User ID.";
+    message.textContent =
+      "❌ Enter the collaborator User ID.";
 
-return;
+    return;
 
-}
-
-
-if (
-reason.length <
-10
-) {
-
-message.className =
-"error";
-
-message.textContent =
-"❌ Please provide a clear reason of at least 10 characters.";
-
-return;
-
-}
+  }
 
 
-const result =
-await supabaseClient
+  if (
+    reason.length <
+    10
+  ) {
 
-.from(
-"team_requests"
-)
+    message.className =
+      "error";
 
-.insert({
+    message.textContent =
+      "❌ Please provide a clear reason of at least 10 characters.";
 
-action:
-action,
+    return;
 
-target_user_id:
-userId,
-
-requested_role:
-action ===
-"remove"
-? null
-: role,
-
-reason:
-reason,
-
-requested_by:
-currentUser.id,
-
-status:
-"pending"
-
-});
+  }
 
 
-if (result.error) {
+  const result =
+    await supabaseClient
 
-message.className =
-"error";
+      .from(
+        "team_requests"
+      )
 
-message.textContent =
-"❌ " +
-result.error.message;
+      .insert({
 
-return;
+        action:
+          action,
 
-}
+        target_user_id:
+          userId,
+
+        requested_role:
+          action ===
+          "remove"
+            ? null
+            : role,
+
+        reason:
+          reason,
+
+        requested_by:
+          currentUser.id,
+
+        status:
+          "pending"
+
+      });
 
 
-message.className =
-"success";
+  if (result.error) {
 
-message.textContent =
-"✅ Team request sent to the Owners.";
+    message.className =
+      "error";
+
+    message.textContent =
+      "❌ " +
+      result.error.message;
+
+    return;
+
+  }
 
 
-document
-.getElementById(
-"requestUserId"
-)
-.value = "";
+  message.className =
+    "success";
+
+  message.textContent =
+    "✅ Team request sent to the Owners.";
 
 
-document
-.getElementById(
-"teamRequestReason"
-)
-.value = "";
+  document
+    .getElementById(
+      "requestUserId"
+    )
+    .value = "";
 
+
+  document
+    .getElementById(
+      "teamRequestReason"
+    )
+    .value = "";
 
 }
 
@@ -2489,210 +2944,255 @@ document
 
 async function loadTeamRequests() {
 
-if (
-currentRole !==
-"owner"
-) return;
+  if (
+    currentRole !==
+    "owner"
+  ) return;
 
 
-const container =
-document.getElementById(
-"teamRequests"
-);
+  const container =
+    document.getElementById(
+      "teamRequests"
+    );
 
 
-container.innerHTML =
-"Loading...";
+  container.innerHTML =
+    "Loading...";
 
 
-const result =
-await supabaseClient
+  const result =
+    await supabaseClient
 
-.from(
-"team_requests"
-)
+      .from(
+        "team_requests"
+      )
 
-.select("*")
+      .select("*")
 
-.order(
-"created_at",
-{
-ascending:
-false
-}
-);
-
-
-if (result.error) {
-
-container.innerHTML =
-"<p class='error'>" +
-escapeHTML(
-result.error.message
-) +
-"</p>";
-
-return;
-
-}
+      .order(
+        "created_at",
+        {
+          ascending:
+            false
+        }
+      );
 
 
-const requests =
-result.data || [];
+  if (result.error) {
+
+    container.innerHTML =
+      "<p class='error'>" +
+      escapeHTML(
+        result.error.message
+      ) +
+      "</p>";
+
+    return;
+
+  }
 
 
-if (!requests.length) {
-
-container.innerHTML =
-"<p>No team requests.</p>";
-
-return;
-
-}
+  const requests =
+    result.data || [];
 
 
-container.innerHTML = "";
+  if (!requests.length) {
+
+    container.innerHTML =
+      "<p>No team requests.</p>";
+
+    return;
+
+  }
 
 
-requests.forEach(
-request => {
-
-const item =
-document.createElement(
-"div"
-);
+  container.innerHTML = "";
 
 
-item.className =
-"item";
+  requests.forEach(
+    request => {
+
+      const item =
+        document.createElement(
+          "div"
+        );
 
 
-let buttons = "";
+      item.className =
+        "item";
 
 
-if (
-request.status ===
-"pending"
-) {
-
-buttons = `
-
-<button
-class="approve"
-onclick="
-approveTeamRequest(${request.id})
-"
->
-✅ Approve
-</button>
-
-<button
-class="reject"
-onclick="
-rejectTeamRequest(${request.id})
-"
->
-❌ Reject
-</button>
-
-`;
-
-}
+      let buttons =
+        "";
 
 
-item.innerHTML = `
+      if (
+        request.status ===
+        "pending"
+      ) {
 
-<h3>
-👥 ${escapeHTML(
-request.action
-.replace(
-"_",
-" "
-)
-.toUpperCase()
-)}
-</h3>
+        buttons = `
 
+          <button
+            class="approve"
+            onclick="
+              approveTeamRequest(${request.id})
+            "
+          >
+            ✅ Approve
+          </button>
 
-<p>
-<strong>User:</strong>
-<br>
-${escapeHTML(
-request.target_user_id
-)}
-</p>
+          <button
+            class="reject"
+            onclick="
+              rejectTeamRequest(${request.id})
+            "
+          >
+            ❌ Reject
+          </button>
 
+        `;
 
-${
-request.requested_role
-
-? `
-
-<p>
-<strong>Requested Role:</strong>
-${escapeHTML(
-request.requested_role
-)}
-</p>
-
-`
-
-: ""
-
-}
+      }
 
 
-<p>
-<strong>Requested by:</strong>
-${escapeHTML(request.requested_by_name || "Unknown user")}
-<br>
-<strong>Email:</strong>
-${escapeHTML(request.requested_by_email || "Not available")}
-<br>
-<strong>Role:</strong>
-${escapeHTML(request.requested_by_role || "Unknown")}
-</p>
+      item.innerHTML = `
 
-<p>
-<strong>Reason:</strong>
-<br>
-${escapeHTML(
-request.reason
-)}
-</p>
+        <h3>
+          👥 ${escapeHTML(
+            request.action
+              .replace(
+                "_",
+                " "
+              )
+              .toUpperCase()
+          )}
+        </h3>
 
 
-<p class="small">
-Requested:
-${new Date(
-request.created_at
-).toLocaleString()}
-</p>
+        <p>
+
+          <strong>
+            User:
+          </strong>
+
+          <br>
+
+          ${escapeHTML(
+            request.target_user_id
+          )}
+
+        </p>
 
 
-<span
-class="badge ${escapeHTML(
-request.status
-)}"
->
-${escapeHTML(
-request.status.toUpperCase()
-)}
-</span>
+        ${
+          request.requested_role
+
+            ? `
+
+              <p>
+
+                <strong>
+                  Requested Role:
+                </strong>
+
+                ${escapeHTML(
+                  request.requested_role
+                )}
+
+              </p>
+
+            `
+
+            : ""
+        }
 
 
-<div>
-${buttons}
-</div>
+        <p>
 
-`;
+          <strong>
+            Requested by:
+          </strong>
+
+          ${escapeHTML(
+            request.requested_by_name ||
+            "Unknown user"
+          )}
+
+          <br>
+
+          <strong>
+            Email:
+          </strong>
+
+          ${escapeHTML(
+            request.requested_by_email ||
+            "Not available"
+          )}
+
+          <br>
+
+          <strong>
+            Role:
+          </strong>
+
+          ${escapeHTML(
+            request.requested_by_role ||
+            "Unknown"
+          )}
+
+        </p>
 
 
-container.appendChild(
-item
-);
+        <p>
 
-});
+          <strong>
+            Reason:
+          </strong>
+
+          <br>
+
+          ${escapeHTML(
+            request.reason
+          )}
+
+        </p>
+
+
+        <p class="small">
+
+          Requested:
+          ${new Date(
+            request.created_at
+          ).toLocaleString()}
+
+        </p>
+
+
+        <span
+          class="badge ${escapeHTML(
+            request.status
+          )}"
+        >
+          ${escapeHTML(
+            request.status.toUpperCase()
+          )}
+        </span>
+
+
+        <div>
+          ${buttons}
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        item
+      );
+
+    }
+  );
 
 }
 
@@ -2702,188 +3202,188 @@ item
 ========================================================= */
 
 async function approveTeamRequest(
-requestId
+  requestId
 ) {
 
-if (
-currentRole !==
-"owner"
-) return;
+  if (
+    currentRole !==
+    "owner"
+  ) return;
 
 
-const result =
-await supabaseClient
+  const result =
+    await supabaseClient
 
-.from(
-"team_requests"
-)
+      .from(
+        "team_requests"
+      )
 
-.select("*")
+      .select("*")
 
-.eq(
-"id",
-requestId
-)
+      .eq(
+        "id",
+        requestId
+      )
 
-.eq(
-"status",
-"pending"
-)
+      .eq(
+        "status",
+        "pending"
+      )
 
-.single();
-
-
-if (result.error) {
-
-alert(
-"❌ " +
-result.error.message
-);
-
-return;
-
-}
+      .single();
 
 
-const request =
-result.data;
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+
+  }
 
 
-let operation;
+  const request =
+    result.data;
 
 
-if (
-request.action ===
-"add"
-) {
-
-operation =
-await supabaseClient
-
-.from(
-"admin_users"
-)
-
-.insert({
-
-user_id:
-request.target_user_id,
-
-role:
-request.requested_role
-
-});
-
-}
+  let operation;
 
 
-else if (
-request.action ===
-"remove"
-) {
+  if (
+    request.action ===
+    "add"
+  ) {
 
-operation =
-await supabaseClient
+    operation =
+      await supabaseClient
 
-.from(
-"admin_users"
-)
+        .from(
+          "admin_users"
+        )
 
-.delete()
+        .insert({
 
-.eq(
-"user_id",
-request.target_user_id
-);
+          user_id:
+            request.target_user_id,
 
-}
+          role:
+            request.requested_role
 
+        });
 
-else if (
-request.action ===
-"change_role"
-) {
-
-operation =
-await supabaseClient
-
-.from(
-"admin_users"
-)
-
-.update({
-
-role:
-request.requested_role
-
-})
-
-.eq(
-"user_id",
-request.target_user_id
-);
-
-}
+  }
 
 
-if (
-operation.error
-) {
+  else if (
+    request.action ===
+    "remove"
+  ) {
 
-alert(
-"❌ " +
-operation.error.message
-);
+    operation =
+      await supabaseClient
 
-return;
+        .from(
+          "admin_users"
+        )
 
-}
+        .delete()
 
+        .eq(
+          "user_id",
+          request.target_user_id
+        );
 
-const review =
-await supabaseClient
-
-.from(
-"team_requests"
-)
-
-.update({
-
-status:
-"approved",
-
-reviewed_by:
-currentUser.id,
-
-reviewed_at:
-new Date()
-.toISOString()
-
-})
-
-.eq(
-"id",
-requestId
-);
+  }
 
 
-if (
-review.error
-) {
+  else if (
+    request.action ===
+    "change_role"
+  ) {
 
-alert(
-"❌ " +
-review.error.message
-);
+    operation =
+      await supabaseClient
 
-return;
+        .from(
+          "admin_users"
+        )
 
-}
+        .update({
+
+          role:
+            request.requested_role
+
+        })
+
+        .eq(
+          "user_id",
+          request.target_user_id
+        );
+
+  }
 
 
-loadTeam();
+  if (
+    operation.error
+  ) {
 
-loadTeamRequests();
+    alert(
+      "❌ " +
+      operation.error.message
+    );
+
+    return;
+
+  }
+
+
+  const review =
+    await supabaseClient
+
+      .from(
+        "team_requests"
+      )
+
+      .update({
+
+        status:
+          "approved",
+
+        reviewed_by:
+          currentUser.id,
+
+        reviewed_at:
+          new Date()
+            .toISOString()
+
+      })
+
+      .eq(
+        "id",
+        requestId
+      );
+
+
+  if (
+    review.error
+  ) {
+
+    alert(
+      "❌ " +
+      review.error.message
+    );
+
+    return;
+
+  }
+
+
+  loadTeam();
+
+  loadTeamRequests();
 
 }
 
@@ -2893,60 +3393,60 @@ loadTeamRequests();
 ========================================================= */
 
 async function rejectTeamRequest(
-requestId
+  requestId
 ) {
 
-if (
-currentRole !==
-"owner"
-) return;
+  if (
+    currentRole !==
+    "owner"
+  ) return;
 
 
-const result =
-await supabaseClient
+  const result =
+    await supabaseClient
 
-.from(
-"team_requests"
-)
+      .from(
+        "team_requests"
+      )
 
-.update({
+      .update({
 
-status:
-"rejected",
+        status:
+          "rejected",
 
-reviewed_by:
-currentUser.id,
+        reviewed_by:
+          currentUser.id,
 
-reviewed_at:
-new Date()
-.toISOString()
+        reviewed_at:
+          new Date()
+            .toISOString()
 
-})
+      })
 
-.eq(
-"id",
-requestId
-)
+      .eq(
+        "id",
+        requestId
+      )
 
-.eq(
-"status",
-"pending"
-);
-
-
-if (result.error) {
-
-alert(
-"❌ " +
-result.error.message
-);
-
-return;
-
-}
+      .eq(
+        "status",
+        "pending"
+      );
 
 
-loadTeamRequests();
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  loadTeamRequests();
 
 }
 
@@ -2957,181 +3457,184 @@ loadTeamRequests();
 
 async function loadTeam() {
 
-if (
-currentRole !==
-"owner"
-) return;
+  if (
+    currentRole !==
+    "owner"
+  ) return;
 
 
-const container =
-document.getElementById(
-"team"
-);
+  const container =
+    document.getElementById(
+      "team"
+    );
 
 
-container.innerHTML =
-"Loading...";
+  container.innerHTML =
+    "Loading...";
 
 
-const result =
-await supabaseClient
+  const result =
+    await supabaseClient
 
-.from(
-"admin_users"
-)
+      .from(
+        "admin_users"
+      )
 
-.select("*");
-
-
-if (result.error) {
-
-container.innerHTML =
-"<p class='error'>" +
-escapeHTML(
-result.error.message
-) +
-"</p>";
-
-return;
-
-}
+      .select("*");
 
 
-container.innerHTML = "";
+  if (result.error) {
+
+    container.innerHTML =
+      "<p class='error'>" +
+      escapeHTML(
+        result.error.message
+      ) +
+      "</p>";
+
+    return;
+
+  }
 
 
-result.data.forEach(
-member => {
-
-const item =
-document.createElement(
-"div"
-);
+  container.innerHTML =
+    "";
 
 
-item.className =
-"item";
+  result.data.forEach(
+    member => {
+
+      const item =
+        document.createElement(
+          "div"
+        );
 
 
-let badgeClass =
-"viewerBadge";
+      item.className =
+        "item";
 
 
-if (
-member.role ===
-"owner"
-) badgeClass =
-"ownerBadge";
+      let badgeClass =
+        "viewerBadge";
 
 
-if (
-member.role ===
-"admin"
-) badgeClass =
-"adminBadge";
+      if (
+        member.role ===
+        "owner"
+      ) badgeClass =
+        "ownerBadge";
 
 
-item.innerHTML = `
-
-<div class="row">
-
-<div>
-
-<p>
-
-<strong>
-User ID:
-</strong>
-
-<br>
-
-${escapeHTML(
-member.user_id
-)}
-
-</p>
+      if (
+        member.role ===
+        "admin"
+      ) badgeClass =
+        "adminBadge";
 
 
-<span
-class="badge ${badgeClass}"
->
-${escapeHTML(
-member.role
-.toUpperCase()
-)}
-</span>
+      item.innerHTML = `
 
-</div>
+        <div class="row">
 
+          <div>
 
-<div>
+            <p>
 
-${
-member.role !==
-"owner"
+              <strong>
+                User ID:
+              </strong>
 
-? `
+              <br>
 
-<button
-class="delete"
-onclick="
-removeMember('${member.user_id}')
-"
->
-❌ Remove
-</button>
+              ${escapeHTML(
+                member.user_id
+              )}
 
-<select
-onchange="
-changeRole(
-'${member.user_id}',
-this.value
-)
-"
->
-
-<option value="">
-Change role
-</option>
-
-<option value="admin">
-Admin
-</option>
-
-<option value="moderator">
-Moderator
-</option>
-
-<option value="viewer">
-Viewer
-</option>
-
-</select>
-
-`
-
-: `
-
-<strong>
-👑 Protected Owner
-</strong>
-
-`
-
-}
-
-</div>
-
-</div>
-
-`;
+            </p>
 
 
-container.appendChild(
-item
-);
+            <span
+              class="badge ${badgeClass}"
+            >
+              ${escapeHTML(
+                member.role
+                  .toUpperCase()
+              )}
+            </span>
 
-});
+          </div>
+
+
+          <div>
+
+            ${
+              member.role !==
+              "owner"
+
+                ? `
+
+                  <button
+                    class="delete"
+                    onclick="
+                      removeMember('${member.user_id}')
+                    "
+                  >
+                    ❌ Remove
+                  </button>
+
+
+                  <select
+                    onchange="
+                      changeRole(
+                        '${member.user_id}',
+                        this.value
+                      )
+                    "
+                  >
+
+                    <option value="">
+                      Change role
+                    </option>
+
+                    <option value="admin">
+                      Admin
+                    </option>
+
+                    <option value="moderator">
+                      Moderator
+                    </option>
+
+                    <option value="viewer">
+                      Viewer
+                    </option>
+
+                  </select>
+
+                `
+
+                : `
+
+                  <strong>
+                    👑 Protected Owner
+                  </strong>
+
+                `
+
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        item
+      );
+
+    }
+  );
 
 }
 
@@ -3142,89 +3645,89 @@ item
 
 async function ownerAddMember() {
 
-const userId =
-document
-.getElementById(
-"ownerUserId"
-)
-.value
-.trim();
+  const userId =
+    document
+      .getElementById(
+        "ownerUserId"
+      )
+      .value
+      .trim();
 
 
-const role =
-document
-.getElementById(
-"ownerRole"
-)
-.value;
+  const role =
+    document
+      .getElementById(
+        "ownerRole"
+      )
+      .value;
 
 
-const message =
-document.getElementById(
-"ownerTeamMessage"
-);
+  const message =
+    document.getElementById(
+      "ownerTeamMessage"
+    );
 
 
-if (!userId) {
+  if (!userId) {
 
-message.className =
-"error";
+    message.className =
+      "error";
 
-message.textContent =
-"❌ Enter a User ID.";
+    message.textContent =
+      "❌ Enter a User ID.";
 
-return;
+    return;
 
-}
-
-
-const result =
-await supabaseClient
-
-.from(
-"admin_users"
-)
-
-.insert({
-
-user_id:
-userId,
-
-role:
-role
-
-});
+  }
 
 
-if (result.error) {
+  const result =
+    await supabaseClient
 
-message.className =
-"error";
+      .from(
+        "admin_users"
+      )
 
-message.textContent =
-"❌ " +
-result.error.message;
+      .insert({
 
-return;
+        user_id:
+          userId,
 
-}
+        role:
+          role
 
-
-message.className =
-"success";
-
-message.textContent =
-"✅ Collaborator added.";
+      });
 
 
-document
-.getElementById(
-"ownerUserId"
-)
-.value = "";
+  if (result.error) {
+
+    message.className =
+      "error";
+
+    message.textContent =
+      "❌ " +
+      result.error.message;
+
+    return;
+
+  }
 
 
-loadTeam();
+  message.className =
+    "success";
+
+  message.textContent =
+    "✅ Collaborator added.";
+
+
+  document
+    .getElementById(
+      "ownerUserId"
+    )
+    .value = "";
+
+
+  loadTeam();
 
 }
 
@@ -3234,65 +3737,65 @@ loadTeam();
 ========================================================= */
 
 async function removeMember(
-userId
+  userId
 ) {
 
-if (
-currentRole !==
-"owner"
-) return;
+  if (
+    currentRole !==
+    "owner"
+  ) return;
 
 
-if (
-OWNER_IDS.includes(
-userId
-)
-) {
+  if (
+    OWNER_IDS.includes(
+      userId
+    )
+  ) {
 
-alert(
-"Protected Owner accounts cannot be removed."
-);
+    alert(
+      "Protected Owner accounts cannot be removed."
+    );
 
-return;
+    return;
 
-}
-
-
-if (
-!confirm(
-"Remove this collaborator?"
-)
-) return;
+  }
 
 
-const result =
-await supabaseClient
-
-.from(
-"admin_users"
-)
-
-.delete()
-
-.eq(
-"user_id",
-userId
-);
+  if (
+    !confirm(
+      "Remove this collaborator?"
+    )
+  ) return;
 
 
-if (result.error) {
+  const result =
+    await supabaseClient
 
-alert(
-"❌ " +
-result.error.message
-);
+      .from(
+        "admin_users"
+      )
 
-return;
+      .delete()
 
-}
+      .eq(
+        "user_id",
+        userId
+      );
 
 
-loadTeam();
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  loadTeam();
 
 }
 
@@ -3302,63 +3805,63 @@ loadTeam();
 ========================================================= */
 
 async function changeRole(
-userId,
-role
+  userId,
+  role
 ) {
 
-if (
-!role ||
-currentRole !==
-"owner"
-) return;
+  if (
+    !role ||
+    currentRole !==
+    "owner"
+  ) return;
 
 
-if (
-OWNER_IDS.includes(
-userId
-)
-) {
+  if (
+    OWNER_IDS.includes(
+      userId
+    )
+  ) {
 
-alert(
-"Protected Owners cannot have their role changed."
-);
+    alert(
+      "Protected Owners cannot have their role changed."
+    );
 
-return;
+    return;
 
-}
-
-
-const result =
-await supabaseClient
-
-.from(
-"admin_users"
-)
-
-.update({
-role:
-role
-})
-
-.eq(
-"user_id",
-userId
-);
+  }
 
 
-if (result.error) {
+  const result =
+    await supabaseClient
 
-alert(
-"❌ " +
-result.error.message
-);
+      .from(
+        "admin_users"
+      )
 
-return;
+      .update({
+        role:
+          role
+      })
 
-}
+      .eq(
+        "user_id",
+        userId
+      );
 
 
-loadTeam();
+  if (result.error) {
+
+    alert(
+      "❌ " +
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  loadTeam();
 
 }
 
@@ -3369,10 +3872,10 @@ loadTeam();
 
 async function logout() {
 
-await supabaseClient.auth
-.signOut();
+  await supabaseClient.auth
+    .signOut();
 
-location.reload();
+  location.reload();
 
 }
 
@@ -3382,37 +3885,37 @@ location.reload();
 ========================================================= */
 
 function escapeHTML(
-value
+  value
 ) {
 
-return String(
-value ?? ""
-)
+  return String(
+    value ?? ""
+  )
 
-.replace(
-/&/g,
-"&amp;"
-)
+    .replace(
+      /&/g,
+      "&amp;"
+    )
 
-.replace(
-/</g,
-"&lt;"
-)
+    .replace(
+      /</g,
+      "&lt;"
+    )
 
-.replace(
-/>/g,
-"&gt;"
-)
+    .replace(
+      />/g,
+      "&gt;"
+    )
 
-.replace(
-/"/g,
-"&quot;"
-)
+    .replace(
+      /"/g,
+      "&quot;"
+    )
 
-.replace(
-/'/g,
-"&#039;"
-);
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
@@ -3422,111 +3925,839 @@ value ?? ""
 ========================================================= */
 
 document
-.getElementById(
-"loginButton"
-)
-.addEventListener(
-"click",
-login
-);
+  .getElementById(
+    "loginButton"
+  )
+  .addEventListener(
+    "click",
+    login
+  );
 
 
 document
-.getElementById(
-"submitTeamRequest"
-)
-.addEventListener(
-"click",
-submitTeamRequest
-);
+  .getElementById(
+    "submitTeamRequest"
+  )
+  .addEventListener(
+    "click",
+    submitTeamRequest
+  );
 
 
 document
-.getElementById(
-"submitDeleteRequest"
-)
-.addEventListener(
-"click",
-submitDeleteRequest
-);
+  .getElementById(
+    "submitDeleteRequest"
+  )
+  .addEventListener(
+    "click",
+    submitDeleteRequest
+  );
 
 
 document
-.getElementById(
-"ownerAddButton"
-)
-.addEventListener(
-"click",
-ownerAddMember
-);
+  .getElementById(
+    "ownerAddButton"
+  )
+  .addEventListener(
+    "click",
+    ownerAddMember
+  );
 
 
 /* =========================================================
    ACCOUNT MENU / HISTORY / PASSWORD / INVITATION
 ========================================================= */
 
-function closeModal(id){ document.getElementById(id).classList.add("hidden"); }
 
-document.getElementById("accountMenuButton").addEventListener("click", e => {
-  e.stopPropagation();
-  document.getElementById("accountMenu").classList.toggle("hidden");
-});
+/*
+  Close any modal by adding the hidden class.
+*/
+function closeModal(id) {
 
-document.addEventListener("click", e => {
-  const wrap=document.querySelector(".account-menu-wrap");
-  if(wrap && !wrap.contains(e.target)) document.getElementById("accountMenu").classList.add("hidden");
-});
+  const modal =
+    document.getElementById(id);
 
-document.getElementById("menuHistoryButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");openHistory();});
-document.getElementById("menuPasswordButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");document.getElementById("passwordMessage").textContent="";document.getElementById("passwordModal").classList.remove("hidden");});
-document.getElementById("menuInviteButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");document.getElementById("inviteMessage").textContent="";document.getElementById("inviteModal").classList.remove("hidden");});
-document.getElementById("menuLogoutButton").addEventListener("click",logout);
-document.getElementById("savePasswordButton").addEventListener("click",changeOwnPassword);
-document.getElementById("sendInviteButton").addEventListener("click",sendTeamInvitation);
+  if (!modal) return;
 
-async function changeOwnPassword(){
-  const msg=document.getElementById("passwordMessage");
-  const p1=document.getElementById("newPassword").value;
-  const p2=document.getElementById("confirmPassword").value;
-  msg.className="";
-  if(p1.length<8){msg.className="error";msg.textContent="❌ Password must be at least 8 characters.";return;}
-  if(p1!==p2){msg.className="error";msg.textContent="❌ Passwords do not match.";return;}
-  const result=await supabaseClient.auth.updateUser({password:p1});
-  if(result.error){msg.className="error";msg.textContent="❌ "+result.error.message;return;}
-  msg.className="success";msg.textContent="✅ Password changed successfully.";
-  document.getElementById("newPassword").value="";document.getElementById("confirmPassword").value="";
+  modal.classList.add(
+    "hidden"
+  );
+
 }
 
-async function sendTeamInvitation(){
-  if(currentRole!=="owner")return;
-  const email=document.getElementById("inviteEmail").value.trim().toLowerCase();
-  const role=document.getElementById("inviteRole").value;
-  const msg=document.getElementById("inviteMessage");
-  const btn=document.getElementById("sendInviteButton");
-  msg.className="";
-  if(!email || !email.includes("@")){msg.className="error";msg.textContent="❌ Enter a valid email address.";return;}
-  btn.disabled=true;btn.textContent="Sending...";
-  const result=await supabaseClient.functions.invoke(INVITATION_FUNCTION,{body:{email,role}});
-  btn.disabled=false;btn.textContent="✉️ Send Invitation";
-  if(result.error){msg.className="error";msg.textContent="❌ "+result.error.message;return;}
-  msg.className="success";msg.textContent="✅ Invitation sent to "+email+".";
+
+/*
+  Account menu.
+*/
+document
+  .getElementById(
+    "accountMenuButton"
+  )
+  .addEventListener(
+    "click",
+    e => {
+
+      e.stopPropagation();
+
+      document
+        .getElementById(
+          "accountMenu"
+        )
+        .classList
+        .toggle(
+          "hidden"
+        );
+
+    }
+  );
+
+
+/*
+  Close account menu when clicking outside.
+*/
+document.addEventListener(
+  "click",
+  e => {
+
+    const wrap =
+      document.querySelector(
+        ".account-menu-wrap"
+      );
+
+    if (
+      wrap &&
+      !wrap.contains(
+        e.target
+      )
+    ) {
+
+      document
+        .getElementById(
+          "accountMenu"
+        )
+        .classList
+        .add(
+          "hidden"
+        );
+
+    }
+
+  }
+);
+
+
+/*
+  History.
+*/
+document
+  .getElementById(
+    "menuHistoryButton"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      document
+        .getElementById(
+          "accountMenu"
+        )
+        .classList
+        .add(
+          "hidden"
+        );
+
+      openHistory();
+
+    }
+  );
+
+
+/*
+  Change password.
+*/
+document
+  .getElementById(
+    "menuPasswordButton"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      document
+        .getElementById(
+          "accountMenu"
+        )
+        .classList
+        .add(
+          "hidden"
+        );
+
+      document
+        .getElementById(
+          "passwordMessage"
+        )
+        .textContent =
+          "";
+
+      document
+        .getElementById(
+          "passwordModal"
+        )
+        .classList
+        .remove(
+          "hidden"
+        );
+
+    }
+  );
+
+
+/*
+  Invitation.
+*/
+document
+  .getElementById(
+    "menuInviteButton"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      document
+        .getElementById(
+          "accountMenu"
+        )
+        .classList
+        .add(
+          "hidden"
+        );
+
+      document
+        .getElementById(
+          "inviteMessage"
+        )
+        .textContent =
+          "";
+
+      document
+        .getElementById(
+          "inviteModal"
+        )
+        .classList
+        .remove(
+          "hidden"
+        );
+
+    }
+  );
+
+
+/*
+  Logout.
+*/
+document
+  .getElementById(
+    "menuLogoutButton"
+  )
+  .addEventListener(
+    "click",
+    logout
+  );
+
+
+/*
+  Save password.
+*/
+document
+  .getElementById(
+    "savePasswordButton"
+  )
+  .addEventListener(
+    "click",
+    changeOwnPassword
+  );
+
+
+/*
+  Send invitation.
+*/
+document
+  .getElementById(
+    "sendInviteButton"
+  )
+  .addEventListener(
+    "click",
+    sendTeamInvitation
+  );
+
+
+/* =========================================================
+   CHANGE OWN PASSWORD
+========================================================= */
+
+async function changeOwnPassword() {
+
+  const msg =
+    document.getElementById(
+      "passwordMessage"
+    );
+
+
+  const p1 =
+    document
+      .getElementById(
+        "newPassword"
+      )
+      .value;
+
+
+  const p2 =
+    document
+      .getElementById(
+        "confirmPassword"
+      )
+      .value;
+
+
+  msg.className = "";
+
+
+  if (
+    p1.length <
+    8
+  ) {
+
+    msg.className =
+      "error";
+
+    msg.textContent =
+      "❌ Password must be at least 8 characters.";
+
+    return;
+
+  }
+
+
+  if (
+    p1 !==
+    p2
+  ) {
+
+    msg.className =
+      "error";
+
+    msg.textContent =
+      "❌ Passwords do not match.";
+
+    return;
+
+  }
+
+
+  const result =
+    await supabaseClient.auth
+      .updateUser({
+        password:
+          p1
+      });
+
+
+  if (
+    result.error
+  ) {
+
+    msg.className =
+      "error";
+
+    msg.textContent =
+      "❌ " +
+      result.error.message;
+
+    return;
+
+  }
+
+
+  msg.className =
+    "success";
+
+  msg.textContent =
+    "✅ Password changed successfully.";
+
+
+  document
+    .getElementById(
+      "newPassword"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "confirmPassword"
+    )
+    .value = "";
+
 }
 
-async function openHistory(){
-  document.getElementById("historyModal").classList.remove("hidden");
-  const c=document.getElementById("historyContent"); c.innerHTML="Loading history...";
-  const bq=supabaseClient.from("business_requests").select("*").order("created_at",{ascending:false});
-  const tq=supabaseClient.from("team_requests").select("*").order("created_at",{ascending:false});
-  if(currentRole!=="owner"){bq.eq("requested_by",currentUser.id);tq.eq("requested_by",currentUser.id);}
-  const [b,t]=await Promise.all([bq,tq]);
-  if(b.error && t.error){c.innerHTML="<p class='error'>❌ Could not load history.</p>";return;}
-  const rows=[];
-  (b.data||[]).forEach(r=>rows.push({type:"Business removal",status:r.status,date:r.created_at,name:r.requested_by_name,email:r.requested_by_email,role:r.requested_by_role,detail:r.reason}));
-  (t.data||[]).forEach(r=>rows.push({type:"Team change",status:r.status,date:r.created_at,name:r.requested_by_name,email:r.requested_by_email,role:r.requested_by_role,detail:(r.action||"Request")+(r.requested_role?" → "+r.requested_role:"")+" — "+(r.reason||"No reason supplied")}));
-  rows.sort((a,b)=>new Date(b.date)-new Date(a.date));
-  if(!rows.length){c.innerHTML="<p>No history available.</p>";return;}
-  c.innerHTML=rows.map(r=>`<div class="history-item"><h4>${escapeHTML(r.type)} <span class="badge ${escapeHTML(r.status||"pending")}">${escapeHTML((r.status||"UNKNOWN").toUpperCase())}</span></h4><p><strong>By:</strong> ${escapeHTML(r.name||"Unknown user")} · ${escapeHTML(r.email||"No email")} · ${escapeHTML(r.role||"Unknown role")}</p><p><strong>Details:</strong> ${escapeHTML(r.detail||"")}</p><p class="small">${new Date(r.date).toLocaleString()}</p></div>`).join("");
+
+/* =========================================================
+   SEND TEAM INVITATION
+========================================================= */
+
+async function sendTeamInvitation() {
+
+  if (
+    currentRole !==
+    "owner"
+  ) return;
+
+
+  const email =
+    document
+      .getElementById(
+        "inviteEmail"
+      )
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const role =
+    document
+      .getElementById(
+        "inviteRole"
+      )
+      .value;
+
+
+  const msg =
+    document.getElementById(
+      "inviteMessage"
+    );
+
+
+  const btn =
+    document.getElementById(
+      "sendInviteButton"
+    );
+
+
+  msg.className = "";
+
+
+  if (
+    !email ||
+    !email.includes("@")
+  ) {
+
+    msg.className =
+      "error";
+
+    msg.textContent =
+      "❌ Enter a valid email address.";
+
+    return;
+
+  }
+
+
+  btn.disabled = true;
+
+  btn.textContent =
+    "Sending...";
+
+
+  const result =
+    await supabaseClient.functions
+      .invoke(
+        INVITATION_FUNCTION,
+        {
+          body: {
+            email,
+            role
+          }
+        }
+      );
+
+
+  btn.disabled = false;
+
+  btn.textContent =
+    "✉️ Send Invitation";
+
+
+  if (
+    result.error
+  ) {
+
+    msg.className =
+      "error";
+
+    msg.textContent =
+      "❌ " +
+      result.error.message;
+
+    return;
+
+  }
+
+
+  msg.className =
+    "success";
+
+  msg.textContent =
+    "✅ Invitation sent to " +
+    email +
+    ".";
+
 }
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+async function openHistory() {
+
+  document
+    .getElementById(
+      "historyModal"
+    )
+    .classList
+    .remove(
+      "hidden"
+    );
+
+
+  const c =
+    document.getElementById(
+      "historyContent"
+    );
+
+
+  c.innerHTML =
+    "Loading history...";
+
+
+  const bq =
+    supabaseClient
+      .from(
+        "business_requests"
+      )
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:
+            false
+        }
+      );
+
+
+  const tq =
+    supabaseClient
+      .from(
+        "team_requests"
+      )
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:
+            false
+        }
+      );
+
+
+  if (
+    currentRole !==
+    "owner"
+  ) {
+
+    bq.eq(
+      "requested_by",
+      currentUser.id
+    );
+
+    tq.eq(
+      "requested_by",
+      currentUser.id
+    );
+
+  }
+
+
+  const [
+    b,
+    t
+  ] =
+    await Promise.all([
+      bq,
+      tq
+    ]);
+
+
+  if (
+    b.error &&
+    t.error
+  ) {
+
+    c.innerHTML =
+      "<p class='error'>❌ Could not load history.</p>";
+
+    return;
+
+  }
+
+
+  const rows = [];
+
+
+  (b.data || [])
+    .forEach(
+      r => {
+
+        rows.push({
+
+          type:
+            "Business removal",
+
+          status:
+            r.status,
+
+          date:
+            r.created_at,
+
+          name:
+            r.requested_by_name,
+
+          email:
+            r.requested_by_email,
+
+          role:
+            r.requested_by_role,
+
+          detail:
+            r.reason
+
+        });
+
+      }
+    );
+
+
+  (t.data || [])
+    .forEach(
+      r => {
+
+        rows.push({
+
+          type:
+            "Team change",
+
+          status:
+            r.status,
+
+          date:
+            r.created_at,
+
+          name:
+            r.requested_by_name,
+
+          email:
+            r.requested_by_email,
+
+          role:
+            r.requested_by_role,
+
+          detail:
+            (r.action || "Request") +
+            (
+              r.requested_role
+                ? " → " +
+                  r.requested_role
+                : ""
+            ) +
+            " — " +
+            (
+              r.reason ||
+              "No reason supplied"
+            )
+
+        });
+
+      }
+    );
+
+
+  rows.sort(
+    (a, b) =>
+      new Date(
+        b.date
+      ) -
+      new Date(
+        a.date
+      )
+  );
+
+
+  if (!rows.length) {
+
+    c.innerHTML =
+      "<p>No history available.</p>";
+
+    return;
+
+  }
+
+
+  c.innerHTML =
+    rows
+      .map(
+        r =>
+          `
+
+          <div class="history-item">
+
+            <h4>
+
+              ${escapeHTML(
+                r.type
+              )}
+
+              <span
+                class="badge ${escapeHTML(
+                  r.status ||
+                  "pending"
+                )}"
+              >
+                ${escapeHTML(
+                  (
+                    r.status ||
+                    "UNKNOWN"
+                  ).toUpperCase()
+                )}
+              </span>
+
+            </h4>
+
+
+            <p>
+
+              <strong>
+                By:
+              </strong>
+
+              ${escapeHTML(
+                r.name ||
+                "Unknown user"
+              )}
+
+              ·
+
+              ${escapeHTML(
+                r.email ||
+                "No email"
+              )}
+
+              ·
+
+              ${escapeHTML(
+                r.role ||
+                "Unknown role"
+              )}
+
+            </p>
+
+
+            <p>
+
+              <strong>
+                Details:
+              </strong>
+
+              ${escapeHTML(
+                r.detail ||
+                ""
+              )}
+
+            </p>
+
+
+            <p class="small">
+
+              ${new Date(
+                r.date
+              ).toLocaleString()}
+
+            </p>
+
+          </div>
+
+          `
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   OPTIONAL: CLICK BACKDROP TO CLOSE MODALS
+========================================================= */
+
+document.addEventListener(
+  "click",
+  event => {
+
+    if (
+      event.target.classList.contains(
+        "modal-backdrop"
+      )
+    ) {
+
+      event.target.classList.add(
+        "hidden"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ESCAPE KEY CLOSES MODALS
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key ===
+      "Escape"
+    ) {
+
+      document
+        .querySelectorAll(
+          ".modal-backdrop"
+        )
+        .forEach(
+          modal => {
+
+            modal.classList.add(
+              "hidden"
+            );
+
+          }
+        );
+
+    }
+
+  }
+);
+
 
 /* =========================================================
    START
