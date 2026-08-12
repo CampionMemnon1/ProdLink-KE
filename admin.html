@@ -897,50 +897,37 @@ currentUser =
 result.data.user;
 
 
-const adminResult =
-await supabaseClient
+/*
+  Read the role through a locked-down RPC that only returns the
+  currently authenticated user's own role. This avoids relying on
+  client-side role assumptions and keeps dashboard role changes
+  dynamic: the next login always uses the role currently stored in
+  public.admin_users.
+*/
+const roleResult = await supabaseClient.rpc(
+  "get_my_admin_role"
+);
 
-.from("admin_users")
-
-.select("role")
-
-.eq(
-"user_id",
-currentUser.id
-)
-
-.maybeSingle();
-
-
-if (adminResult.error) {
-
-document
-.getElementById("loginError")
-.textContent =
-"❌ " +
-adminResult.error.message;
-
-return;
-
+if (roleResult.error) {
+  document
+    .getElementById("loginError")
+    .textContent =
+      "❌ Unable to verify your ProdLink KE role: " +
+      roleResult.error.message;
+  return;
 }
 
+if (!roleResult.data) {
+  document
+    .getElementById("loginError")
+    .textContent =
+      "❌ Your account does not have ProdLink KE admin access.";
 
-if (!adminResult.data) {
-
-document
-.getElementById("loginError")
-.textContent =
-"❌ Your account does not have ProdLink KE admin access.";
-
-await supabaseClient.auth.signOut();
-
-return;
-
+  await supabaseClient.auth.signOut();
+  return;
 }
 
-
-currentRole =
-adminResult.data.role;
+currentRole = String(roleResult.data).trim().toLowerCase();
 
 
 /* =====================================================
