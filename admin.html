@@ -163,7 +163,6 @@ button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 
 .ownerBadge { background: #fff4cc; color: #8a5b00; }
 .adminBadge { background: #dbeafe; color: #1e40af; }
-.moderatorBadge { background: #ede9fe; color: #5b21b6; }
 .viewerBadge { background: #e5e7eb; color: #374151; }
 
 .error { color: #b42318; font-weight: 700; }
@@ -326,7 +325,7 @@ label {
       </p>
     </div>
     <div>
-      <span class="badge adminBadge">ROLE-BASED ACCESS</span>
+      <span class="badge adminBadge">SECURE ACCESS</span>
     </div>
   </div>
 </div>
@@ -897,37 +896,50 @@ currentUser =
 result.data.user;
 
 
-/*
-  Read the role through a locked-down RPC that only returns the
-  currently authenticated user's own role. This avoids relying on
-  client-side role assumptions and keeps dashboard role changes
-  dynamic: the next login always uses the role currently stored in
-  public.admin_users.
-*/
-const roleResult = await supabaseClient.rpc(
-  "get_my_admin_role"
-);
+const adminResult =
+await supabaseClient
 
-if (roleResult.error) {
-  document
-    .getElementById("loginError")
-    .textContent =
-      "❌ Unable to verify your ProdLink KE role: " +
-      roleResult.error.message;
-  return;
+.from("admin_users")
+
+.select("role")
+
+.eq(
+"user_id",
+currentUser.id
+)
+
+.maybeSingle();
+
+
+if (adminResult.error) {
+
+document
+.getElementById("loginError")
+.textContent =
+"❌ " +
+adminResult.error.message;
+
+return;
+
 }
 
-if (!roleResult.data) {
-  document
-    .getElementById("loginError")
-    .textContent =
-      "❌ Your account does not have ProdLink KE admin access.";
 
-  await supabaseClient.auth.signOut();
-  return;
+if (!adminResult.data) {
+
+document
+.getElementById("loginError")
+.textContent =
+"❌ Your account does not have ProdLink KE admin access.";
+
+await supabaseClient.auth.signOut();
+
+return;
+
 }
 
-currentRole = String(roleResult.data).trim().toLowerCase();
+
+currentRole =
+adminResult.data.role;
 
 
 /* =====================================================
@@ -949,9 +961,7 @@ currentRole =
 if (
 ![
 "owner",
-"admin",
-"moderator",
-"viewer"
+"admin"
 ].includes(
 currentRole
 )
@@ -995,24 +1005,64 @@ loadBusinesses();
 loadProducts();
 
 
-if (currentRole === "owner") {
+if (
+currentRole === "owner"
+) {
 
-document.getElementById("ownerTeamSection").classList.remove("hidden");
-document.getElementById("businessRequestsSection").classList.remove("hidden");
-document.getElementById("teamRequestsSection").classList.remove("hidden");
+document
+.getElementById(
+"ownerTeamSection"
+)
+.classList.remove(
+"hidden"
+);
+
+
+document
+.getElementById(
+"businessRequestsSection"
+)
+.classList.remove(
+"hidden"
+);
+
+
+document
+.getElementById(
+"teamRequestsSection"
+)
+.classList.remove(
+"hidden"
+);
+
 
 loadTeam();
+
 loadBusinessRequests();
+
 loadTeamRequests();
 
-} else if (currentRole === "admin") {
+}
 
-document.getElementById("adminRequestSection").classList.remove("hidden");
-document.getElementById("deleteRequestSection").classList.remove("hidden");
 
-} else if (currentRole === "moderator") {
+else {
 
-document.getElementById("deleteRequestSection").classList.remove("hidden");
+document
+.getElementById(
+"adminRequestSection"
+)
+.classList.remove(
+"hidden"
+);
+
+
+document
+.getElementById(
+"deleteRequestSection"
+)
+.classList.remove(
+"hidden"
+);
 
 }
 
@@ -1211,7 +1261,7 @@ status ===
 let buttons = "";
 
 
-if (["owner", "admin", "moderator"].includes(currentRole) &&
+if (
 status ===
 "pending"
 ) {
@@ -1241,7 +1291,7 @@ rejectBusiness('${business.id}')
 }
 
 
-else if (["owner", "admin", "moderator"].includes(currentRole) &&
+else if (
 status ===
 "approved"
 ) {
@@ -1262,7 +1312,7 @@ rejectBusiness('${business.id}')
 }
 
 
-else if (["owner", "admin", "moderator"].includes(currentRole)) {
+else {
 
 buttons += `
 
@@ -1421,11 +1471,6 @@ async function approveBusiness(
 id
 ) {
 
-if (!["owner", "admin", "moderator"].includes(currentRole)) {
-alert("Your role is read-only and cannot approve businesses.");
-return;
-}
-
 const result =
 await supabaseClient
 
@@ -1466,11 +1511,6 @@ loadBusinesses();
 async function rejectBusiness(
 id
 ) {
-
-if (!["owner", "admin", "moderator"].includes(currentRole)) {
-alert("Your role is read-only and cannot reject businesses.");
-return;
-}
 
 if (
 !confirm(
@@ -1808,11 +1848,6 @@ loadProducts();
 
 async function submitDeleteRequest() {
 
-if (!["owner", "admin", "moderator"].includes(currentRole)) {
-alert("Your role does not have permission to request business removal.");
-return;
-}
-
 const businessId =
 document
 .getElementById(
@@ -2105,6 +2140,17 @@ businessName
 
 
 <p>
+<strong>Requested by:</strong>
+${escapeHTML(request.requested_by_name || "Unknown user")}
+<br>
+<strong>Email:</strong>
+${escapeHTML(request.requested_by_email || "Not available")}
+<br>
+<strong>Role:</strong>
+${escapeHTML(request.requested_by_role || "Unknown")}
+</p>
+
+<p>
 <strong>Reason:</strong>
 <br>
 ${escapeHTML(
@@ -2252,11 +2298,6 @@ loadBusinessRequests();
 ========================================================= */
 
 async function submitTeamRequest() {
-
-if (currentRole !== "admin") {
-alert("Only Admins can submit team change requests.");
-return;
-}
 
 const action =
 document
@@ -2560,6 +2601,17 @@ request.requested_role
 
 }
 
+
+<p>
+<strong>Requested by:</strong>
+${escapeHTML(request.requested_by_name || "Unknown user")}
+<br>
+<strong>Email:</strong>
+${escapeHTML(request.requested_by_email || "Not available")}
+<br>
+<strong>Role:</strong>
+${escapeHTML(request.requested_by_role || "Unknown")}
+</p>
 
 <p>
 <strong>Reason:</strong>
@@ -2937,12 +2989,6 @@ member.role ===
 "admin"
 ) badgeClass =
 "adminBadge";
-
-if (
-member.role ===
-"moderator"
-) badgeClass =
-"moderatorBadge";
 
 
 item.innerHTML = `
