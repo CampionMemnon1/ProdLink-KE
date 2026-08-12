@@ -243,6 +243,9 @@ label {
   .row > div { width: 100%; }
 }
 
+
+/* Account menu / modals */
+.account-menu-wrap{position:relative}.menu-button{width:44px!important;height:44px;padding:0!important;border-radius:12px;background:#eef2f7;color:#172033;font-size:24px;line-height:1;margin:4px}.account-menu{position:absolute;right:4px;top:54px;width:230px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 14px 35px rgba(16,24,40,.16);padding:7px;z-index:100}.account-menu button{display:block;width:100%!important;margin:2px 0;text-align:left;background:transparent;color:var(--text);font-weight:700}.account-menu button:hover{background:#f2f4f7;transform:none}.account-menu .danger-option{color:var(--red)}.modal-backdrop{position:fixed;inset:0;background:rgba(16,24,40,.55);display:flex;align-items:center;justify-content:center;padding:18px;z-index:200}.modal{width:min(560px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 20px 60px rgba(16,24,40,.25)}.modal-header{display:flex;justify-content:space-between;align-items:center;gap:12px}.modal-header h2{margin:0}.close-button{background:#eef2f7;color:#172033;width:40px!important;padding:8px!important}.history-item{border:1px solid var(--border);border-radius:12px;padding:14px;margin:10px 0}.history-item h4{margin:0 0 7px}
 </style>
 
 </head>
@@ -348,12 +351,15 @@ label {
 
 </div>
 
-<button
-  class="secondary"
-  id="logoutButton"
->
-  Logout
-</button>
+<div class="account-menu-wrap">
+<button class="menu-button" id="accountMenuButton" title="Account menu" aria-label="Account menu">⋮</button>
+<div id="accountMenu" class="account-menu hidden">
+<button id="menuHistoryButton">📜 History</button>
+<button id="menuPasswordButton">🔐 Change password</button>
+<button id="menuInviteButton" class="hidden">✉️ Send invitation</button>
+<button id="menuLogoutButton" class="danger-option">🚪 Logout</button>
+</div>
+</div>
 
 </div>
 
@@ -739,6 +745,35 @@ remove, or change team members.
 
 </div>
 
+<div id="historyModal" class="modal-backdrop hidden">
+<div class="modal">
+<div class="modal-header"><h2>📜 Activity History</h2><button class="close-button" onclick="closeModal('historyModal')">✕</button></div>
+<p class="muted">Owners can review team history. Other roles see their own submitted requests.</p>
+<div id="historyContent">Loading history...</div>
+</div>
+</div>
+
+<div id="passwordModal" class="modal-backdrop hidden">
+<div class="modal">
+<div class="modal-header"><h2>🔐 Change Password</h2><button class="close-button" onclick="closeModal('passwordModal')">✕</button></div>
+<p class="muted">Changes the password for your current ProdLink account. Your role stays the same.</p>
+<input id="newPassword" type="password" placeholder="New password (minimum 8 characters)">
+<input id="confirmPassword" type="password" placeholder="Confirm new password">
+<button id="savePasswordButton">Save password</button>
+<p id="passwordMessage"></p>
+</div>
+</div>
+
+<div id="inviteModal" class="modal-backdrop hidden">
+<div class="modal">
+<div class="modal-header"><h2>✉️ Invite Team Member</h2><button class="close-button" onclick="closeModal('inviteModal')">✕</button></div>
+<p class="muted">Owner only. Choose the role to offer this person. Invitation delivery uses the secure backend function.</p>
+<input id="inviteEmail" type="email" placeholder="person@example.com">
+<select id="inviteRole"><option value="admin">Admin</option><option value="moderator">Moderator</option><option value="viewer">Viewer</option></select>
+<button id="sendInviteButton" class="owner">✉️ Send Invitation</button>
+<p id="inviteMessage"></p>
+</div>
+</div>
 
 </div>
 
@@ -764,6 +799,8 @@ window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
+
+const INVITATION_FUNCTION = "send-team-invitation";
 
 
 /* =========================================================
@@ -998,6 +1035,9 @@ document
 .textContent =
 "Logged in as: " +
 currentRole.toUpperCase();
+
+if(currentRole === "owner") document.getElementById("menuInviteButton").classList.remove("hidden");
+else document.getElementById("menuInviteButton").classList.add("hidden");
 
 
 loadBusinesses();
@@ -3393,16 +3433,6 @@ login
 
 document
 .getElementById(
-"logoutButton"
-)
-.addEventListener(
-"click",
-logout
-);
-
-
-document
-.getElementById(
 "submitTeamRequest"
 )
 .addEventListener(
@@ -3430,6 +3460,73 @@ document
 ownerAddMember
 );
 
+
+/* =========================================================
+   ACCOUNT MENU / HISTORY / PASSWORD / INVITATION
+========================================================= */
+
+function closeModal(id){ document.getElementById(id).classList.add("hidden"); }
+
+document.getElementById("accountMenuButton").addEventListener("click", e => {
+  e.stopPropagation();
+  document.getElementById("accountMenu").classList.toggle("hidden");
+});
+
+document.addEventListener("click", e => {
+  const wrap=document.querySelector(".account-menu-wrap");
+  if(wrap && !wrap.contains(e.target)) document.getElementById("accountMenu").classList.add("hidden");
+});
+
+document.getElementById("menuHistoryButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");openHistory();});
+document.getElementById("menuPasswordButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");document.getElementById("passwordMessage").textContent="";document.getElementById("passwordModal").classList.remove("hidden");});
+document.getElementById("menuInviteButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");document.getElementById("inviteMessage").textContent="";document.getElementById("inviteModal").classList.remove("hidden");});
+document.getElementById("menuLogoutButton").addEventListener("click",logout);
+document.getElementById("savePasswordButton").addEventListener("click",changeOwnPassword);
+document.getElementById("sendInviteButton").addEventListener("click",sendTeamInvitation);
+
+async function changeOwnPassword(){
+  const msg=document.getElementById("passwordMessage");
+  const p1=document.getElementById("newPassword").value;
+  const p2=document.getElementById("confirmPassword").value;
+  msg.className="";
+  if(p1.length<8){msg.className="error";msg.textContent="❌ Password must be at least 8 characters.";return;}
+  if(p1!==p2){msg.className="error";msg.textContent="❌ Passwords do not match.";return;}
+  const result=await supabaseClient.auth.updateUser({password:p1});
+  if(result.error){msg.className="error";msg.textContent="❌ "+result.error.message;return;}
+  msg.className="success";msg.textContent="✅ Password changed successfully.";
+  document.getElementById("newPassword").value="";document.getElementById("confirmPassword").value="";
+}
+
+async function sendTeamInvitation(){
+  if(currentRole!=="owner")return;
+  const email=document.getElementById("inviteEmail").value.trim().toLowerCase();
+  const role=document.getElementById("inviteRole").value;
+  const msg=document.getElementById("inviteMessage");
+  const btn=document.getElementById("sendInviteButton");
+  msg.className="";
+  if(!email || !email.includes("@")){msg.className="error";msg.textContent="❌ Enter a valid email address.";return;}
+  btn.disabled=true;btn.textContent="Sending...";
+  const result=await supabaseClient.functions.invoke(INVITATION_FUNCTION,{body:{email,role}});
+  btn.disabled=false;btn.textContent="✉️ Send Invitation";
+  if(result.error){msg.className="error";msg.textContent="❌ "+result.error.message;return;}
+  msg.className="success";msg.textContent="✅ Invitation sent to "+email+".";
+}
+
+async function openHistory(){
+  document.getElementById("historyModal").classList.remove("hidden");
+  const c=document.getElementById("historyContent"); c.innerHTML="Loading history...";
+  const bq=supabaseClient.from("business_requests").select("*").order("created_at",{ascending:false});
+  const tq=supabaseClient.from("team_requests").select("*").order("created_at",{ascending:false});
+  if(currentRole!=="owner"){bq.eq("requested_by",currentUser.id);tq.eq("requested_by",currentUser.id);}
+  const [b,t]=await Promise.all([bq,tq]);
+  if(b.error && t.error){c.innerHTML="<p class='error'>❌ Could not load history.</p>";return;}
+  const rows=[];
+  (b.data||[]).forEach(r=>rows.push({type:"Business removal",status:r.status,date:r.created_at,name:r.requested_by_name,email:r.requested_by_email,role:r.requested_by_role,detail:r.reason}));
+  (t.data||[]).forEach(r=>rows.push({type:"Team change",status:r.status,date:r.created_at,name:r.requested_by_name,email:r.requested_by_email,role:r.requested_by_role,detail:(r.action||"Request")+(r.requested_role?" → "+r.requested_role:"")+" — "+(r.reason||"No reason supplied")}));
+  rows.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  if(!rows.length){c.innerHTML="<p>No history available.</p>";return;}
+  c.innerHTML=rows.map(r=>`<div class="history-item"><h4>${escapeHTML(r.type)} <span class="badge ${escapeHTML(r.status||"pending")}">${escapeHTML((r.status||"UNKNOWN").toUpperCase())}</span></h4><p><strong>By:</strong> ${escapeHTML(r.name||"Unknown user")} · ${escapeHTML(r.email||"No email")} · ${escapeHTML(r.role||"Unknown role")}</p><p><strong>Details:</strong> ${escapeHTML(r.detail||"")}</p><p class="small">${new Date(r.date).toLocaleString()}</p></div>`).join("");
+}
 
 /* =========================================================
    START
