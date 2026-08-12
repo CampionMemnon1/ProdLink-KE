@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>ProdLink KE Admin</title>
 
@@ -26,7 +30,8 @@
       --border: #e5e7eb;
       --muted: #667085;
       --text: #172033;
-      --shadow: 0 8px 28px rgba(16, 24, 40, 0.07);
+      --shadow:
+        0 8px 28px rgba(16, 24, 40, .07);
     }
 
     body {
@@ -40,31 +45,40 @@
         "Segoe UI",
         Arial,
         sans-serif;
+
       background:
         radial-gradient(
           circle at top right,
-          rgba(37, 99, 235, 0.08),
+          rgba(37, 99, 235, .08),
           transparent 28%
         ),
         var(--bg);
+
       color: var(--text);
       line-height: 1.5;
     }
 
     header {
-      background: linear-gradient(135deg, #101828, #1d2939);
+      background:
+        linear-gradient(
+          135deg,
+          #101828,
+          #1d2939
+        );
+
       color: white;
       padding: 22px 18px;
       position: sticky;
       top: 0;
-      z-index: 10;
-      box-shadow: 0 4px 18px rgba(16, 24, 40, 0.18);
+      z-index: 100;
+      box-shadow:
+        0 4px 18px
+        rgba(16, 24, 40, .18);
     }
 
     header h1 {
       margin: 0;
       font-size: 25px;
-      letter-spacing: -0.4px;
     }
 
     header p {
@@ -90,7 +104,6 @@
 
     .card > h2 {
       margin-top: 0;
-      letter-spacing: -0.3px;
     }
 
     input,
@@ -99,22 +112,22 @@
       width: 100%;
       padding: 12px 13px;
       margin: 7px 0;
-      border: 1px solid #d0d5dd;
+      border:
+        1px solid #d0d5dd;
       border-radius: 10px;
       font-size: 15px;
       background: white;
       color: var(--text);
       outline: none;
-      transition:
-        border-color 0.15s,
-        box-shadow 0.15s;
     }
 
     input:focus,
     select:focus,
     textarea:focus {
       border-color: #84adff;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+      box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, .12);
     }
 
     textarea {
@@ -131,25 +144,15 @@
       background: var(--blue);
       font-weight: 700;
       cursor: pointer;
-      transition:
-        transform 0.12s,
-        opacity 0.12s,
-        box-shadow 0.12s;
     }
 
     button:hover {
-      opacity: 0.94;
-      transform: translateY(-1px);
-    }
-
-    button:active {
-      transform: translateY(0);
+      opacity: .94;
     }
 
     button:disabled {
-      opacity: 0.5;
+      opacity: .5;
       cursor: not-allowed;
-      transform: none;
     }
 
     .approve {
@@ -186,19 +189,12 @@
     }
 
     .item {
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
       padding: 18px;
       border-radius: 14px;
       margin-top: 12px;
-      background: #fff;
-      transition:
-        box-shadow 0.15s,
-        border-color 0.15s;
-    }
-
-    .item:hover {
-      border-color: #cfd6e4;
-      box-shadow: 0 5px 18px rgba(16, 24, 40, 0.06);
+      background: white;
     }
 
     .item h3 {
@@ -213,7 +209,6 @@
       font-weight: 800;
       margin: 3px 0;
       text-transform: uppercase;
-      letter-spacing: 0.35px;
     }
 
     .pending {
@@ -246,6 +241,11 @@
       color: #374151;
     }
 
+    .moderatorBadge {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+
     .error {
       color: #b42318;
       font-weight: 700;
@@ -267,14 +267,27 @@
 
     .stat-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(155px, 1fr)
+        );
+
       gap: 14px;
     }
 
     .stat {
-      background: linear-gradient(145deg, #fff, #f8fafc);
+      background:
+        linear-gradient(
+          145deg,
+          #fff,
+          #f8fafc
+        );
+
       padding: 18px;
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
+
       border-radius: 14px;
       text-align: center;
     }
@@ -282,27 +295,23 @@
     .stat h2 {
       margin: 5px 0 0;
       font-size: 30px;
-      letter-spacing: -1px;
     }
 
     .notice {
       background: #fff7ed;
-      border: 1px solid #fed7aa;
+      border:
+        1px solid #fed7aa;
+
       padding: 14px;
       border-radius: 12px;
       margin-top: 10px;
     }
 
-    .danger-box {
-      background: #fff1f2;
-      border: 1px solid #fecdd3;
-      padding: 12px;
-      border-radius: 10px;
-    }
-
     hr {
       border: none;
-      border-top: 1px solid var(--border);
+      border-top:
+        1px solid var(--border);
+
       margin: 24px 0;
     }
 
@@ -318,23 +327,6 @@
       margin: 42px auto;
     }
 
-    #loginCard h2 {
-      margin-top: 0;
-    }
-
-    #dashboard > .card:first-child {
-      background: linear-gradient(135deg, #ffffff, #f8fbff);
-    }
-
-    #businesses .item p,
-    #products .item p,
-    #businessRequests .item p,
-    #teamRequests .item p {
-      margin: 8px 0;
-    }
-
-    /* ACCOUNT MENU */
-
     .account-menu-wrap {
       position: relative;
     }
@@ -347,8 +339,6 @@
       background: #eef2f7;
       color: #172033;
       font-size: 24px;
-      line-height: 1;
-      margin: 4px;
     }
 
     .account-menu {
@@ -356,44 +346,44 @@
       right: 4px;
       top: 54px;
       width: 230px;
-      background: #fff;
-      border: 1px solid var(--border);
+      background: white;
+      border:
+        1px solid var(--border);
+
       border-radius: 14px;
-      box-shadow: 0 14px 35px rgba(16, 24, 40, 0.16);
+      box-shadow:
+        0 14px 35px
+        rgba(16, 24, 40, .16);
+
       padding: 7px;
-      z-index: 100;
+      z-index: 200;
     }
 
     .account-menu button {
       display: block;
-      width: 100% !important;
+      width: 100%;
       margin: 2px 0;
       text-align: left;
       background: transparent;
       color: var(--text);
-      font-weight: 700;
-    }
-
-    .account-menu button:hover {
-      background: #f2f4f7;
-      transform: none;
     }
 
     .account-menu .danger-option {
       color: var(--red);
     }
 
-    /* MODALS */
-
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(16, 24, 40, 0.55);
+      background:
+        rgba(16, 24, 40, .55);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       padding: 18px;
-      z-index: 200;
+      z-index: 500;
     }
 
     .modal-backdrop.hidden {
@@ -401,20 +391,24 @@
     }
 
     .modal {
-      width: min(560px, 100%);
+      width:
+        min(560px, 100%);
+
       max-height: 90vh;
       overflow: auto;
-      background: #fff;
+      background: white;
       border-radius: 18px;
       padding: 20px;
-      box-shadow: 0 20px 60px rgba(16, 24, 40, 0.25);
+
+      box-shadow:
+        0 20px 60px
+        rgba(16, 24, 40, .25);
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
     }
 
     .modal-header h2 {
@@ -428,17 +422,12 @@
       height: 40px;
       padding: 8px !important;
       margin: 0;
-      flex-shrink: 0;
-    }
-
-    .close-button:hover {
-      background: #e4e7ec;
-      color: #101828;
-      transform: none;
     }
 
     .history-item {
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
+
       border-radius: 12px;
       padding: 14px;
       margin: 10px 0;
@@ -448,18 +437,17 @@
       margin: 0 0 7px;
     }
 
-    .loading {
-      padding: 18px 0;
-      color: var(--muted);
-      font-weight: 600;
+    .admin-email {
+      font-weight: 700;
+      word-break: break-word;
     }
 
-    .empty {
-      padding: 18px 0;
-      color: var(--muted);
+    .admin-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-
-    /* MOBILE */
 
     @media (max-width: 700px) {
       .container {
@@ -468,7 +456,6 @@
 
       .card {
         padding: 15px;
-        border-radius: 14px;
       }
 
       header {
@@ -484,21 +471,17 @@
         margin: 5px 0;
       }
 
-      .row > div {
-        width: 100%;
-      }
-
-      .menu-button {
+      .menu-button,
+      .close-button {
         width: 44px !important;
-      }
-
-      .account-menu {
-        right: 0;
-        width: 220px;
       }
 
       .close-button {
         width: 40px !important;
+      }
+
+      .account-menu {
+        right: 0;
       }
     }
   </style>
@@ -515,8 +498,10 @@
 
   <!-- LOGIN -->
 
-  <div id="loginCard" class="card">
-
+  <div
+    id="loginCard"
+    class="card"
+  >
     <h2>🔐 Admin Login</h2>
 
     <input
@@ -537,54 +522,54 @@
       Login
     </button>
 
-    <p id="loginError" class="error"></p>
-
+    <p
+      id="loginError"
+      class="error"
+    ></p>
   </div>
+
 
   <!-- DASHBOARD -->
 
-  <div id="dashboard" class="hidden">
-
-    <!-- HEADER CARD -->
+  <div
+    id="dashboard"
+    class="hidden"
+  >
 
     <div
       class="card"
-      style="border-left: 5px solid #2563eb;"
+      style="border-left:5px solid #2563eb;"
     >
-
       <div class="row">
 
         <div>
-
           <div class="small">
             PRODLINK KE • CONTROL CENTER
           </div>
 
-          <h2 style="margin: 4px 0;">
+          <h2 style="margin:4px 0;">
             Marketplace Moderation Dashboard
           </h2>
 
           <p
             class="muted"
-            style="margin-bottom: 0;"
+            style="margin-bottom:0;"
           >
-            Review businesses, products, team requests
-            and deletion requests from one place.
+            Review businesses, products,
+            team requests and deletion
+            requests from one place.
           </p>
-
         </div>
 
         <div>
-
           <span class="badge adminBadge">
             SECURE ACCESS
           </span>
-
         </div>
 
       </div>
-
     </div>
+
 
     <!-- ACCOUNT -->
 
@@ -593,11 +578,9 @@
       <div class="row">
 
         <div>
-
           <h2>👋 Welcome</h2>
 
           <p id="roleText"></p>
-
         </div>
 
         <div class="account-menu-wrap">
@@ -616,19 +599,16 @@
             class="account-menu hidden"
           >
 
-            <button id="menuHistoryButton">
+            <button
+              id="menuHistoryButton"
+            >
               📜 History
             </button>
 
-            <button id="menuPasswordButton">
-              🔐 Change password
-            </button>
-
             <button
-              id="menuInviteButton"
-              class="hidden"
+              id="menuPasswordButton"
             >
-              ✉️ Send invitation
+              🔐 Change password
             </button>
 
             <button
@@ -645,6 +625,7 @@
       </div>
 
     </div>
+
 
     <!-- OVERVIEW -->
 
@@ -674,10 +655,7 @@
           <h2 id="productCount">0</h2>
         </div>
 
-        <div
-          class="stat"
-          id="requestStat"
-        >
+        <div class="stat">
           <div>🔔 Requests</div>
           <h2 id="requestCount">0</h2>
         </div>
@@ -686,6 +664,7 @@
 
     </div>
 
+
     <!-- BUSINESS WORKFLOW -->
 
     <div class="card">
@@ -693,10 +672,11 @@
       <h2>🏪 Business Workflow</h2>
 
       <div id="businesses">
-        <div class="loading">Loading...</div>
+        Loading...
       </div>
 
     </div>
+
 
     <!-- PRODUCTS -->
 
@@ -705,10 +685,72 @@
       <h2>📦 Product Management</h2>
 
       <div id="products">
-        <div class="loading">Loading...</div>
+        Loading...
       </div>
 
     </div>
+
+
+    <!-- OWNER ADMIN MANAGEMENT -->
+
+    <div
+      id="adminManagementSection"
+      class="card hidden"
+    >
+
+      <h2>👑 Admin Management</h2>
+
+      <div class="notice">
+
+        <strong>
+          Owner controls
+        </strong>
+
+        <br>
+
+        Add or remove Admins using their
+        ProdLink email address. You do not
+        need to copy or save their User ID.
+
+      </div>
+
+
+      <h3>
+        ➕ Add Admin
+      </h3>
+
+      <input
+        id="adminEmail"
+        type="email"
+        placeholder="friend@example.com"
+        autocomplete="off"
+      >
+
+      <button
+        id="addAdminButton"
+        class="owner"
+      >
+        👑 Add Admin
+      </button>
+
+      <p
+        id="adminMessage"
+      ></p>
+
+
+      <hr>
+
+
+      <h3>
+        👥 Current Admin Team
+      </h3>
+
+      <div id="adminTeam">
+        Loading...
+      </div>
+
+    </div>
+
 
     <!-- BUSINESS DELETE REQUESTS -->
 
@@ -717,17 +759,21 @@
       class="card hidden"
     >
 
-      <h2>🔔 Business Deletion Requests</h2>
+      <h2>
+        🔔 Business Deletion Requests
+      </h2>
 
       <p class="muted">
-        Only Owners can approve or reject these requests.
+        Only Owners can approve or reject
+        these requests.
       </p>
 
       <div id="businessRequests">
-        <div class="loading">Loading...</div>
+        Loading...
       </div>
 
     </div>
+
 
     <!-- TEAM REQUESTS -->
 
@@ -736,18 +782,21 @@
       class="card hidden"
     >
 
-      <h2>👥 Team Change Requests</h2>
+      <h2>
+        👥 Team Change Requests
+      </h2>
 
       <p class="muted">
-        Requests from Admins to add, remove,
-        or change collaborators.
+        Requests from Admins to add,
+        remove, or change collaborators.
       </p>
 
       <div id="teamRequests">
-        <div class="loading">Loading...</div>
+        Loading...
       </div>
 
     </div>
+
 
     <!-- ADMIN TEAM REQUEST FORM -->
 
@@ -756,16 +805,11 @@
       class="card hidden"
     >
 
-      <h2>📝 Request Team Change</h2>
+      <h2>
+        📝 Request Team Change
+      </h2>
 
-      <p>
-        Team membership is controlled by the Owners.
-        Submit a request and explain why the change is needed.
-      </p>
-
-      <label for="teamAction">
-        Action
-      </label>
+      <label>Action</label>
 
       <select id="teamAction">
 
@@ -783,7 +827,8 @@
 
       </select>
 
-      <label for="requestUserId">
+
+      <label>
         Collaborator User ID
       </label>
 
@@ -792,7 +837,8 @@
         placeholder="UUID of the Supabase user"
       >
 
-      <label for="requestRole">
+
+      <label>
         Requested Role
       </label>
 
@@ -812,14 +858,14 @@
 
       </select>
 
-      <label for="teamRequestReason">
-        Reason *
-      </label>
+
+      <label>Reason *</label>
 
       <textarea
         id="teamRequestReason"
         placeholder="Explain why this team change is needed..."
       ></textarea>
+
 
       <button
         class="request"
@@ -828,30 +874,36 @@
         📝 Send Request
       </button>
 
-      <p id="teamRequestMessage"></p>
+      <p
+        id="teamRequestMessage"
+      ></p>
 
     </div>
 
-    <!-- BUSINESS DELETE REQUEST FORM -->
+
+    <!-- BUSINESS DELETE REQUEST -->
 
     <div
       id="deleteRequestSection"
       class="card hidden"
     >
 
-      <h2>🗑️ Request Business Removal</h2>
+      <h2>
+        🗑️ Request Business Removal
+      </h2>
 
       <p>
-        Admins cannot directly delete businesses.
-        An Owner must approve the removal.
+        Admins cannot directly delete
+        businesses. An Owner must approve
+        the removal.
       </p>
 
-      <select id="deleteBusinessSelect">
-
+      <select
+        id="deleteBusinessSelect"
+      >
         <option value="">
           Select business
         </option>
-
       </select>
 
       <textarea
@@ -866,244 +918,112 @@
         🗑️ Send Removal Request
       </button>
 
-      <p id="deleteRequestMessage"></p>
-
-    </div>
-
-    <!-- OWNER TEAM MANAGEMENT -->
-
-    <div
-      id="ownerTeamSection"
-      class="card hidden"
-    >
-
-      <h2>👑 Owner Team Management</h2>
-
-      <div class="notice">
-
-        <strong>Owner controls</strong>
-
-        <br>
-
-        Only the two designated Owners can directly
-        add, remove, or change team members.
-
-      </div>
-
-      <h3>
-        Current Team
-      </h3>
-
-      <div id="team">
-        <div class="loading">Loading...</div>
-      </div>
-
-      <hr>
-
-      <h3>
-        ➕ Add Collaborator
-      </h3>
-
-      <input
-        id="ownerUserId"
-        placeholder="Collaborator User ID"
-      >
-
-      <select id="ownerRole">
-
-        <option value="admin">
-          Admin
-        </option>
-
-        <option value="moderator">
-          Moderator
-        </option>
-
-        <option value="viewer">
-          Viewer
-        </option>
-
-      </select>
-
-      <button
-        class="owner"
-        id="ownerAddButton"
-      >
-        👑 Add Collaborator
-      </button>
-
-      <p id="ownerTeamMessage"></p>
-
-    </div>
-
-    <!-- HISTORY MODAL -->
-
-    <div
-      id="historyModal"
-      class="modal-backdrop hidden"
-    >
-
-      <div class="modal">
-
-        <div class="modal-header">
-
-          <h2>
-            📜 Activity History
-          </h2>
-
-          <button
-            type="button"
-            class="close-button"
-            onclick="closeModal('historyModal')"
-            aria-label="Close"
-          >
-            ✕
-          </button>
-
-        </div>
-
-        <p class="muted">
-          Owners can review team history.
-          Other roles see their own submitted requests.
-        </p>
-
-        <div id="historyContent">
-          Loading history...
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- PASSWORD MODAL -->
-
-    <div
-      id="passwordModal"
-      class="modal-backdrop hidden"
-    >
-
-      <div class="modal">
-
-        <div class="modal-header">
-
-          <h2>
-            🔐 Change Password
-          </h2>
-
-          <button
-            type="button"
-            class="close-button"
-            onclick="closeModal('passwordModal')"
-            aria-label="Close"
-          >
-            ✕
-          </button>
-
-        </div>
-
-        <p class="muted">
-          Changes the password for your current
-          ProdLink account. Your role stays the same.
-        </p>
-
-        <input
-          id="newPassword"
-          type="password"
-          placeholder="New password (minimum 8 characters)"
-          autocomplete="new-password"
-        >
-
-        <input
-          id="confirmPassword"
-          type="password"
-          placeholder="Confirm new password"
-          autocomplete="new-password"
-        >
-
-        <button id="savePasswordButton">
-          Save password
-        </button>
-
-        <p id="passwordMessage"></p>
-
-      </div>
-
-    </div>
-
-    <!-- INVITATION MODAL -->
-
-    <div
-      id="inviteModal"
-      class="modal-backdrop hidden"
-    >
-
-      <div class="modal">
-
-        <div class="modal-header">
-
-          <h2>
-            ✉️ Invite Team Member
-          </h2>
-
-          <button
-            type="button"
-            class="close-button"
-            onclick="closeModal('inviteModal')"
-            aria-label="Close"
-          >
-            ✕
-          </button>
-
-        </div>
-
-        <p class="muted">
-          Owner only. Choose the role to offer this person.
-          Invitation delivery uses the secure backend function.
-        </p>
-
-        <input
-          id="inviteEmail"
-          type="email"
-          placeholder="person@example.com"
-          autocomplete="email"
-        >
-
-        <select id="inviteRole">
-
-          <option value="admin">
-            Admin
-          </option>
-
-          <option value="moderator">
-            Moderator
-          </option>
-
-          <option value="viewer">
-            Viewer
-          </option>
-
-        </select>
-
-        <button
-          id="sendInviteButton"
-          class="owner"
-        >
-          ✉️ Send Invitation
-        </button>
-
-        <p id="inviteMessage"></p>
-
-      </div>
+      <p
+        id="deleteRequestMessage"
+      ></p>
 
     </div>
 
   </div>
 </div>
 
+
+<!-- HISTORY MODAL -->
+
+<div
+  id="historyModal"
+  class="modal-backdrop hidden"
+>
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <h2>
+        📜 Activity History
+      </h2>
+
+      <button
+        type="button"
+        class="close-button"
+        onclick="closeModal('historyModal')"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <p class="muted">
+      Owners can review team history.
+      Other roles see their own requests.
+    </p>
+
+    <div id="historyContent">
+      Loading history...
+    </div>
+
+  </div>
+</div>
+
+
+<!-- PASSWORD MODAL -->
+
+<div
+  id="passwordModal"
+  class="modal-backdrop hidden"
+>
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <h2>
+        🔐 Change Password
+      </h2>
+
+      <button
+        type="button"
+        class="close-button"
+        onclick="closeModal('passwordModal')"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <p class="muted">
+      Change the password for your
+      current ProdLink account.
+    </p>
+
+    <input
+      id="newPassword"
+      type="password"
+      placeholder="New password (minimum 8 characters)"
+    >
+
+    <input
+      id="confirmPassword"
+      type="password"
+      placeholder="Confirm new password"
+    >
+
+    <button
+      id="savePasswordButton"
+    >
+      Save password
+    </button>
+
+    <p
+      id="passwordMessage"
+    ></p>
+
+  </div>
+</div>
+
+
 <script>
-  /* =========================================================
-     SUPABASE CONFIGURATION
-  ========================================================= */
+  /* ========================================================
+     SUPABASE
+  ======================================================== */
 
   const SUPABASE_URL =
     "https://caspleasocqyefolvgno.supabase.co";
@@ -1117,37 +1037,18 @@
       SUPABASE_KEY
     );
 
-  const INVITATION_FUNCTION =
-    "send-team-invitation";
 
+  const ADMIN_FUNCTION =
+    "manage-admin";
 
-  /* =========================================================
-     OWNER IDS
-  ========================================================= */
-
-  const OWNER_IDS = [
-    "e3e32904-bf82-4b28-9aa1-045594596b66",
-    "fdbbceec-d70c-4cef-96a7-bad3aada9ef1"
-  ];
-
-
-  /* =========================================================
-     STATE
-  ========================================================= */
 
   let currentUser = null;
   let currentRole = null;
-  let isLoadingSession = false;
 
 
-  /* =========================================================
+  /* ========================================================
      HELPERS
-  ========================================================= */
-
-  function $(id) {
-    return document.getElementById(id);
-  }
-
+  ======================================================== */
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -1159,419 +1060,511 @@
   }
 
 
-  function setMessage(elementId, type, message) {
-    const element = $(elementId);
+  function showMessage(
+    elementId,
+    message,
+    type = ""
+  ) {
+    const element =
+      document.getElementById(
+        elementId
+      );
 
     if (!element) return;
 
-    element.className = type || "";
-    element.textContent = message || "";
+    element.className = type;
+    element.textContent = message;
   }
 
 
-  function setLoading(elementId, text = "Loading...") {
-    const element = $(elementId);
+  function closeModal(id) {
+    const modal =
+      document.getElementById(id);
 
-    if (!element) return;
-
-    element.innerHTML =
-      `<div class="loading">${escapeHTML(text)}</div>`;
+    if (modal) {
+      modal.classList.add(
+        "hidden"
+      );
+    }
   }
 
 
-  function isOwner() {
-    return currentRole === "owner";
-  }
-
-
-  function isAdmin() {
-    return currentRole === "admin";
-  }
-
-
-  function canUseAdminDashboard() {
-    return (
-      currentRole === "owner" ||
-      currentRole === "admin"
-    );
-  }
-
-
-  /* =========================================================
+  /* ========================================================
      LOGIN
-  ========================================================= */
+  ======================================================== */
 
   async function login() {
-    const email = $("email").value.trim();
-    const password = $("password").value;
-    const button = $("loginButton");
+    const email =
+      document
+        .getElementById("email")
+        .value
+        .trim();
 
-    setMessage("loginError", "", "");
+    const password =
+      document
+        .getElementById("password")
+        .value;
+
+    const errorBox =
+      document.getElementById(
+        "loginError"
+      );
+
+    errorBox.textContent = "";
 
     if (!email || !password) {
-      setMessage(
-        "loginError",
-        "error",
-        "Please enter your email and password."
-      );
+      errorBox.textContent =
+        "Please enter your email and password.";
+
       return;
     }
 
-    button.disabled = true;
-    button.textContent = "Logging in...";
+    const button =
+      document.getElementById(
+        "loginButton"
+      );
 
-    try {
-      const result =
-        await supabaseClient.auth.signInWithPassword({
+    button.disabled = true;
+    button.textContent =
+      "Logging in...";
+
+    const {
+      error
+    } =
+      await supabaseClient.auth
+        .signInWithPassword({
           email,
           password
         });
 
-      if (result.error) {
-        setMessage(
-          "loginError",
-          "error",
-          "❌ " + result.error.message
-        );
-        return;
-      }
+    if (error) {
+      errorBox.textContent =
+        "❌ " +
+        error.message;
 
-      const success = await checkAdmin();
-
-      if (!success) {
-        await supabaseClient.auth.signOut();
-      }
-
-    } catch (error) {
-      console.error(error);
-
-      setMessage(
-        "loginError",
-        "error",
-        "❌ Something went wrong while logging in."
-      );
-
-    } finally {
       button.disabled = false;
-      button.textContent = "Login";
+      button.textContent =
+        "Login";
+
+      return;
     }
+
+    await checkAdmin();
+
+    button.disabled = false;
+    button.textContent =
+      "Login";
   }
 
 
-  /* =========================================================
-     CHECK CURRENT SESSION / ADMIN ACCESS
-  ========================================================= */
+  /* ========================================================
+     CHECK ADMIN
+  ======================================================== */
 
   async function checkAdmin() {
-    if (isLoadingSession) {
-      return false;
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.auth
+        .getUser();
+
+    if (
+      error ||
+      !data.user
+    ) {
+      return;
     }
 
-    isLoadingSession = true;
+    currentUser =
+      data.user;
 
-    try {
-      const result =
-        await supabaseClient.auth.getUser();
 
-      if (
-        result.error ||
-        !result.data ||
-        !result.data.user
-      ) {
-        showLogin();
-        return false;
-      }
+    const {
+      data: adminData,
+      error: adminError
+    } =
+      await supabaseClient
+        .from("admin_users")
+        .select("role")
+        .eq(
+          "user_id",
+          currentUser.id
+        )
+        .maybeSingle();
 
-      currentUser = result.data.user;
 
-      const adminResult =
-        await supabaseClient
-          .from("admin_users")
-          .select("role")
-          .eq("user_id", currentUser.id)
-          .maybeSingle();
-
-      if (adminResult.error) {
-        console.error(adminResult.error);
-
-        showLogin();
-
-        setMessage(
-          "loginError",
-          "error",
-          "❌ Could not verify admin access: " +
-            adminResult.error.message
-        );
-
-        return false;
-      }
-
-      if (!adminResult.data) {
-        showLogin();
-
-        setMessage(
-          "loginError",
-          "error",
-          "❌ Your account does not have ProdLink KE admin access."
-        );
-
-        await supabaseClient.auth.signOut();
-
-        return false;
-      }
-
-      currentRole = adminResult.data.role;
-
-      /*
-       * The two protected Owner accounts always operate
-       * as Owners.
-       */
-      if (OWNER_IDS.includes(currentUser.id)) {
-        currentRole = "owner";
-      }
-
-      /*
-       * This dashboard is intended for Owners and Admins.
-       */
-      if (!canUseAdminDashboard()) {
-        showLogin();
-
-        setMessage(
-          "loginError",
-          "error",
-          "❌ Your account does not have admin dashboard access."
-        );
-
-        await supabaseClient.auth.signOut();
-
-        return false;
-      }
-
-      showDashboard();
-
-      await loadDashboard();
-
-      return true;
-
-    } catch (error) {
-      console.error(error);
-
-      showLogin();
-
-      setMessage(
-        "loginError",
-        "error",
-        "❌ Could not verify your session."
+    if (adminError) {
+      showLoginError(
+        "❌ " +
+        adminError.message
       );
 
-      return false;
-
-    } finally {
-      isLoadingSession = false;
-    }
-  }
-
-
-  /* =========================================================
-     SHOW LOGIN
-  ========================================================= */
-
-  function showLogin() {
-    $("loginCard").classList.remove("hidden");
-    $("dashboard").classList.add("hidden");
-  }
-
-
-  /* =========================================================
-     SHOW DASHBOARD
-  ========================================================= */
-
-  function showDashboard() {
-    $("loginCard").classList.add("hidden");
-    $("dashboard").classList.remove("hidden");
-
-    $("roleText").textContent =
-      "Logged in as: " +
-      String(currentRole || "").toUpperCase();
-
-    if (isOwner()) {
-      $("menuInviteButton").classList.remove("hidden");
-    } else {
-      $("menuInviteButton").classList.add("hidden");
+      return;
     }
 
-    if (isOwner()) {
-      $("ownerTeamSection").classList.remove("hidden");
-      $("businessRequestsSection").classList.remove("hidden");
-      $("teamRequestsSection").classList.remove("hidden");
 
-      $("adminRequestSection").classList.add("hidden");
-      $("deleteRequestSection").classList.add("hidden");
-    } else {
-      $("ownerTeamSection").classList.add("hidden");
-      $("businessRequestsSection").classList.add("hidden");
-      $("teamRequestsSection").classList.add("hidden");
-
-      $("adminRequestSection").classList.remove("hidden");
-      $("deleteRequestSection").classList.remove("hidden");
-    }
-  }
-
-
-  /* =========================================================
-     LOAD DASHBOARD
-  ========================================================= */
-
-  async function loadDashboard() {
-    const jobs = [
-      loadBusinesses(),
-      loadProducts()
-    ];
-
-    if (isOwner()) {
-      jobs.push(
-        loadTeam(),
-        loadBusinessRequests(),
-        loadTeamRequests()
+    if (!adminData) {
+      showLoginError(
+        "❌ Your account does not have ProdLink KE admin access."
       );
+
+      await supabaseClient.auth
+        .signOut();
+
+      return;
     }
 
-    await Promise.allSettled(jobs);
+
+    currentRole =
+      adminData.role;
+
+
+    if (
+      ![
+        "owner",
+        "admin"
+      ].includes(
+        currentRole
+      )
+    ) {
+      showLoginError(
+        "❌ Your account does not have admin access."
+      );
+
+      await supabaseClient.auth
+        .signOut();
+
+      return;
+    }
+
+
+    document
+      .getElementById(
+        "loginCard"
+      )
+      .classList.add(
+        "hidden"
+      );
+
+
+    document
+      .getElementById(
+        "dashboard"
+      )
+      .classList.remove(
+        "hidden"
+      );
+
+
+    document
+      .getElementById(
+        "roleText"
+      )
+      .textContent =
+        "Logged in as: " +
+        currentRole.toUpperCase();
+
+
+    if (
+      currentRole ===
+      "owner"
+    ) {
+      document
+        .getElementById(
+          "adminManagementSection"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
+      document
+        .getElementById(
+          "businessRequestsSection"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
+      document
+        .getElementById(
+          "teamRequestsSection"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
+      loadAdminTeam();
+      loadBusinessRequests();
+      loadTeamRequests();
+    }
+
+    else {
+      document
+        .getElementById(
+          "adminRequestSection"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
+      document
+        .getElementById(
+          "deleteRequestSection"
+        )
+        .classList.remove(
+          "hidden"
+        );
+    }
+
+
+    loadBusinesses();
+    loadProducts();
   }
 
 
-  /* =========================================================
+  function showLoginError(
+    message
+  ) {
+    document
+      .getElementById(
+        "loginError"
+      )
+      .textContent =
+        message;
+  }
+
+
+  /* ========================================================
      BUSINESSES
-  ========================================================= */
+  ======================================================== */
 
   async function loadBusinesses() {
-    setLoading("businesses");
+    const container =
+      document.getElementById(
+        "businesses"
+      );
 
-    try {
-      const result =
-        await supabaseClient
-          .from("businesses")
-          .select("*")
-          .order("created_at", {
+    container.innerHTML =
+      "Loading...";
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("businesses")
+        .select("*")
+        .order(
+          "created_at",
+          {
             ascending: false
-          });
+          }
+        );
 
-      if (result.error) {
-        $("businesses").innerHTML =
-          `<p class="error">${escapeHTML(
-            result.error.message
-          )}</p>`;
+    if (error) {
+      container.innerHTML =
+        `<p class="error">${escapeHTML(
+          error.message
+        )}</p>`;
 
-        return;
-      }
+      return;
+    }
 
-      const businesses = result.data || [];
+    const businesses =
+      data || [];
 
-      let pending = 0;
-      let approved = 0;
-      let rejected = 0;
+    let pending = 0;
+    let approved = 0;
+    let rejected = 0;
 
-      businesses.forEach((business) => {
-        if (business.status === "pending") {
+    businesses.forEach(
+      business => {
+        if (
+          business.status ===
+          "pending"
+        ) {
           pending++;
-        } else if (business.status === "approved") {
+        }
+
+        if (
+          business.status ===
+          "approved"
+        ) {
           approved++;
-        } else if (business.status === "rejected") {
+        }
+
+        if (
+          business.status ===
+          "rejected"
+        ) {
           rejected++;
         }
-      });
-
-      $("pendingCount").textContent = pending;
-      $("approvedCount").textContent = approved;
-      $("rejectedCount").textContent = rejected;
-
-      populateBusinessSelector(businesses);
-
-      if (!businesses.length) {
-        $("businesses").innerHTML =
-          `<p class="empty">No businesses found.</p>`;
-        return;
       }
+    );
 
-      $("businesses").innerHTML = "";
+    document
+      .getElementById(
+        "pendingCount"
+      )
+      .textContent =
+        pending;
 
-      businesses.forEach((business) => {
+    document
+      .getElementById(
+        "approvedCount"
+      )
+      .textContent =
+        approved;
+
+    document
+      .getElementById(
+        "rejectedCount"
+      )
+      .textContent =
+        rejected;
+
+
+    const selector =
+      document.getElementById(
+        "deleteBusinessSelect"
+      );
+
+    selector.innerHTML =
+      `<option value="">Select business</option>`;
+
+
+    businesses.forEach(
+      business => {
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          business.id;
+
+        option.textContent =
+          business.name ||
+          "Unnamed Business";
+
+        selector.appendChild(
+          option
+        );
+      }
+    );
+
+
+    if (!businesses.length) {
+      container.innerHTML =
+        "<p>No businesses found.</p>";
+
+      return;
+    }
+
+
+    container.innerHTML =
+      "";
+
+
+    businesses.forEach(
+      business => {
         const item =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
-        item.className = "item";
+        item.className =
+          "item";
 
         const status =
-          business.status || "pending";
+          business.status ||
+          "pending";
 
-        let badgeClass = "pending";
+        let badge =
+          "pending";
 
-        if (status === "approved") {
-          badgeClass = "approved";
+        if (
+          status ===
+          "approved"
+        ) {
+          badge =
+            "approved";
         }
 
-        if (status === "rejected") {
-          badgeClass = "rejected";
+        if (
+          status ===
+          "rejected"
+        ) {
+          badge =
+            "rejected";
         }
 
-        let buttons = "";
 
-        if (status === "pending") {
+        let buttons =
+          "";
+
+        if (
+          status ===
+          "pending"
+        ) {
           buttons += `
             <button
               class="approve"
-              onclick="approveBusiness('${escapeHTML(
-                business.id
-              )}')"
+              onclick="approveBusiness('${business.id}')"
             >
               ✅ Approve
             </button>
 
             <button
               class="reject"
-              onclick="rejectBusiness('${escapeHTML(
-                business.id
-              )}')"
+              onclick="rejectBusiness('${business.id}')"
             >
               ❌ Reject
             </button>
           `;
-        } else if (status === "approved") {
+        }
+
+        else if (
+          status ===
+          "approved"
+        ) {
           buttons += `
             <button
               class="reject"
-              onclick="rejectBusiness('${escapeHTML(
-                business.id
-              )}')"
+              onclick="rejectBusiness('${business.id}')"
             >
               ❌ Reject
             </button>
           `;
-        } else {
+        }
+
+        else {
           buttons += `
             <button
               class="approve"
-              onclick="approveBusiness('${escapeHTML(
-                business.id
-              )}')"
+              onclick="approveBusiness('${business.id}')"
             >
               ✅ Approve
             </button>
           `;
         }
 
-        if (isOwner()) {
+
+        if (
+          currentRole ===
+          "owner"
+        ) {
           buttons += `
             <button
               class="delete"
-              onclick="ownerDeleteBusiness('${escapeHTML(
-                business.id
-              )}')"
+              onclick="ownerDeleteBusiness('${business.id}')"
             >
               🗑️ Delete
             </button>
           `;
         }
+
 
         item.innerHTML = `
           <div class="row">
@@ -1580,7 +1573,8 @@
 
               <h3>
                 ${escapeHTML(
-                  business.name || "Unnamed Business"
+                  business.name ||
+                  "Unnamed Business"
                 )}
               </h3>
 
@@ -1588,7 +1582,8 @@
                 🏷️
                 <strong>Category:</strong>
                 ${escapeHTML(
-                  business.category || "Not provided"
+                  business.category ||
+                  "Not provided"
                 )}
               </p>
 
@@ -1596,7 +1591,8 @@
                 📍
                 <strong>Location:</strong>
                 ${escapeHTML(
-                  business.location || "Not provided"
+                  business.location ||
+                  "Not provided"
                 )}
               </p>
 
@@ -1604,7 +1600,8 @@
                 📞
                 <strong>Phone:</strong>
                 ${escapeHTML(
-                  business.phone || "Not provided"
+                  business.phone ||
+                  "Not provided"
                 )}
               </p>
 
@@ -1612,33 +1609,25 @@
                 📧
                 <strong>Email:</strong>
                 ${escapeHTML(
-                  business.email || "Not provided"
+                  business.email ||
+                  "Not provided"
                 )}
               </p>
 
               <hr>
 
               <p>
-                📝
                 <strong>Description:</strong>
                 <br>
                 ${escapeHTML(
                   business.description ||
-                    "No description provided."
+                  "No description provided."
                 )}
               </p>
 
-              <p>
-                📦
-                <strong>Products / Services:</strong>
-                <br>
-                ${escapeHTML(
-                  business.products ||
-                    "No products or services provided."
-                )}
-              </p>
-
-              <span class="badge ${badgeClass}">
+              <span
+                class="badge ${badge}"
+              >
                 ${escapeHTML(
                   status.toUpperCase()
                 )}
@@ -1653,115 +1642,91 @@
           </div>
         `;
 
-        $("businesses").appendChild(item);
-      });
-
-    } catch (error) {
-      console.error(error);
-
-      $("businesses").innerHTML =
-        `<p class="error">
-          ❌ Could not load businesses.
-        </p>`;
-    }
+        container.appendChild(
+          item
+        );
+      }
+    );
   }
 
 
-  /* =========================================================
-     BUSINESS SELECTOR
-  ========================================================= */
-
-  function populateBusinessSelector(businesses) {
-    const selector =
-      $("deleteBusinessSelect");
-
-    if (!selector) return;
-
-    selector.innerHTML = `
-      <option value="">
-        Select business
-      </option>
-    `;
-
-    businesses.forEach((business) => {
-      const option =
-        document.createElement("option");
-
-      option.value = business.id;
-
-      option.textContent =
-        business.name || "Unnamed Business";
-
-      selector.appendChild(option);
-    });
-  }
-
-
-  /* =========================================================
-     APPROVE BUSINESS
-  ========================================================= */
-
-  async function approveBusiness(id) {
-    if (!id) return;
-
-    const result =
+  async function approveBusiness(
+    id
+  ) {
+    const {
+      error
+    } =
       await supabaseClient
         .from("businesses")
         .update({
           status: "approved"
         })
-        .eq("id", id);
+        .eq(
+          "id",
+          id
+        );
 
-    if (result.error) {
+    if (error) {
       alert(
-        "❌ " + result.error.message
+        "❌ " +
+        error.message
       );
+
       return;
     }
 
-    await loadBusinesses();
+    loadBusinesses();
   }
 
 
-  /* =========================================================
-     REJECT BUSINESS
-  ========================================================= */
-
-  async function rejectBusiness(id) {
-    if (!id) return;
-
-    if (!confirm("Reject this business?")) {
+  async function rejectBusiness(
+    id
+  ) {
+    if (
+      !confirm(
+        "Reject this business?"
+      )
+    ) {
       return;
     }
 
-    const result =
+    const {
+      error
+    } =
       await supabaseClient
         .from("businesses")
         .update({
           status: "rejected"
         })
-        .eq("id", id);
+        .eq(
+          "id",
+          id
+        );
 
-    if (result.error) {
+    if (error) {
       alert(
-        "❌ " + result.error.message
+        "❌ " +
+        error.message
       );
+
       return;
     }
 
-    await loadBusinesses();
+    loadBusinesses();
   }
 
 
-  /* =========================================================
-     OWNER DIRECT DELETE BUSINESS
-  ========================================================= */
-
-  async function ownerDeleteBusiness(id) {
-    if (!isOwner()) {
+  async function ownerDeleteBusiness(
+    id
+  ) {
+    if (
+      currentRole !==
+      "owner"
+    ) {
       alert(
-        "Only Owners can directly delete businesses."
+        "Only Owners can delete businesses."
       );
+
       return;
     }
 
@@ -1773,84 +1738,112 @@
       return;
     }
 
-    const result =
+    const {
+      error
+    } =
       await supabaseClient
         .from("businesses")
         .delete()
-        .eq("id", id);
+        .eq(
+          "id",
+          id
+        );
 
-    if (result.error) {
+    if (error) {
       alert(
-        "❌ " + result.error.message
+        "❌ " +
+        error.message
       );
+
       return;
     }
 
-    await loadBusinesses();
+    loadBusinesses();
   }
 
 
-  /* =========================================================
+  /* ========================================================
      PRODUCTS
-  ========================================================= */
+  ======================================================== */
 
   async function loadProducts() {
-    setLoading("products");
+    const container =
+      document.getElementById(
+        "products"
+      );
 
-    try {
-      const result =
-        await supabaseClient
-          .from("products")
-          .select("*")
-          .order("created_at", {
+    container.innerHTML =
+      "Loading...";
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("products")
+        .select("*")
+        .order(
+          "created_at",
+          {
             ascending: false
-          });
+          }
+        );
 
-      if (result.error) {
-        $("products").innerHTML =
-          `<p class="error">${escapeHTML(
-            result.error.message
-          )}</p>`;
+    if (error) {
+      container.innerHTML =
+        `<p class="error">${escapeHTML(
+          error.message
+        )}</p>`;
 
-        return;
-      }
+      return;
+    }
 
-      const products = result.data || [];
+    const products =
+      data || [];
 
-      $("productCount").textContent =
+    document
+      .getElementById(
+        "productCount"
+      )
+      .textContent =
         products.length;
 
-      if (!products.length) {
-        $("products").innerHTML =
-          `<p class="empty">No products found.</p>`;
-        return;
-      }
 
-      $("products").innerHTML = "";
+    if (!products.length) {
+      container.innerHTML =
+        "<p>No products found.</p>";
 
-      products.forEach((product) => {
+      return;
+    }
+
+
+    container.innerHTML =
+      "";
+
+
+    products.forEach(
+      product => {
         const item =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
-        item.className = "item";
+        item.className =
+          "item";
 
-        let deleteButton = "";
+        const deleteButton =
+          currentRole ===
+          "owner"
+            ? `
+              <button
+                class="delete"
+                onclick="deleteProduct('${product.id}')"
+              >
+                🗑️ Delete
+              </button>
+            `
+            : "";
 
-        if (isOwner()) {
-          deleteButton = `
-            <button
-              class="delete"
-              onclick="deleteProduct('${escapeHTML(
-                product.id
-              )}')"
-            >
-              🗑️ Delete
-            </button>
-          `;
-        }
-
-        const price =
-          Number(product.price || 0);
 
         item.innerHTML = `
           <div class="row">
@@ -1859,14 +1852,17 @@
 
               <h3>
                 ${escapeHTML(
-                  product.name || "Unnamed Product"
+                  product.name ||
+                  "Unnamed Product"
                 )}
               </h3>
 
               <p>
                 💰 Price:
                 KSh
-                ${price.toLocaleString()}
+                ${Number(
+                  product.price || 0
+                ).toLocaleString()}
               </p>
 
               ${
@@ -1890,29 +1886,25 @@
           </div>
         `;
 
-        $("products").appendChild(item);
-      });
-
-    } catch (error) {
-      console.error(error);
-
-      $("products").innerHTML =
-        `<p class="error">
-          ❌ Could not load products.
-        </p>`;
-    }
+        container.appendChild(
+          item
+        );
+      }
+    );
   }
 
 
-  /* =========================================================
-     DELETE PRODUCT
-  ========================================================= */
-
-  async function deleteProduct(id) {
-    if (!isOwner()) {
+  async function deleteProduct(
+    id
+  ) {
+    if (
+      currentRole !==
+      "owner"
+    ) {
       alert(
         "Only Owners can delete products."
       );
+
       return;
     }
 
@@ -1924,268 +1916,672 @@
       return;
     }
 
-    const result =
+    const {
+      error
+    } =
       await supabaseClient
         .from("products")
         .delete()
-        .eq("id", id);
+        .eq(
+          "id",
+          id
+        );
 
-    if (result.error) {
+    if (error) {
       alert(
-        "❌ " + result.error.message
+        "❌ " +
+        error.message
       );
+
       return;
     }
 
-    await loadProducts();
+    loadProducts();
   }
 
 
-  /* =========================================================
-     ADMIN — BUSINESS DELETE REQUEST
-  ========================================================= */
+  /* ========================================================
+     ADMIN MANAGEMENT
+  ======================================================== */
 
-  async function submitDeleteRequest() {
-    const businessId =
-      $("deleteBusinessSelect").value;
+  async function manageAdmin(
+    action,
+    email = ""
+  ) {
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.functions
+        .invoke(
+          ADMIN_FUNCTION,
+          {
+            body: {
+              action,
+              email
+            }
+          }
+        );
 
-    const reason =
-      $("deleteReason").value.trim();
-
-    if (!businessId) {
-      setMessage(
-        "deleteRequestMessage",
-        "error",
-        "❌ Select a business."
+    if (error) {
+      throw new Error(
+        error.message ||
+        "Could not contact the Admin management function."
       );
-      return;
     }
 
-    if (reason.length < 10) {
-      setMessage(
-        "deleteRequestMessage",
-        "error",
-        "❌ Please provide a clear reason of at least 10 characters."
+    if (
+      data?.error
+    ) {
+      throw new Error(
+        data.error
       );
-      return;
     }
 
-    const result =
-      await supabaseClient
-        .from("business_requests")
-        .insert({
-          business_id: businessId,
-          action: "delete",
-          reason: reason,
-          requested_by: currentUser.id,
-          status: "pending"
-        });
-
-    if (result.error) {
-      setMessage(
-        "deleteRequestMessage",
-        "error",
-        "❌ " + result.error.message
-      );
-      return;
-    }
-
-    setMessage(
-      "deleteRequestMessage",
-      "success",
-      "✅ Removal request sent to the Owners."
-    );
-
-    $("deleteReason").value = "";
-
-    await loadBusinesses();
+    return data;
   }
 
 
-  /* =========================================================
-     OWNER — BUSINESS REQUESTS
-  ========================================================= */
+  async function loadAdminTeam() {
+    if (
+      currentRole !==
+      "owner"
+    ) {
+      return;
+    }
 
-  async function loadBusinessRequests() {
-    if (!isOwner()) return;
+    const container =
+      document.getElementById(
+        "adminTeam"
+      );
 
-    setLoading("businessRequests");
+    container.innerHTML =
+      "Loading...";
+
 
     try {
       const result =
-        await supabaseClient
-          .from("business_requests")
-          .select("*")
-          .order("created_at", {
-            ascending: false
-          });
+        await manageAdmin(
+          "list"
+        );
 
-      if (result.error) {
-        $("businessRequests").innerHTML =
-          `<p class="error">${escapeHTML(
-            result.error.message
-          )}</p>`;
+      const members =
+        result.members ||
+        [];
+
+
+      if (!members.length) {
+        container.innerHTML =
+          "<p>No Admin team members found.</p>";
 
         return;
       }
 
-      const requests = result.data || [];
 
-      const pending =
-        requests.filter(
-          (request) =>
-            request.status === "pending"
-        ).length;
+      container.innerHTML =
+        "";
 
-      $("requestCount").textContent =
+
+      members.forEach(
+        member => {
+          const item =
+            document.createElement(
+              "div"
+            );
+
+          item.className =
+            "item";
+
+
+          let badgeClass =
+            "viewerBadge";
+
+          if (
+            member.role ===
+            "owner"
+          ) {
+            badgeClass =
+              "ownerBadge";
+          }
+
+          else if (
+            member.role ===
+            "admin"
+          ) {
+            badgeClass =
+              "adminBadge";
+          }
+
+          else if (
+            member.role ===
+            "moderator"
+          ) {
+            badgeClass =
+              "moderatorBadge";
+          }
+
+
+          const isOwner =
+            member.role ===
+            "owner";
+
+
+          item.innerHTML = `
+            <div class="row">
+
+              <div>
+
+                <div class="admin-email">
+                  ${escapeHTML(
+                    member.email ||
+                    "Email unavailable"
+                  )}
+                </div>
+
+                <div class="small">
+                  User ID:
+                  ${escapeHTML(
+                    member.user_id
+                  )}
+                </div>
+
+                <span
+                  class="badge ${badgeClass}"
+                >
+                  ${escapeHTML(
+                    member.role.toUpperCase()
+                  )}
+                </span>
+
+              </div>
+
+              <div class="admin-actions">
+
+                ${
+                  isOwner
+                    ? `
+                      <strong>
+                        👑 Protected Owner
+                      </strong>
+                    `
+                    : `
+                      <button
+                        class="delete"
+                        onclick="removeAdmin('${escapeHTML(
+                          member.email
+                        )}')"
+                      >
+                        ❌ Remove Admin
+                      </button>
+                    `
+                }
+
+              </div>
+
+            </div>
+          `;
+
+          container.appendChild(
+            item
+          );
+        }
+      );
+
+    } catch (error) {
+      container.innerHTML =
+        `<p class="error">❌ ${escapeHTML(
+          error.message
+        )}</p>`;
+    }
+  }
+
+
+  async function addAdmin() {
+    if (
+      currentRole !==
+      "owner"
+    ) {
+      return;
+    }
+
+    const input =
+      document.getElementById(
+        "adminEmail"
+      );
+
+    const button =
+      document.getElementById(
+        "addAdminButton"
+      );
+
+    const email =
+      input.value
+        .trim()
+        .toLowerCase();
+
+
+    showMessage(
+      "adminMessage",
+      ""
+    );
+
+
+    if (
+      !email ||
+      !email.includes("@")
+    ) {
+      showMessage(
+        "adminMessage",
+        "❌ Enter a valid email address.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      "Adding...";
+
+
+    try {
+      const result =
+        await manageAdmin(
+          "add",
+          email
+        );
+
+      const action =
+        result.action ===
+        "promoted"
+          ? "promoted to Admin"
+          : "added as Admin";
+
+
+      showMessage(
+        "adminMessage",
+        `✅ ${email} has been ${action}.`,
+        "success"
+      );
+
+
+      input.value =
+        "";
+
+
+      await loadAdminTeam();
+
+    } catch (error) {
+      showMessage(
+        "adminMessage",
+        "❌ " +
+        error.message,
+        "error"
+      );
+
+    } finally {
+      button.disabled =
+        false;
+
+      button.textContent =
+        "👑 Add Admin";
+    }
+  }
+
+
+  async function removeAdmin(
+    email
+  ) {
+    if (
+      currentRole !==
+      "owner"
+    ) {
+      return;
+    }
+
+
+    if (
+      !confirm(
+        `Remove Admin access from ${email}?`
+      )
+    ) {
+      return;
+    }
+
+
+    try {
+      const result =
+        await manageAdmin(
+          "remove",
+          email
+        );
+
+      showMessage(
+        "adminMessage",
+        `✅ ${email} no longer has Admin access.`,
+        "success"
+      );
+
+      await loadAdminTeam();
+
+    } catch (error) {
+      showMessage(
+        "adminMessage",
+        "❌ " +
+        error.message,
+        "error"
+      );
+    }
+  }
+
+
+  /* ========================================================
+     BUSINESS DELETE REQUEST
+  ======================================================== */
+
+  async function submitDeleteRequest() {
+    const businessId =
+      document
+        .getElementById(
+          "deleteBusinessSelect"
+        )
+        .value;
+
+    const reason =
+      document
+        .getElementById(
+          "deleteReason"
+        )
+        .value
+        .trim();
+
+
+    if (!businessId) {
+      showMessage(
+        "deleteRequestMessage",
+        "❌ Select a business.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (
+      reason.length <
+      10
+    ) {
+      showMessage(
+        "deleteRequestMessage",
+        "❌ Please provide at least 10 characters.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from(
+          "business_requests"
+        )
+        .insert({
+          business_id:
+            businessId,
+
+          action:
+            "delete",
+
+          reason,
+
+          requested_by:
+            currentUser.id,
+
+          status:
+            "pending"
+        });
+
+
+    if (error) {
+      showMessage(
+        "deleteRequestMessage",
+        "❌ " +
+        error.message,
+        "error"
+      );
+
+      return;
+    }
+
+
+    showMessage(
+      "deleteRequestMessage",
+      "✅ Removal request sent to the Owners.",
+      "success"
+    );
+
+
+    document
+      .getElementById(
+        "deleteReason"
+      )
+      .value = "";
+  }
+
+
+  /* ========================================================
+     BUSINESS REQUESTS
+  ======================================================== */
+
+  async function loadBusinessRequests() {
+    if (
+      currentRole !==
+      "owner"
+    ) {
+      return;
+    }
+
+
+    const container =
+      document.getElementById(
+        "businessRequests"
+      );
+
+    container.innerHTML =
+      "Loading...";
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from(
+          "business_requests"
+        )
+        .select("*")
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+
+    if (error) {
+      container.innerHTML =
+        `<p class="error">${escapeHTML(
+          error.message
+        )}</p>`;
+
+      return;
+    }
+
+
+    const requests =
+      data || [];
+
+
+    const pending =
+      requests.filter(
+        request =>
+          request.status ===
+          "pending"
+      ).length;
+
+
+    document
+      .getElementById(
+        "requestCount"
+      )
+      .textContent =
         pending;
 
-      if (!requests.length) {
-        $("businessRequests").innerHTML =
-          `<p class="empty">
-            No business requests.
-          </p>`;
-        return;
+
+    if (!requests.length) {
+      container.innerHTML =
+        "<p>No business requests.</p>";
+
+      return;
+    }
+
+
+    container.innerHTML =
+      "";
+
+
+    for (
+      const request of
+      requests
+    ) {
+      const item =
+        document.createElement(
+          "div"
+        );
+
+      item.className =
+        "item";
+
+
+      let businessName =
+        "Unknown business";
+
+
+      const {
+        data: business
+      } =
+        await supabaseClient
+          .from(
+            "businesses"
+          )
+          .select("name")
+          .eq(
+            "id",
+            request.business_id
+          )
+          .maybeSingle();
+
+
+      if (business?.name) {
+        businessName =
+          business.name;
       }
 
-      $("businessRequests").innerHTML = "";
 
-      for (const request of requests) {
-        const item =
-          document.createElement("div");
-
-        item.className = "item";
-
-        let businessName =
-          "Unknown business";
-
-        const businessResult =
-          await supabaseClient
-            .from("businesses")
-            .select("name")
-            .eq(
-              "id",
-              request.business_id
-            )
-            .maybeSingle();
-
-        if (businessResult.data) {
-          businessName =
-            businessResult.data.name;
-        }
-
-        let buttons = "";
-
-        if (request.status === "pending") {
-          buttons = `
+      const buttons =
+        request.status ===
+        "pending"
+          ? `
             <button
               class="approve"
-              onclick="approveDeletion(${Number(
-                request.id
-              )})"
+              onclick="approveDeletion(${request.id})"
             >
               ✅ Approve Delete
             </button>
 
             <button
               class="reject"
-              onclick="rejectDeletion(${Number(
-                request.id
-              )})"
+              onclick="rejectDeletion(${request.id})"
             >
               ❌ Reject
             </button>
-          `;
-        }
+          `
+          : "";
 
-        item.innerHTML = `
-          <h3>
-            🗑️ ${escapeHTML(
-              businessName
-            )}
-          </h3>
 
-          <p>
-            <strong>Requested by:</strong>
-            ${escapeHTML(
-              request.requested_by_name ||
-                "Unknown user"
-            )}
+      item.innerHTML = `
+        <h3>
+          🗑️ ${escapeHTML(
+            businessName
+          )}
+        </h3>
 
-            <br>
+        <p>
+          <strong>Requested by:</strong>
+          ${escapeHTML(
+            request.requested_by_name ||
+            "Unknown user"
+          )}
+          <br>
 
-            <strong>Email:</strong>
-            ${escapeHTML(
-              request.requested_by_email ||
-                "Not available"
-            )}
+          <strong>Email:</strong>
+          ${escapeHTML(
+            request.requested_by_email ||
+            "Not available"
+          )}
+        </p>
 
-            <br>
+        <p>
+          <strong>Reason:</strong>
+          <br>
+          ${escapeHTML(
+            request.reason
+          )}
+        </p>
 
-            <strong>Role:</strong>
-            ${escapeHTML(
-              request.requested_by_role ||
-                "Unknown"
-            )}
-          </p>
+        <p class="small">
+          Requested:
+          ${new Date(
+            request.created_at
+          ).toLocaleString()}
+        </p>
 
-          <p>
-            <strong>Reason:</strong>
-            <br>
-            ${escapeHTML(
-              request.reason
-            )}
-          </p>
+        <span class="badge ${escapeHTML(
+          request.status
+        )}">
+          ${escapeHTML(
+            request.status.toUpperCase()
+          )}
+        </span>
 
-          <p class="small">
-            Requested:
-            ${formatDate(
-              request.created_at
-            )}
-          </p>
+        <div>
+          ${buttons}
+        </div>
+      `;
 
-          <span class="badge ${escapeHTML(
-            request.status || "pending"
-          )}">
-            ${escapeHTML(
-              (
-                request.status ||
-                "pending"
-              ).toUpperCase()
-            )}
-          </span>
-
-          <div>
-            ${buttons}
-          </div>
-        `;
-
-        $("businessRequests")
-          .appendChild(item);
-      }
-
-    } catch (error) {
-      console.error(error);
-
-      $("businessRequests").innerHTML =
-        `<p class="error">
-          ❌ Could not load business requests.
-        </p>`;
+      container.appendChild(
+        item
+      );
     }
   }
 
 
-  /* =========================================================
-     APPROVE BUSINESS DELETION
-  ========================================================= */
-
-  async function approveDeletion(requestId) {
-    if (!isOwner()) {
-      alert(
-        "Only Owners can approve deletions."
-      );
+  async function approveDeletion(
+    requestId
+  ) {
+    if (
+      currentRole !==
+      "owner"
+    ) {
       return;
     }
+
 
     if (
       !confirm(
@@ -2195,213 +2591,297 @@
       return;
     }
 
-    const result =
+
+    const {
+      error
+    } =
       await supabaseClient.rpc(
         "approve_business_deletion",
         {
-          request_id: requestId
+          request_id:
+            requestId
         }
       );
 
-    if (result.error) {
+
+    if (error) {
       alert(
-        "❌ " + result.error.message
+        "❌ " +
+        error.message
       );
+
       return;
     }
+
 
     await loadBusinesses();
     await loadBusinessRequests();
   }
 
 
-  /* =========================================================
-     REJECT BUSINESS DELETION
-  ========================================================= */
-
-  async function rejectDeletion(requestId) {
-    if (!isOwner()) return;
-
+  async function rejectDeletion(
+    requestId
+  ) {
     if (
-      !confirm(
-        "Reject this business deletion request?"
-      )
+      currentRole !==
+      "owner"
     ) {
       return;
     }
 
-    const result =
+
+    const {
+      error
+    } =
       await supabaseClient.rpc(
         "reject_business_deletion",
         {
-          request_id: requestId
+          request_id:
+            requestId
         }
       );
 
-    if (result.error) {
+
+    if (error) {
       alert(
-        "❌ " + result.error.message
+        "❌ " +
+        error.message
       );
+
       return;
     }
+
 
     await loadBusinessRequests();
   }
 
 
-  /* =========================================================
-     ADMIN — TEAM REQUEST
-  ========================================================= */
+  /* ========================================================
+     TEAM REQUESTS
+  ======================================================== */
 
   async function submitTeamRequest() {
     const action =
-      $("teamAction").value;
+      document
+        .getElementById(
+          "teamAction"
+        )
+        .value;
 
     const userId =
-      $("requestUserId")
+      document
+        .getElementById(
+          "requestUserId"
+        )
         .value
         .trim();
 
     const role =
-      $("requestRole").value;
+      document
+        .getElementById(
+          "requestRole"
+        )
+        .value;
 
     const reason =
-      $("teamRequestReason")
+      document
+        .getElementById(
+          "teamRequestReason"
+        )
         .value
         .trim();
 
+
     if (!userId) {
-      setMessage(
+      showMessage(
         "teamRequestMessage",
-        "error",
-        "❌ Enter the collaborator User ID."
+        "❌ Enter the collaborator User ID.",
+        "error"
       );
+
       return;
     }
 
-    if (reason.length < 10) {
-      setMessage(
+
+    if (
+      reason.length <
+      10
+    ) {
+      showMessage(
         "teamRequestMessage",
-        "error",
-        "❌ Please provide a clear reason of at least 10 characters."
+        "❌ Please provide at least 10 characters.",
+        "error"
       );
+
       return;
     }
 
-    const result =
+
+    const {
+      error
+    } =
       await supabaseClient
-        .from("team_requests")
+        .from(
+          "team_requests"
+        )
         .insert({
-          action: action,
-          target_user_id: userId,
+          action,
+
+          target_user_id:
+            userId,
+
           requested_role:
-            action === "remove"
+            action ===
+            "remove"
               ? null
               : role,
-          reason: reason,
-          requested_by: currentUser.id,
-          status: "pending"
+
+          reason,
+
+          requested_by:
+            currentUser.id,
+
+          status:
+            "pending"
         });
 
-    if (result.error) {
-      setMessage(
+
+    if (error) {
+      showMessage(
         "teamRequestMessage",
-        "error",
-        "❌ " + result.error.message
+        "❌ " +
+        error.message,
+        "error"
       );
+
       return;
     }
 
-    setMessage(
+
+    showMessage(
       "teamRequestMessage",
-      "success",
-      "✅ Team request sent to the Owners."
+      "✅ Team request sent to the Owners.",
+      "success"
     );
 
-    $("requestUserId").value = "";
-    $("teamRequestReason").value = "";
+
+    document
+      .getElementById(
+        "requestUserId"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "teamRequestReason"
+      )
+      .value = "";
   }
 
 
-  /* =========================================================
-     OWNER — TEAM REQUESTS
-  ========================================================= */
-
   async function loadTeamRequests() {
-    if (!isOwner()) return;
+    if (
+      currentRole !==
+      "owner"
+    ) {
+      return;
+    }
 
-    setLoading("teamRequests");
 
-    try {
-      const result =
-        await supabaseClient
-          .from("team_requests")
-          .select("*")
-          .order("created_at", {
+    const container =
+      document.getElementById(
+        "teamRequests"
+      );
+
+    container.innerHTML =
+      "Loading...";
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from(
+          "team_requests"
+        )
+        .select("*")
+        .order(
+          "created_at",
+          {
             ascending: false
-          });
+          }
+        );
 
-      if (result.error) {
-        $("teamRequests").innerHTML =
-          `<p class="error">${escapeHTML(
-            result.error.message
-          )}</p>`;
 
-        return;
-      }
+    if (error) {
+      container.innerHTML =
+        `<p class="error">${escapeHTML(
+          error.message
+        )}</p>`;
 
-      const requests = result.data || [];
+      return;
+    }
 
-      if (!requests.length) {
-        $("teamRequests").innerHTML =
-          `<p class="empty">
-            No team requests.
-          </p>`;
-        return;
-      }
 
-      $("teamRequests").innerHTML = "";
+    const requests =
+      data || [];
 
-      requests.forEach((request) => {
+
+    if (!requests.length) {
+      container.innerHTML =
+        "<p>No team requests.</p>";
+
+      return;
+    }
+
+
+    container.innerHTML =
+      "";
+
+
+    requests.forEach(
+      request => {
         const item =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
-        item.className = "item";
+        item.className =
+          "item";
 
-        let buttons = "";
 
-        if (request.status === "pending") {
-          buttons = `
-            <button
-              class="approve"
-              onclick="approveTeamRequest(${Number(
-                request.id
-              )})"
-            >
-              ✅ Approve
-            </button>
+        const buttons =
+          request.status ===
+          "pending"
+            ? `
+              <button
+                class="approve"
+                onclick="approveTeamRequest(${request.id})"
+              >
+                ✅ Approve
+              </button>
 
-            <button
-              class="reject"
-              onclick="rejectTeamRequest(${Number(
-                request.id
-              )})"
-            >
-              ❌ Reject
-            </button>
-          `;
-        }
+              <button
+                class="reject"
+                onclick="rejectTeamRequest(${request.id})"
+              >
+                ❌ Reject
+              </button>
+            `
+            : "";
 
-        const actionText =
-          String(
-            request.action || "Request"
-          )
-            .replace("_", " ")
-            .toUpperCase();
 
         item.innerHTML = `
           <h3>
-            👥 ${escapeHTML(actionText)}
+            👥 ${escapeHTML(
+              request.action
+                .replace(
+                  "_",
+                  " "
+                )
+                .toUpperCase()
+            )}
           </h3>
 
           <p>
@@ -2426,30 +2906,6 @@
           }
 
           <p>
-            <strong>Requested by:</strong>
-            ${escapeHTML(
-              request.requested_by_name ||
-                "Unknown user"
-            )}
-
-            <br>
-
-            <strong>Email:</strong>
-            ${escapeHTML(
-              request.requested_by_email ||
-                "Not available"
-            )}
-
-            <br>
-
-            <strong>Role:</strong>
-            ${escapeHTML(
-              request.requested_by_role ||
-                "Unknown"
-            )}
-          </p>
-
-          <p>
             <strong>Reason:</strong>
             <br>
             ${escapeHTML(
@@ -2458,20 +2914,16 @@
           </p>
 
           <p class="small">
-            Requested:
-            ${formatDate(
+            ${new Date(
               request.created_at
-            )}
+            ).toLocaleString()}
           </p>
 
           <span class="badge ${escapeHTML(
-            request.status || "pending"
+            request.status
           )}">
             ${escapeHTML(
-              (
-                request.status ||
-                "pending"
-              ).toUpperCase()
+              request.status.toUpperCase()
             )}
           </span>
 
@@ -2480,83 +2932,85 @@
           </div>
         `;
 
-        $("teamRequests")
-          .appendChild(item);
-      });
-
-    } catch (error) {
-      console.error(error);
-
-      $("teamRequests").innerHTML =
-        `<p class="error">
-          ❌ Could not load team requests.
-        </p>`;
-    }
+        container.appendChild(
+          item
+        );
+      }
+    );
   }
 
 
-  /* =========================================================
-     APPROVE TEAM REQUEST
-  ========================================================= */
+  async function approveTeamRequest(
+    requestId
+  ) {
+    if (
+      currentRole !==
+      "owner"
+    ) {
+      return;
+    }
 
-  async function approveTeamRequest(requestId) {
-    if (!isOwner()) return;
 
-    const result =
+    const {
+      data: request,
+      error
+    } =
       await supabaseClient
-        .from("team_requests")
+        .from(
+          "team_requests"
+        )
         .select("*")
-        .eq("id", requestId)
-        .eq("status", "pending")
-        .maybeSingle();
+        .eq(
+          "id",
+          requestId
+        )
+        .eq(
+          "status",
+          "pending"
+        )
+        .single();
 
-    if (result.error) {
+
+    if (error) {
       alert(
-        "❌ " + result.error.message
+        "❌ " +
+        error.message
       );
+
       return;
     }
 
-    if (!result.data) {
-      alert(
-        "❌ This request is no longer pending."
-      );
 
-      await loadTeamRequests();
-      return;
-    }
+    let operation;
 
-    const request = result.data;
 
-    let operation = null;
-
-    if (request.action === "add") {
+    if (
+      request.action ===
+      "add"
+    ) {
       operation =
         await supabaseClient
-          .from("admin_users")
+          .from(
+            "admin_users"
+          )
           .insert({
             user_id:
               request.target_user_id,
+
             role:
               request.requested_role
           });
     }
 
-    else if (request.action === "remove") {
-      if (
-        OWNER_IDS.includes(
-          request.target_user_id
-        )
-      ) {
-        alert(
-          "Protected Owner accounts cannot be removed."
-        );
-        return;
-      }
-
+    else if (
+      request.action ===
+      "remove"
+    ) {
       operation =
         await supabaseClient
-          .from("admin_users")
+          .from(
+            "admin_users"
+          )
           .delete()
           .eq(
             "user_id",
@@ -2564,23 +3018,12 @@
           );
     }
 
-    else if (
-      request.action === "change_role"
-    ) {
-      if (
-        OWNER_IDS.includes(
-          request.target_user_id
-        )
-      ) {
-        alert(
-          "Protected Owners cannot have their role changed."
-        );
-        return;
-      }
-
+    else {
       operation =
         await supabaseClient
-          .from("admin_users")
+          .from(
+            "admin_users"
+          )
           .update({
             role:
               request.requested_role
@@ -2591,748 +3034,347 @@
           );
     }
 
-    if (!operation) {
+
+    if (
+      operation.error
+    ) {
       alert(
-        "❌ Unknown team request action."
+        "❌ " +
+        operation.error.message
       );
+
       return;
     }
 
-    if (operation.error) {
-      alert(
-        "❌ " + operation.error.message
-      );
-      return;
-    }
 
-    const review =
+    const {
+      error: reviewError
+    } =
       await supabaseClient
-        .from("team_requests")
+        .from(
+          "team_requests"
+        )
         .update({
-          status: "approved",
-          reviewed_by: currentUser.id,
-          reviewed_at:
-            new Date().toISOString()
-        })
-        .eq("id", requestId)
-        .eq("status", "pending");
+          status:
+            "approved",
 
-    if (review.error) {
+          reviewed_by:
+            currentUser.id,
+
+          reviewed_at:
+            new Date()
+              .toISOString()
+        })
+        .eq(
+          "id",
+          requestId
+        );
+
+
+    if (reviewError) {
       alert(
-        "❌ " + review.error.message
+        "❌ " +
+        reviewError.message
       );
+
       return;
     }
 
-    await loadTeam();
-    await loadTeamRequests();
-  }
-
-
-  /* =========================================================
-     REJECT TEAM REQUEST
-  ========================================================= */
-
-  async function rejectTeamRequest(requestId) {
-    if (!isOwner()) return;
-
-    const result =
-      await supabaseClient
-        .from("team_requests")
-        .update({
-          status: "rejected",
-          reviewed_by: currentUser.id,
-          reviewed_at:
-            new Date().toISOString()
-        })
-        .eq("id", requestId)
-        .eq("status", "pending");
-
-    if (result.error) {
-      alert(
-        "❌ " + result.error.message
-      );
-      return;
-    }
 
     await loadTeamRequests();
   }
 
 
-  /* =========================================================
-     OWNER TEAM
-  ========================================================= */
-
-  async function loadTeam() {
-    if (!isOwner()) return;
-
-    setLoading("team");
-
-    try {
-      const result =
-        await supabaseClient
-          .from("admin_users")
-          .select("*")
-          .order("role");
-
-      if (result.error) {
-        $("team").innerHTML =
-          `<p class="error">${escapeHTML(
-            result.error.message
-          )}</p>`;
-
-        return;
-      }
-
-      const members = result.data || [];
-
-      if (!members.length) {
-        $("team").innerHTML =
-          `<p class="empty">
-            No team members found.
-          </p>`;
-        return;
-      }
-
-      $("team").innerHTML = "";
-
-      members.forEach((member) => {
-        const item =
-          document.createElement("div");
-
-        item.className = "item";
-
-        let badgeClass =
-          "viewerBadge";
-
-        if (member.role === "owner") {
-          badgeClass = "ownerBadge";
-        }
-
-        if (member.role === "admin") {
-          badgeClass = "adminBadge";
-        }
-
-        let controls = "";
-
-        if (member.role !== "owner") {
-          controls = `
-            <button
-              class="delete"
-              onclick="removeMember('${escapeHTML(
-                member.user_id
-              )}')"
-            >
-              ❌ Remove
-            </button>
-
-            <select
-              onchange="changeRole(
-                '${escapeHTML(member.user_id)}',
-                this.value
-              )"
-            >
-              <option value="">
-                Change role
-              </option>
-
-              <option value="admin">
-                Admin
-              </option>
-
-              <option value="moderator">
-                Moderator
-              </option>
-
-              <option value="viewer">
-                Viewer
-              </option>
-            </select>
-          `;
-        } else {
-          controls = `
-            <strong>
-              👑 Protected Owner
-            </strong>
-          `;
-        }
-
-        item.innerHTML = `
-          <div class="row">
-
-            <div>
-
-              <p>
-                <strong>User ID:</strong>
-                <br>
-                ${escapeHTML(
-                  member.user_id
-                )}
-              </p>
-
-              <span class="badge ${badgeClass}">
-                ${escapeHTML(
-                  String(
-                    member.role || ""
-                  ).toUpperCase()
-                )}
-              </span>
-
-            </div>
-
-            <div>
-              ${controls}
-            </div>
-
-          </div>
-        `;
-
-        $("team").appendChild(item);
-      });
-
-    } catch (error) {
-      console.error(error);
-
-      $("team").innerHTML =
-        `<p class="error">
-          ❌ Could not load team.
-        </p>`;
-    }
-  }
-
-
-  /* =========================================================
-     OWNER ADD MEMBER
-  ========================================================= */
-
-  async function ownerAddMember() {
-    if (!isOwner()) {
-      return;
-    }
-
-    const userId =
-      $("ownerUserId")
-        .value
-        .trim();
-
-    const role =
-      $("ownerRole").value;
-
-    if (!userId) {
-      setMessage(
-        "ownerTeamMessage",
-        "error",
-        "❌ Enter a User ID."
-      );
-      return;
-    }
-
-    const result =
-      await supabaseClient
-        .from("admin_users")
-        .insert({
-          user_id: userId,
-          role: role
-        });
-
-    if (result.error) {
-      setMessage(
-        "ownerTeamMessage",
-        "error",
-        "❌ " + result.error.message
-      );
-      return;
-    }
-
-    setMessage(
-      "ownerTeamMessage",
-      "success",
-      "✅ Collaborator added."
-    );
-
-    $("ownerUserId").value = "";
-
-    await loadTeam();
-  }
-
-
-  /* =========================================================
-     OWNER REMOVE MEMBER
-  ========================================================= */
-
-  async function removeMember(userId) {
-    if (!isOwner()) return;
-
-    if (OWNER_IDS.includes(userId)) {
-      alert(
-        "Protected Owner accounts cannot be removed."
-      );
-      return;
-    }
-
+  async function rejectTeamRequest(
+    requestId
+  ) {
     if (
-      !confirm(
-        "Remove this collaborator?"
-      )
+      currentRole !==
+      "owner"
     ) {
       return;
     }
 
-    const result =
+
+    const {
+      error
+    } =
       await supabaseClient
-        .from("admin_users")
-        .delete()
-        .eq("user_id", userId);
-
-    if (result.error) {
-      alert(
-        "❌ " + result.error.message
-      );
-      return;
-    }
-
-    await loadTeam();
-  }
-
-
-  /* =========================================================
-     OWNER CHANGE ROLE
-  ========================================================= */
-
-  async function changeRole(userId, role) {
-    if (!role || !isOwner()) {
-      return;
-    }
-
-    if (OWNER_IDS.includes(userId)) {
-      alert(
-        "Protected Owners cannot have their role changed."
-      );
-      return;
-    }
-
-    const result =
-      await supabaseClient
-        .from("admin_users")
+        .from(
+          "team_requests"
+        )
         .update({
-          role: role
-        })
-        .eq("user_id", userId);
+          status:
+            "rejected",
 
-    if (result.error) {
+          reviewed_by:
+            currentUser.id,
+
+          reviewed_at:
+            new Date()
+              .toISOString()
+        })
+        .eq(
+          "id",
+          requestId
+        )
+        .eq(
+          "status",
+          "pending"
+        );
+
+
+    if (error) {
       alert(
-        "❌ " + result.error.message
+        "❌ " +
+        error.message
       );
+
       return;
     }
 
-    await loadTeam();
+
+    await loadTeamRequests();
   }
 
 
-  /* =========================================================
-     LOGOUT
-  ========================================================= */
-
-  async function logout() {
-    try {
-      await supabaseClient.auth.signOut();
-    } finally {
-      currentUser = null;
-      currentRole = null;
-      location.reload();
-    }
-  }
-
-
-  /* =========================================================
-     MODALS
-  ========================================================= */
-
-  function closeModal(id) {
-    const modal = $(id);
-
-    if (!modal) return;
-
-    modal.classList.add("hidden");
-  }
-
-
-  function openModal(id) {
-    const modal = $(id);
-
-    if (!modal) return;
-
-    modal.classList.remove("hidden");
-  }
-
-
-  /* =========================================================
-     ACCOUNT MENU
-  ========================================================= */
-
-  $("accountMenuButton")
-    .addEventListener("click", (event) => {
-      event.stopPropagation();
-
-      $("accountMenu")
-        .classList
-        .toggle("hidden");
-    });
-
-
-  document.addEventListener("click", (event) => {
-    const wrap =
-      document.querySelector(
-        ".account-menu-wrap"
-      );
-
-    if (
-      wrap &&
-      !wrap.contains(event.target)
-    ) {
-      $("accountMenu")
-        .classList
-        .add("hidden");
-    }
-  });
-
-
-  /* =========================================================
-     HISTORY BUTTON
-  ========================================================= */
-
-  $("menuHistoryButton")
-    .addEventListener("click", () => {
-      $("accountMenu")
-        .classList
-        .add("hidden");
-
-      openHistory();
-    });
-
-
-  /* =========================================================
-     PASSWORD BUTTON
-  ========================================================= */
-
-  $("menuPasswordButton")
-    .addEventListener("click", () => {
-      $("accountMenu")
-        .classList
-        .add("hidden");
-
-      setMessage(
-        "passwordMessage",
-        "",
-        ""
-      );
-
-      $("newPassword").value = "";
-      $("confirmPassword").value = "";
-
-      openModal("passwordModal");
-    });
-
-
-  /* =========================================================
-     INVITATION BUTTON
-  ========================================================= */
-
-  $("menuInviteButton")
-    .addEventListener("click", () => {
-      if (!isOwner()) return;
-
-      $("accountMenu")
-        .classList
-        .add("hidden");
-
-      setMessage(
-        "inviteMessage",
-        "",
-        ""
-      );
-
-      $("inviteEmail").value = "";
-
-      openModal("inviteModal");
-    });
-
-
-  /* =========================================================
-     LOGOUT BUTTON
-  ========================================================= */
-
-  $("menuLogoutButton")
-    .addEventListener(
-      "click",
-      logout
-    );
-
-
-  /* =========================================================
-     CHANGE OWN PASSWORD
-  ========================================================= */
+  /* ========================================================
+     PASSWORD
+  ======================================================== */
 
   async function changeOwnPassword() {
     const p1 =
-      $("newPassword").value;
+      document
+        .getElementById(
+          "newPassword"
+        )
+        .value;
 
     const p2 =
-      $("confirmPassword").value;
+      document
+        .getElementById(
+          "confirmPassword"
+        )
+        .value;
 
-    if (p1.length < 8) {
-      setMessage(
-        "passwordMessage",
-        "error",
-        "❌ Password must be at least 8 characters."
-      );
-      return;
-    }
-
-    if (p1 !== p2) {
-      setMessage(
-        "passwordMessage",
-        "error",
-        "❌ Passwords do not match."
-      );
-      return;
-    }
-
-    const button =
-      $("savePasswordButton");
-
-    button.disabled = true;
-    button.textContent =
-      "Saving...";
-
-    try {
-      const result =
-        await supabaseClient.auth
-          .updateUser({
-            password: p1
-          });
-
-      if (result.error) {
-        setMessage(
-          "passwordMessage",
-          "error",
-          "❌ " + result.error.message
-        );
-        return;
-      }
-
-      setMessage(
-        "passwordMessage",
-        "success",
-        "✅ Password changed successfully."
-      );
-
-      $("newPassword").value = "";
-      $("confirmPassword").value = "";
-
-    } finally {
-      button.disabled = false;
-      button.textContent =
-        "Save password";
-    }
-  }
-
-
-  $("savePasswordButton")
-    .addEventListener(
-      "click",
-      changeOwnPassword
-    );
-
-
-  /* =========================================================
-     SEND TEAM INVITATION
-  ========================================================= */
-
-  async function sendTeamInvitation() {
-    if (!isOwner()) {
-      return;
-    }
-
-    const email =
-      $("inviteEmail")
-        .value
-        .trim()
-        .toLowerCase();
-
-    const role =
-      $("inviteRole").value;
-
-    const button =
-      $("sendInviteButton");
 
     if (
-      !email ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-        email
-      )
+      p1.length <
+      8
     ) {
-      setMessage(
-        "inviteMessage",
-        "error",
-        "❌ Enter a valid email address."
+      showMessage(
+        "passwordMessage",
+        "❌ Password must be at least 8 characters.",
+        "error"
       );
+
       return;
     }
 
-    button.disabled = true;
-    button.textContent =
-      "Sending...";
 
-    try {
-      const result =
-        await supabaseClient.functions
-          .invoke(
-            INVITATION_FUNCTION,
-            {
-              body: {
-                email: email,
-                role: role
-              }
-            }
-          );
-
-      if (result.error) {
-        setMessage(
-          "inviteMessage",
-          "error",
-          "❌ " + result.error.message
-        );
-        return;
-      }
-
-      setMessage(
-        "inviteMessage",
-        "success",
-        "✅ Invitation sent to " +
-          email +
-          "."
+    if (
+      p1 !==
+      p2
+    ) {
+      showMessage(
+        "passwordMessage",
+        "❌ Passwords do not match.",
+        "error"
       );
 
-    } catch (error) {
-      console.error(error);
-
-      setMessage(
-        "inviteMessage",
-        "error",
-        "❌ Could not send invitation."
-      );
-
-    } finally {
-      button.disabled = false;
-      button.textContent =
-        "✉️ Send Invitation";
+      return;
     }
-  }
 
 
-  $("sendInviteButton")
-    .addEventListener(
-      "click",
-      sendTeamInvitation
+    const {
+      error
+    } =
+      await supabaseClient.auth
+        .updateUser({
+          password:
+            p1
+        });
+
+
+    if (error) {
+      showMessage(
+        "passwordMessage",
+        "❌ " +
+        error.message,
+        "error"
+      );
+
+      return;
+    }
+
+
+    showMessage(
+      "passwordMessage",
+      "✅ Password changed successfully.",
+      "success"
     );
 
 
-  /* =========================================================
+    document
+      .getElementById(
+        "newPassword"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "confirmPassword"
+      )
+      .value = "";
+  }
+
+
+  /* ========================================================
      HISTORY
-  ========================================================= */
+  ======================================================== */
 
   async function openHistory() {
-    openModal("historyModal");
+    document
+      .getElementById(
+        "historyModal"
+      )
+      .classList.remove(
+        "hidden"
+      );
 
-    const container =
-      $("historyContent");
 
-    container.innerHTML =
+    const c =
+      document.getElementById(
+        "historyContent"
+      );
+
+    c.innerHTML =
       "Loading history...";
 
-    try {
-      let businessQuery =
-        supabaseClient
-          .from("business_requests")
-          .select("*")
-          .order("created_at", {
+
+    let bq =
+      supabaseClient
+        .from(
+          "business_requests"
+        )
+        .select("*")
+        .order(
+          "created_at",
+          {
             ascending: false
-          });
+          }
+        );
 
-      let teamQuery =
-        supabaseClient
-          .from("team_requests")
-          .select("*")
-          .order("created_at", {
+
+    let tq =
+      supabaseClient
+        .from(
+          "team_requests"
+        )
+        .select("*")
+        .order(
+          "created_at",
+          {
             ascending: false
-          });
+          }
+        );
 
-      if (!isOwner()) {
-        businessQuery =
-          businessQuery.eq(
-            "requested_by",
-            currentUser.id
-          );
 
-        teamQuery =
-          teamQuery.eq(
-            "requested_by",
-            currentUser.id
-          );
-      }
+    if (
+      currentRole !==
+      "owner"
+    ) {
+      bq =
+        bq.eq(
+          "requested_by",
+          currentUser.id
+        );
 
-      const [
-        businessResult,
-        teamResult
-      ] = await Promise.all([
-        businessQuery,
-        teamQuery
+      tq =
+        tq.eq(
+          "requested_by",
+          currentUser.id
+        );
+    }
+
+
+    const [
+      b,
+      t
+    ] =
+      await Promise.all([
+        bq,
+        tq
       ]);
 
-      if (
-        businessResult.error &&
-        teamResult.error
-      ) {
-        container.innerHTML =
-          `<p class="error">
-            ❌ Could not load history.
-          </p>`;
-        return;
-      }
 
-      const rows = [];
+    if (
+      b.error &&
+      t.error
+    ) {
+      c.innerHTML =
+        `<p class="error">
+          ❌ Could not load history.
+        </p>`;
 
-      (businessResult.data || [])
-        .forEach((request) => {
+      return;
+    }
+
+
+    const rows = [];
+
+
+    (b.data || [])
+      .forEach(
+        request => {
           rows.push({
-            type: "Business removal",
-            status: request.status,
-            date: request.created_at,
+            type:
+              "Business removal",
+
+            status:
+              request.status,
+
+            date:
+              request.created_at,
+
             name:
               request.requested_by_name,
+
             email:
               request.requested_by_email,
+
             role:
               request.requested_by_role,
+
             detail:
               request.reason
           });
-        });
+        }
+      );
 
-      (teamResult.data || [])
-        .forEach((request) => {
+
+    (t.data || [])
+      .forEach(
+        request => {
           rows.push({
-            type: "Team change",
-            status: request.status,
-            date: request.created_at,
+            type:
+              "Team change",
+
+            status:
+              request.status,
+
+            date:
+              request.created_at,
+
             name:
               request.requested_by_name,
+
             email:
               request.requested_by_email,
+
             role:
               request.requested_by_role,
+
             detail:
               (
                 request.action ||
@@ -3350,130 +3392,267 @@
                 "No reason supplied"
               )
           });
-        });
-
-      rows.sort(
-        (a, b) =>
-          new Date(b.date) -
-          new Date(a.date)
+        }
       );
 
-      if (!rows.length) {
-        container.innerHTML =
-          `<p class="empty">
-            No history available.
-          </p>`;
-        return;
-      }
 
-      container.innerHTML =
-        rows
-          .map(
-            (row) => `
-              <div class="history-item">
+    rows.sort(
+      (a, b) =>
+        new Date(
+          b.date
+        ) -
+        new Date(
+          a.date
+        )
+    );
 
-                <h4>
 
-                  ${escapeHTML(
-                    row.type
-                  )}
+    if (!rows.length) {
+      c.innerHTML =
+        "<p>No history available.</p>";
 
-                  <span
-                    class="badge ${escapeHTML(
-                      row.status ||
-                        "pending"
-                    )}"
-                  >
-                    ${escapeHTML(
-                      (
-                        row.status ||
-                        "UNKNOWN"
-                      ).toUpperCase()
-                    )}
-                  </span>
+      return;
+    }
 
-                </h4>
 
-                <p>
-                  <strong>By:</strong>
-                  ${escapeHTML(
-                    row.name ||
-                      "Unknown user"
-                  )}
+    c.innerHTML =
+      rows.map(
+        row => `
+          <div class="history-item">
 
-                  ·
+            <h4>
+              ${escapeHTML(
+                row.type
+              )}
 
-                  ${escapeHTML(
-                    row.email ||
-                      "No email"
-                  )}
+              <span
+                class="badge ${escapeHTML(
+                  row.status ||
+                  "pending"
+                )}"
+              >
+                ${escapeHTML(
+                  (
+                    row.status ||
+                    "unknown"
+                  ).toUpperCase()
+                )}
+              </span>
+            </h4>
 
-                  ·
+            <p>
+              <strong>By:</strong>
+              ${escapeHTML(
+                row.name ||
+                "Unknown user"
+              )}
+              ·
+              ${escapeHTML(
+                row.email ||
+                "No email"
+              )}
+            </p>
 
-                  ${escapeHTML(
-                    row.role ||
-                      "Unknown role"
-                  )}
-                </p>
+            <p>
+              <strong>Details:</strong>
+              ${escapeHTML(
+                row.detail ||
+                ""
+              )}
+            </p>
 
-                <p>
-                  <strong>Details:</strong>
-                  ${escapeHTML(
-                    row.detail || ""
-                  )}
-                </p>
+            <p class="small">
+              ${new Date(
+                row.date
+              ).toLocaleString()}
+            </p>
 
-                <p class="small">
-                  ${formatDate(row.date)}
-                </p>
+          </div>
+        `
+      ).join("");
+  }
 
-              </div>
-            `
+
+  /* ========================================================
+     LOGOUT
+  ======================================================== */
+
+  async function logout() {
+    await supabaseClient.auth
+      .signOut();
+
+    location.reload();
+  }
+
+
+  /* ========================================================
+     ACCOUNT MENU
+  ======================================================== */
+
+  document
+    .getElementById(
+      "accountMenuButton"
+    )
+    .addEventListener(
+      "click",
+      event => {
+        event.stopPropagation();
+
+        document
+          .getElementById(
+            "accountMenu"
           )
-          .join("");
+          .classList
+          .toggle(
+            "hidden"
+          );
+      }
+    );
 
-    } catch (error) {
-      console.error(error);
-
-      container.innerHTML =
-        `<p class="error">
-          ❌ Could not load history.
-        </p>`;
-    }
-  }
-
-
-  /* =========================================================
-     DATE FORMATTER
-  ========================================================= */
-
-  function formatDate(value) {
-    if (!value) {
-      return "Unknown date";
-    }
-
-    const date =
-      new Date(value);
-
-    if (
-      Number.isNaN(
-        date.getTime()
-      )
-    ) {
-      return "Unknown date";
-    }
-
-    return date.toLocaleString();
-  }
-
-
-  /* =========================================================
-     MODAL BACKDROP CLICK
-  ========================================================= */
 
   document.addEventListener(
     "click",
-    (event) => {
+    event => {
+      const wrap =
+        document.querySelector(
+          ".account-menu-wrap"
+        );
+
+      if (
+        wrap &&
+        !wrap.contains(
+          event.target
+        )
+      ) {
+        document
+          .getElementById(
+            "accountMenu"
+          )
+          .classList.add(
+            "hidden"
+          );
+      }
+    }
+  );
+
+
+  document
+    .getElementById(
+      "menuHistoryButton"
+    )
+    .addEventListener(
+      "click",
+      () => {
+        document
+          .getElementById(
+            "accountMenu"
+          )
+          .classList.add(
+            "hidden"
+          );
+
+        openHistory();
+      }
+    );
+
+
+  document
+    .getElementById(
+      "menuPasswordButton"
+    )
+    .addEventListener(
+      "click",
+      () => {
+        document
+          .getElementById(
+            "accountMenu"
+          )
+          .classList.add(
+            "hidden"
+          );
+
+        document
+          .getElementById(
+            "passwordModal"
+          )
+          .classList.remove(
+            "hidden"
+          );
+      }
+    );
+
+
+  document
+    .getElementById(
+      "menuLogoutButton"
+    )
+    .addEventListener(
+      "click",
+      logout
+    );
+
+
+  /* ========================================================
+     BUTTON EVENTS
+  ======================================================== */
+
+  document
+    .getElementById(
+      "loginButton"
+    )
+    .addEventListener(
+      "click",
+      login
+    );
+
+
+  document
+    .getElementById(
+      "addAdminButton"
+    )
+    .addEventListener(
+      "click",
+      addAdmin
+    );
+
+
+  document
+    .getElementById(
+      "submitDeleteRequest"
+    )
+    .addEventListener(
+      "click",
+      submitDeleteRequest
+    );
+
+
+  document
+    .getElementById(
+      "submitTeamRequest"
+    )
+    .addEventListener(
+      "click",
+      submitTeamRequest
+    );
+
+
+  document
+    .getElementById(
+      "savePasswordButton"
+    )
+    .addEventListener(
+      "click",
+      changeOwnPassword
+    );
+
+
+  /* ========================================================
+     MODAL CLOSE
+  ======================================================== */
+
+  document.addEventListener(
+    "click",
+    event => {
       if (
         event.target.classList.contains(
           "modal-backdrop"
@@ -3487,115 +3666,54 @@
   );
 
 
-  /* =========================================================
-     ESCAPE KEY
-  ========================================================= */
-
   document.addEventListener(
     "keydown",
-    (event) => {
-      if (event.key !== "Escape") {
-        return;
-      }
-
-      document
-        .querySelectorAll(
-          ".modal-backdrop"
-        )
-        .forEach((modal) => {
-          modal.classList.add(
-            "hidden"
+    event => {
+      if (
+        event.key ===
+        "Escape"
+      ) {
+        document
+          .querySelectorAll(
+            ".modal-backdrop"
+          )
+          .forEach(
+            modal =>
+              modal.classList.add(
+                "hidden"
+              )
           );
-        });
-
-      $("accountMenu")
-        .classList
-        .add("hidden");
+      }
     }
   );
 
 
-  /* =========================================================
-     BUTTON EVENTS
-  ========================================================= */
+  /* ========================================================
+     ENTER KEY LOGIN
+  ======================================================== */
 
-  $("loginButton")
-    .addEventListener(
-      "click",
-      login
-    );
-
-  $("submitTeamRequest")
-    .addEventListener(
-      "click",
-      submitTeamRequest
-    );
-
-  $("submitDeleteRequest")
-    .addEventListener(
-      "click",
-      submitDeleteRequest
-    );
-
-  $("ownerAddButton")
-    .addEventListener(
-      "click",
-      ownerAddMember
-    );
-
-
-  /* =========================================================
-     ENTER KEY ON LOGIN
-  ========================================================= */
-
-  $("password")
+  document
+    .getElementById(
+      "password"
+    )
     .addEventListener(
       "keydown",
-      (event) => {
-        if (event.key === "Enter") {
+      event => {
+        if (
+          event.key ===
+          "Enter"
+        ) {
           login();
         }
       }
     );
 
 
-  /* =========================================================
-     AUTH STATE LISTENER
-  ========================================================= */
-
-  supabaseClient.auth.onAuthStateChange(
-    async (event, session) => {
-      /*
-       * Don't repeatedly reload the dashboard when the
-       * same session is refreshed.
-       */
-      if (
-        event === "SIGNED_OUT" ||
-        !session
-      ) {
-        currentUser = null;
-        currentRole = null;
-
-        showLogin();
-        return;
-      }
-
-      if (
-        event === "SIGNED_IN" ||
-        event === "INITIAL_SESSION"
-      ) {
-        await checkAdmin();
-      }
-    }
-  );
-
-
-  /* =========================================================
+  /* ========================================================
      START
-  ========================================================= */
+  ======================================================== */
 
   checkAdmin();
-
 </script>
 
 </body>
