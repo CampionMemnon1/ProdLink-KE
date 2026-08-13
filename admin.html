@@ -3342,6 +3342,46 @@ checkAdmin();
 
 </script>
 
+
+<script>
+(function () {
+  function closeInvitationModal() {
+    const modal = document.getElementById("inviteModal");
+    if (modal) {
+      modal.classList.add("hidden");
+      modal.style.display = "none";
+      modal.setAttribute("aria-hidden", "true");
+    }
+  }
+  function openInvitationModal() {
+    const modal = document.getElementById("inviteModal");
+    if (modal) {
+      modal.classList.remove("hidden");
+      modal.style.display = "";
+      modal.setAttribute("aria-hidden", "false");
+    }
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("inviteModal");
+    if (!modal) return;
+    modal.setAttribute("aria-hidden", "true");
+    modal.querySelectorAll("[data-close-invite], .close, .modal-close, .close-modal").forEach(function (button) {
+      button.addEventListener("click", function (event) {
+        event.preventDefault(); event.stopPropagation(); closeInvitationModal();
+      });
+    });
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) closeInvitationModal();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeInvitationModal();
+    });
+    window.closeInvitationModal = closeInvitationModal;
+    window.openInvitationModal = openInvitationModal;
+  });
+})();
+</script>
+
 </body>
 
 </html>
