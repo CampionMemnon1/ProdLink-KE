@@ -120,8 +120,9 @@ button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 .owner { background: var(--amber); }
 .request { background: var(--purple); }
 
-.hidden { display: none !important; }
-.modal-backdrop.hidden { display: none !important; }
+.hidden { display: none !important; visibility: hidden !important; pointer-events: none !important; }
+.modal-backdrop.hidden { display: none !important; visibility: hidden !important; pointer-events: none !important; }
+.modal-backdrop:not(.hidden) { display: flex !important; visibility: visible !important; pointer-events: auto !important; }
 
 .row {
   display: flex;
@@ -746,17 +747,17 @@ remove, or change team members.
 
 </div>
 
-<div id="historyModal" class="modal-backdrop hidden">
+<div id="historyModal" class="modal-backdrop hidden" aria-hidden="true" style="display:none;">
 <div class="modal">
-<div class="modal-header"><h2>📜 Activity History</h2><button class="close-button" onclick="closeModal('historyModal')">✕</button></div>
+<div class="modal-header"><h2>📜 Activity History</h2><button type="button" class="close-button" onclick="closeModal('historyModal'); return false;">✕</button></div>
 <p class="muted">Owners can review team history. Other roles see their own submitted requests.</p>
 <div id="historyContent">Loading history...</div>
 </div>
 </div>
 
-<div id="passwordModal" class="modal-backdrop hidden">
+<div id="passwordModal" class="modal-backdrop hidden" aria-hidden="true" style="display:none;">
 <div class="modal">
-<div class="modal-header"><h2>🔐 Change Password</h2><button class="close-button" onclick="closeModal('passwordModal')">✕</button></div>
+<div class="modal-header"><h2>🔐 Change Password</h2><button type="button" class="close-button" onclick="closeModal('passwordModal'); return false;">✕</button></div>
 <p class="muted">Changes the password for your current ProdLink account. Your role stays the same.</p>
 <input id="newPassword" type="password" placeholder="New password (minimum 8 characters)">
 <input id="confirmPassword" type="password" placeholder="Confirm new password">
@@ -765,9 +766,9 @@ remove, or change team members.
 </div>
 </div>
 
-<div id="inviteModal" class="modal-backdrop hidden">
+<div id="inviteModal" class="modal-backdrop hidden" aria-hidden="true" style="display:none;">
 <div class="modal">
-<div class="modal-header"><h2>✉️ Invite Team Member</h2><button class="close-button" onclick="closeModal('inviteModal')">✕</button></div>
+<div class="modal-header"><h2>✉️ Invite Team Member</h2><button type="button" class="close-button" onclick="closeModal('inviteModal'); return false;">✕</button></div>
 <p class="muted">Owner only. Choose the role to offer this person. Invitation delivery uses the secure backend function.</p>
 <input id="inviteEmail" type="email" placeholder="person@example.com">
 <select id="inviteRole"><option value="admin">Admin</option><option value="moderator">Moderator</option><option value="viewer">Viewer</option></select>
@@ -1029,6 +1030,16 @@ document
 document
 .getElementById("dashboard")
 .classList.remove("hidden");
+
+/* Never auto-open account modals after login. */
+["historyModal","passwordModal","inviteModal"].forEach(function(id){
+  const modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+  }
+});
 
 
 document
@@ -3272,7 +3283,21 @@ ownerAddMember
    ACCOUNT MENU / HISTORY / PASSWORD / INVITATION
 ========================================================= */
 
-function closeModal(id){ document.getElementById(id).classList.add("hidden"); }
+function closeModal(id){
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+}
+
+function openModal(id){
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.remove("hidden");
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+}
 
 document.getElementById("accountMenuButton").addEventListener("click", e => {
   e.stopPropagation();
@@ -3285,8 +3310,8 @@ document.addEventListener("click", e => {
 });
 
 document.getElementById("menuHistoryButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");openHistory();});
-document.getElementById("menuPasswordButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");document.getElementById("passwordMessage").textContent="";document.getElementById("passwordModal").classList.remove("hidden");});
-document.getElementById("menuInviteButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");document.getElementById("inviteMessage").textContent="";document.getElementById("inviteModal").classList.remove("hidden");});
+document.getElementById("menuPasswordButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");document.getElementById("passwordMessage").textContent="";openModal("passwordModal");});
+document.getElementById("menuInviteButton").addEventListener("click",()=>{document.getElementById("accountMenu").classList.add("hidden");document.getElementById("inviteMessage").textContent="";openModal("inviteModal");});
 document.getElementById("menuLogoutButton").addEventListener("click",logout);
 document.getElementById("savePasswordButton").addEventListener("click",changeOwnPassword);
 document.getElementById("sendInviteButton").addEventListener("click",sendTeamInvitation);
@@ -3320,7 +3345,7 @@ async function sendTeamInvitation(){
 }
 
 async function openHistory(){
-  document.getElementById("historyModal").classList.remove("hidden");
+  openModal("historyModal");
   const c=document.getElementById("historyContent"); c.innerHTML="Loading history...";
   const bq=supabaseClient.from("business_requests").select("*").in("status",["approved","rejected"]).order("created_at",{ascending:false});
   const tq=supabaseClient.from("team_requests").select("*").in("status",["approved","rejected"]).order("created_at",{ascending:false});
@@ -3334,6 +3359,30 @@ async function openHistory(){
   if(!rows.length){c.innerHTML="<p>No history available.</p>";return;}
   c.innerHTML=rows.map(r=>`<div class="history-item"><h4>${escapeHTML(r.type)} <span class="badge ${escapeHTML(r.status||"pending")}">${escapeHTML((r.status||"UNKNOWN").toUpperCase())}</span></h4><p><strong>By:</strong> ${escapeHTML(r.name||"Unknown user")} · ${escapeHTML(r.email||"No email")} · ${escapeHTML(r.role||"Unknown role")}</p><p><strong>Details:</strong> ${escapeHTML(r.detail||"")}</p><p class="small">${new Date(r.date).toLocaleString()}</p></div>`).join("");
 }
+
+/* =========================================================
+   MODAL SAFETY / CLOSE BEHAVIOR
+========================================================= */
+["historyModal","passwordModal","inviteModal"].forEach(function(id){
+  const modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    modal.addEventListener("click", function(event){
+      if (event.target === modal) closeModal(id);
+    });
+  }
+});
+
+document.addEventListener("keydown", function(event){
+  if (event.key === "Escape") {
+    ["historyModal","passwordModal","inviteModal"].forEach(function(id){
+      const modal = document.getElementById(id);
+      if (modal && !modal.classList.contains("hidden")) closeModal(id);
+    });
+  }
+});
 
 /* =========================================================
    START
